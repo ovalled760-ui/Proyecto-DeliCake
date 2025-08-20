@@ -1,0 +1,90 @@
+body {
+      background: linear-gradient(to bottom, #D3B7F5, #8B5FBF);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .logout-box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .logout-box h4 {
+      margin-bottom: 25px;
+    }
+
+    .btn-custom {
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .btn-confirm {
+      background-color: #8B5FBF;
+      color: white;
+    }
+
+    .btn-cancel {
+      background-color: #e0e0e0;
+      color: #333;
+    }
+
+    .message {
+      font-size: 16px;
+      margin-top: 20px;
+      display: none;
+    }
+    .falling-products {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.falling-products span {
+  position: absolute;
+  top: -50px;
+  font-size: 24px;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0.8;
+}
+
+.falling-products span:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+.falling-products span:nth-child(2) { left: 25%; animation-duration: 9s; animation-delay: 2s; }
+.falling-products span:nth-child(3) { left: 40%; animation-duration: 7s; animation-delay: 4s; }
+.falling-products span:nth-child(4) { left: 60%; animation-duration: 6s; animation-delay: 1s; }
+.falling-products span:nth-child(5) { left: 80%; animation-duration: 10s; animation-delay: 3s; }
+.falling-products span:nth-child(6) { left: 15%; animation-duration: 9s; animation-delay: 5s; }
+.falling-products span:nth-child(7) { left: 50%; animation-duration: 7s; animation-delay: 0s; }
+.falling-products span:nth-child(8) { left: 75%; animation-duration: 8s; animation-delay: 6s; }
+
+@keyframes fall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}

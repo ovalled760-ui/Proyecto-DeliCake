@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/Visualización de productos más destacados.css">
+</head>
+<div class="falling-products">
+  <span>🧁</span>
+  <span>🍪</span>
+  <span>🎂</span>
+  <span>🍩</span>
+  <span>🍰</span>
+  <span>🧁</span>
+  <span>🍪</span>
+  <span>🎂</span>
+</div>
+
+<body>
+
+  <!-- Barra de navegación -->
+  <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Catálogo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Mi Cuenta</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control" type="search" placeholder="Buscar productos">
+          <button class="btn btn-search" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+       <a href="#" class="nav-link">🛒</a>
+      <a href="#" class="nav-link">
+        <img src="https://via.placeholder.com/30" alt="👤" class="rounded-circle">
+      </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <div class="container-fluid mt-3">
+    <div class="row">
+
+      <!-- Columna izquierda -->
+      <div class="col-md-3">
+        <select class="form-select mb-3">
+          <option selected>Destacados / Promociones</option>
+          <option>Destacados</option>
+          <option>Promociones</option>
+        </select>
+        <div class="list-group">
+          <div class="list-group-item">
+            <img src="img/imagen j 1.png" class="img-fluid mb-2" alt="Producto">
+            <p>tipo: pastel cumpleaños<br>
+               precio: 80.000 COP<br>
+               tres leches<br>
+               glaseado: personalizable</p>
+          </div>
+          <div class="list-group-item">
+            <img src="img/Galleta 1.png" class="img-fluid mb-2" alt="Producto">
+            <p>tipo: galleta<br>
+               precio: unidad 3.500<br>
+               chocolate<br>
+               glaseado: N/A</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna central -->
+      <div class="col-md-5">
+        <h4>En Promoción</h4>
+        <div class="card mb-3">
+          <img src="img/Miloja 1.png" class="card-img-top" alt="Promo">
+          <div class="card-body">
+            <p>tipo: milhoja big<br>
+               precio: 14.000 COP<br>
+               tipo: milhoja big</p>
+            <button class="btn btn-fav btn-sm">Añadir a favoritos</button>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <img src="img/imagen p 3.png" class="card-img-top" alt="Promo">
+          <div class="card-body">
+            <p>tipo: pastel cumpleaños<br>
+               precio: 80.000 COP<br>
+               tres leches<br>
+               glaseado: personalizable</p>
+            <button class="btn btn-fav btn-sm">Añadir a favoritos</button>
+          </div>
+        </div>
+        <a href="#" class="text-decoration-none">Ver más...</a>
+      </div>
+
+      <!-- Columna derecha -->
+      <div class="col-md-4">
+        <h4>Snacks</h4>
+        <div class="card mb-3">
+          <img src="img/Galleta 2.png" class="card-img-top" alt="Snack">
+          <div class="card-body">
+            <p>tipo: galletas<br>
+               precio: unidad 3.500<br>
+               chocolate<br>
+               glaseado: N/A</p>
+            <button class="btn btn-fav btn-sm">Añadir a favoritos</button>
+          </div>
+        </div>
+        <div class="card mb-3">
+          <img src="img/pasabocas 1.png" class="card-img-top" alt="Snack">
+          <div class="card-body">
+            <p>tipo: pasabocas<br>
+               precio: 35.000 COP<br>
+               crema chantilly<br>
+               glaseado: personalizable</p>
+            <button class="btn btn-fav btn-sm">Añadir a favoritos</button>
+          </div>
+        </div>
+        <a href="#" class="text-decoration-none">Ver más...</a>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
