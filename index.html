@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+
+    <div class="falling-products">
+        <span>🧁</span>
+        <span>🍪</span>
+        <span>🎂</span>
+        <span>🍩</span>
+        <span>🍰</span>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand text-warning fw-bold" href="#">Sweet Bakes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mi Cuenta</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Buscar productos">
+                    <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+                </form>
+                <a href="#" class="nav-link text-white ms-lg-3"><i class="bi bi-cart"></i></a>
+                <a href="#" class="nav-link text-white ms-lg-3">
+                    <img src="https://via.placeholder.com/30" alt="👤" class="rounded-circle">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <div class="text-center mb-5">
+            <h5 class="text-white">Promoción <a href="#" class="text-warning text-decoration-underline ms-2" style="font-size: 12px;">ver más...</a></h5>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-6">
+                <div class="card h-100 shadow-sm product-card">
+                    <img src="{{ url_for('static', filename='img/imagen1.png') }}" class="card-img-top" alt="Cupcakes variados">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Cupcakes Surtidos</h5>
+                        <p class="card-text text-muted">Exquisitos cupcakes con sabores variados.</p>
+                        <a href="#" class="btn btn-warning btn-sm mt-2">Ver más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card h-100 shadow-sm product-card">
+                    <img src="{{ url_for('static', filename='img/imagen2.png') }}" class="card-img-top" alt="Torta de chocolate">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Torta de Chocolate</h5>
+                        <p class="card-text text-muted">Deliciosa torta para tus celebraciones.</p>
+                        <a href="#" class="btn btn-warning btn-sm mt-2">Ver más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="btn-fav position-fixed bottom-0 end-0 m-3 p-3 text-white rounded-circle shadow-lg">
+        <i class="bi bi-heart"></i><br>
+        <small>favoritos</small>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <i class="bi bi-clock me-2"></i>Horarios de atención<br>
+                    <small>lun-viernes 9am a 5pm</small>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <i class="bi bi-question-circle me-2"></i><a href="#" class="text-warning text-decoration-none">¿Tienes preguntas?</a>
+                </div>
+                <div class="col-md-4">
+                    <i class="bi bi-geo-alt me-2"></i><a href="#" class="text-warning text-decoration-none">Dónde nos ubicamos</a><br>
+                    <small>Carrera 95a #19c</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
