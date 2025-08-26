@@ -6,8 +6,7 @@ from dataBase.models import db, Usuario, Cliente
 app = Flask(__name__)
 
 # Configuración de la base de datos
-# Como el usuario 'root' no tiene contraseña, la cadena de conexión no la necesita.
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@127.0.0.1:3306/DeliCake_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@127.0.0.1:3306/delicake_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'clave_secreta'
 
@@ -20,17 +19,8 @@ login_manager.login_view = 'login'
 # Esta función es requerida por Flask-Login para cargar un usuario
 @login_manager.user_loader
 def load_user(user_id):
+    #La función debe devolver una instancia de la clase que hereda de UserMixin
     return Usuario.query.get(int(user_id))
-
-# Decorar la clase Usuario con UserMixin para que funcione con Flask-Login
-class User(Usuario, UserMixin):
-    pass
-
-# Crear las tablas de la base de datos si no existen
-with app.app_context():
-    # Aquí es donde ocurre el error si la contraseña de la base de datos es incorrecta.
-    # Una vez que la arregles, esta línea creará las tablas.
-    db.create_all()
 
 # Rutas de la aplicación
 @app.route('/')
@@ -44,7 +34,6 @@ def publica():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        # Obtener los datos del formulario
         nombre = request.form.get('nombre')
         apellido = request.form.get('apellido')
         correo = request.form.get('correo')
@@ -63,9 +52,7 @@ def register():
         if usuario_existente:
             flash('Este correo ya está registrado.')
             return redirect(url_for('register'))
-
-        # Encriptar la contraseña antes de guardarla. Se ha eliminado el argumento 'method'
-        # para que se utilice el método de hash predeterminado y recomendado (pbkdf2:sha256).
+            
         hashed_password = generate_password_hash(contraseña)
 
         # Crear una nueva instancia de usuario
@@ -99,12 +86,11 @@ def register():
 
         except Exception as e:
             db.session.rollback()
-            # Se ha mejorado el manejo de errores para mostrar el error en la consola
             print(f"Error during registration: {e}")
             flash('Ocurrió un error durante el registro. Por favor, revisa la consola para más detalles.')
             return redirect(url_for('register'))
 
-    return render_template('registro.html') # Asegúrate de tener un archivo registro.html con un formulario
+    return render_template('registro.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -117,19 +103,14 @@ def login():
 
         # Verificar si el usuario existe y la contraseña es correcta
         if usuario and check_password_hash(usuario.Contraseña, contraseña):
-            user_obj = User()
-            user_obj.ID_usuario = usuario.ID_usuario
-            user_obj.Nombre = usuario.Nombre
-            user_obj.Apellido = usuario.Apellido
-            user_obj.Correo = usuario.Correo
-            user_obj.Contraseña = usuario.Contraseña
-            login_user(user_obj)
+            # Usar la instancia de la base de datos directamente, ya que hereda de UserMixin
+            login_user(usuario)
             flash('Inicio de sesión exitoso.')
-            return redirect(url_for('home')) # Redirigir a la página de inicio o a la que desees
+            return redirect(url_for('home'))
         else:
             flash('Correo o contraseña incorrectos.')
             
-    return render_template('inicio de sesion.html') # Asegúrate de tener un archivo inicio de sesion.html con un formulario
+    return render_template('inicio de sesion.html')
 
 @app.route('/logout')
 @login_required
@@ -140,4 +121,6 @@ def logout():
 
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
