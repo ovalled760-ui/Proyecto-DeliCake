@@ -106,7 +106,7 @@ def login():
             # Usar la instancia de la base de datos directamente, ya que hereda de UserMixin
             login_user(usuario)
             flash('Inicio de sesión exitoso.')
-            return redirect(url_for('home'))
+            return redirect(url_for('index-1.html'))
         else:
             flash('Correo o contraseña incorrectos.')
             
@@ -118,6 +118,7 @@ def logout():
     logout_user()
     flash('Has cerrado sesión.')
     return redirect(url_for('home'))
+
 
 
 if __name__ == '__main__':
