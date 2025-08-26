@@ -29,7 +29,7 @@ def home():
 
 @app.route('/publica')
 def publica():
-    return render_template('index.html')
+    return render_template('index-1.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -106,7 +106,7 @@ def login():
             # Usar la instancia de la base de datos directamente, ya que hereda de UserMixin
             login_user(usuario)
             flash('Inicio de sesión exitoso.')
-            return redirect(url_for('index-1.html'))
+            return redirect(url_for('home'))
         else:
             flash('Correo o contraseña incorrectos.')
             
@@ -117,7 +117,8 @@ def login():
 def logout():
     logout_user()
     flash('Has cerrado sesión.')
-    return redirect(url_for('home'))
+    return redirect(url_for('publica'))
+
 
 
 
