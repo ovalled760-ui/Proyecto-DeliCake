@@ -1,7 +1,7 @@
 :root {
     --primary-color: #f7a4a4; 
     --secondary-color: #ffe6e6; 
-    --dark-color: #343a40; 
+    
     --warning-color: #ffc107; 
 }
 
@@ -48,9 +48,9 @@ body {
 
 
 .navbar {
-    background: var(--dark-color);
+    background-color: rgb(156, 156, 156);
     padding: 0.5rem 1rem;
-    box-shadow: 0 7px 10px rgba(0,0,0,0.25);
+    box-shadow: 0 7px 10px rgb(156, 156, 156);
 }
 
 
