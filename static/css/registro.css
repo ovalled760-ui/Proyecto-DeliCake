@@ -1,59 +1,66 @@
- body {
-      background: linear-gradient(135deg,  hsl(0, 94%, 87%) 0%,  #f7a4a4 100%  );
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    /* Navbar */
-    .navbar-custom {
-      background-color: #3b3a3b;
-      padding: 10px 20px;
-    }
-    .navbar-custom a.nav-link {
-      color: white;
-      font-weight: bold;
-    }
-    /* Formulario */
-    .form-container {
-      background-color: #fff;
-      border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-      max-width: 500px;
-      margin: 50px auto;
-    }
-    .form-label {
-      font-weight: bold;
-    }
-    .form-control {
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      padding: 10px;
-    }
-    .form-control:focus {
-      border-color: #222222;
-      box-shadow: 0 0 8px rgba(123, 31, 162, 0.3);
-    }
-    .btn-primary {
-      background-color:  linear-gradient(to right,  hsl(0, 94%, 87%) 0%,  #f7a4a4 100%);
-      border-radius: 8px;
-      border: none;
-      padding: 10px;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    .btn-primary:hover {
-      background-color:  linear-gradient(to right,  hsl(0, 94%, 87%) 0%,  #f7a4a4 100%);
-    }
-    /* Footer */
-    .footer {
-      margin-top: 50px;
-      border-top: 2px solid #eee;
-      padding: 15px;
-      background-color: #fff;
-      text-align: center;
-      color: #555;
-    }
+body {
+  background: linear-gradient(135deg, hsl(0, 94%, 87%) 0%, #f7a4a4 100%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+/* Navbar */
+.navbar-custom {
+  background-color: #3b3a3b;
+  padding: 10px 20px;
+}
+.navbar-custom a.nav-link {
+  color: white;
+  font-weight: bold;
+}
+/* Formulario */
+.form-container {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  max-width: 500px;
+  margin: 50px auto;
+}
+.form-label {
+  font-weight: bold;
+}
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.form-control:focus {
+  border-color: #222222;
+  box-shadow: 0 0 8px rgba(123, 31, 162, 0.3);
+}
+.btn-primary {
+  background: linear-gradient(to right, hsl(0, 94%, 87%) 0%, #f7a4a4 100%);
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: linear-gradient(
+    to right,
+    hsl(0, 94%, 87%) 0%,
+    #f7a4a4 100%
+  );
+}
+/* Footer */
+.footer {
+  margin-top: 50px;
+  border-top: 2px solid #eee;
+  padding: 15px;
+  background-color: #fff;
+  text-align: center;
+  color: #555;
+}
 
-    .falling-products {
+.falling-products {
   position: fixed;
   top: 0;
   left: 0;
@@ -74,14 +81,46 @@
   opacity: 0.8;
 }
 
-.falling-products span:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
-.falling-products span:nth-child(2) { left: 25%; animation-duration: 9s; animation-delay: 2s; }
-.falling-products span:nth-child(3) { left: 40%; animation-duration: 7s; animation-delay: 4s; }
-.falling-products span:nth-child(4) { left: 60%; animation-duration: 6s; animation-delay: 1s; }
-.falling-products span:nth-child(5) { left: 80%; animation-duration: 10s; animation-delay: 3s; }
-.falling-products span:nth-child(6) { left: 15%; animation-duration: 9s; animation-delay: 5s; }
-.falling-products span:nth-child(7) { left: 50%; animation-duration: 7s; animation-delay: 0s; }
-.falling-products span:nth-child(8) { left: 75%; animation-duration: 8s; animation-delay: 6s; }
+.falling-products span:nth-child(1) {
+  left: 10%;
+  animation-duration: 8s;
+  animation-delay: 0s;
+}
+.falling-products span:nth-child(2) {
+  left: 25%;
+  animation-duration: 9s;
+  animation-delay: 2s;
+}
+.falling-products span:nth-child(3) {
+  left: 40%;
+  animation-duration: 7s;
+  animation-delay: 4s;
+}
+.falling-products span:nth-child(4) {
+  left: 60%;
+  animation-duration: 6s;
+  animation-delay: 1s;
+}
+.falling-products span:nth-child(5) {
+  left: 80%;
+  animation-duration: 10s;
+  animation-delay: 3s;
+}
+.falling-products span:nth-child(6) {
+  left: 15%;
+  animation-duration: 9s;
+  animation-delay: 5s;
+}
+.falling-products span:nth-child(7) {
+  left: 50%;
+  animation-duration: 7s;
+  animation-delay: 0s;
+}
+.falling-products span:nth-child(8) {
+  left: 75%;
+  animation-duration: 8s;
+  animation-delay: 6s;
+}
 
 @keyframes fall {
   0% {
