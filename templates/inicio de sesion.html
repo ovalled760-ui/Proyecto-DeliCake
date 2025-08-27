@@ -21,10 +21,11 @@
   </div>
 
   <div class="form-box">
-    <h5>Ingreso</h5> 
    
-    <img src="{{ url_for('static', filename='img/icono-perfil.png') }}" alt="login" style="width: 50px;">
-    <p>Bienvenido(a), ingresa a tu cuenta</p>
+    <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="login" style="width: 160px; height: 160px; border-radius: 50%;"> 
+    <br><br>
+    <p style="font-size: 18px; font-family: cursive;">Bienvenido(a), ingresa a tu cuenta</p>
+    <br>
     
     <form action="/login" method="POST">
       {% with messages = get_flashed_messages() %}
@@ -36,12 +37,12 @@
       {% endwith %}
 
       <div class="mb-3">
-        <label class="form-label">Correo Electrónico*</label>
+        <label class="form-label" style="font-size: 15px; font-family: cursive;">Correo Electrónico*</label>
         <input type="email" class="form-control" name="correo" required>
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Contraseña*</label>
+        <label class="form-label" style="font-size: 15px; font-family: cursive;">Contraseña*</label>
         <input type="password" class="form-control" name="contraseña" required>
       </div>
 

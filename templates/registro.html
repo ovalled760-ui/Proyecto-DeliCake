@@ -1,161 +1,249 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Formulario Estilo Wafrem</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/registro.css') }}">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/registro.css') }}"
+    />
     <style>
-        
-        #alertaGeneral {
-            display: none;
-        }
+      #alertaGeneral {
+        display: none;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="falling-products">
-        <span>🧁</span>
-        <span>🍪</span>
-        <span>🎂</span>
-        <span>🍩</span>
-        <span>🍰</span>
-        <span>🧁</span>
-        <span>🍪</span>
-        <span>🎂</span>
+      <span>🧁</span>
+      <span>🍪</span>
+      <span>🎂</span>
+      <span>🍩</span>
+      <span>🍰</span>
+      <span>🧁</span>
+      <span>🍪</span>
+      <span>🎂</span>
     </div>
 
     <!-- Formulario -->
     <div id="formWrapper" class="form-container">
-        <h3 class="mb-3">Registro</h3>
-        <p class="text-muted">Crea tu cuenta</p>
-        <form id="registroForm" action="/register" method="POST">
-            <!-- Alerta para mostrar los mensajes de JavaScript -->
-            <div id="alertaGeneral" class="alert alert-danger" role="alert"></div>
+      <img
+        src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}"
+        alt="login"
+        style="width: 160px; height: 160px; border-radius: 50%; margin-left: auto; margin-right: auto; display: block"
+      />
+      <br />
+      <p style="font-size: 18px; font-family: cursive; margin-left: 65px;">
+        registrate para empezar a comprar
+      </p>
+      <br />
+      <form id="registroForm" action="/register" method="POST">
+        <!-- Alerta para mostrar los mensajes de JavaScript -->
+        <div id="alertaGeneral" class="alert alert-danger" role="alert"></div>
 
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-info">{{ message }}</div>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+        message in messages %}
+        <div class="alert alert-info">{{ message }}</div>
+        {% endfor %} {% endif %} {% endwith %}
 
-            <div class="row mb-3">
-                <div class="col">
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre *" required>
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido *" required>
-                </div>
-            </div>
-            <div class="mb-3">
-                <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electrónico *" required>
-            </div>
-            <div class="mb-3">
-                <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Número de Teléfono *" required>
-            </div>
-            <div class="mb-3">
-                <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección *" required>
-            </div>
-            <div class="mb-3">
-                <input type="password" class="form-control" id="contraseña" name="contraseña" placeholder="Contraseña *" required>
-            </div>
-            <div class="mb-3">
-                <input type="password" class="form-control" id="confirmar_contraseña" name="confirmar_contraseña" placeholder="Confirmar Contraseña *" required>
-            </div>
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="terms" required>
-                <label class="form-check-label" for="terms">
-                    Acepto los <a href="terms.html" target="_blank" rel="noopener">términos y condiciones</a>
-                </label>
-            </div>
-            <button type="submit" class=" btn-primary w-100"  >Enviar</button>
-        </form>
+        <div class="row mb-3">
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              name="nombre"
+              placeholder="Nombre *"
+              required
+            />
+          </div>
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              id="apellido"
+              name="apellido"
+              placeholder="Apellido *"
+              required
+            />
+          </div>
+        </div>
+        <div class="mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="correo"
+            name="correo"
+            placeholder="Correo electrónico *"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="tel"
+            class="form-control"
+            id="telefono"
+            name="telefono"
+            placeholder="Número de Teléfono *"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="direccion"
+            name="direccion"
+            placeholder="Dirección *"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="password"
+            class="form-control"
+            id="contraseña"
+            name="contraseña"
+            placeholder="Contraseña *"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="password"
+            class="form-control"
+            id="confirmar_contraseña"
+            name="confirmar_contraseña"
+            placeholder="Confirmar Contraseña *"
+            required
+          />
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="terms" required />
+          <label class="form-check-label" for="terms">
+            Acepto los
+            <a href="terms.html" target="_blank" rel="noopener"
+              >términos y condiciones</a
+            >
+          </label>
+        </div>
+        <button type="submit" class="btn-primary w-100">Enviar</button>
+      </form>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4 mt-5 fixed-bottom" style="height: 120px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <i class="bi bi-clock me-2"></i>Horarios de atención<br>
-                    <small>lun-viernes 9am a 5pm</small>
-                </div>
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <i class="bi bi-question-circle me-2"></i><a href="#" class="text-warning text-decoration-none">¿Tienes preguntas?</a>
-                </div>
-                <div class="col-md-4">
-                    <i class="bi bi-geo-alt me-2"></i><a href="#" class="text-warning text-decoration-none">Dónde nos ubicamos</a><br>
-                    <small>Carrera 95a #19c</small>
-                </div>
-            </div>
+    <footer
+      class="bg-dark text-white text-center py-4 mt-5 fixed-bottom"
+      style="height: 120px"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <i class="bi bi-clock me-2"></i>Horarios de atención<br />
+            <small>lun-viernes 9am a 5pm</small>
+          </div>
+          <div class="col-md-4 mb-3 mb-md-0">
+            <i class="bi bi-question-circle me-2"></i
+            ><a href="#" class="text-warning text-decoration-none"
+              >¿Tienes preguntas?</a
+            >
+          </div>
+          <div class="col-md-4">
+            <i class="bi bi-geo-alt me-2"></i
+            ><a href="#" class="text-warning text-decoration-none"
+              >Dónde nos ubicamos</a
+            ><br />
+            <small>Carrera 95a #19c</small>
+          </div>
         </div>
+      </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const registroForm = document.getElementById("registroForm");
-            const alertaGeneral = document.getElementById("alertaGeneral");
+      document.addEventListener("DOMContentLoaded", () => {
+        const registroForm = document.getElementById("registroForm");
+        const alertaGeneral = document.getElementById("alertaGeneral");
 
-            function mostrarAlerta(mensaje) {
-                alertaGeneral.innerText = mensaje;
-                alertaGeneral.style.display = "block";
-                setTimeout(() => {
-                    alertaGeneral.style.display = "none";
-                }, 4000);
-            }
+        function mostrarAlerta(mensaje) {
+          alertaGeneral.innerText = mensaje;
+          alertaGeneral.style.display = "block";
+          setTimeout(() => {
+            alertaGeneral.style.display = "none";
+          }, 4000);
+        }
 
-            registroForm.addEventListener("submit", (e) => {
-                const nombre = document.getElementById("nombre").value.trim();
-                const apellido = document.getElementById("apellido").value.trim();
-                const correo = document.getElementById("correo").value.trim();
-                const telefono = document.getElementById("telefono").value.trim();
-                const direccion = document.getElementById("direccion").value.trim();
-                const contraseña = document.getElementById("contraseña").value.trim();
-                const confirmar_contraseña = document.getElementById("confirmar_contraseña").value.trim();
+        registroForm.addEventListener("submit", (e) => {
+          const nombre = document.getElementById("nombre").value.trim();
+          const apellido = document.getElementById("apellido").value.trim();
+          const correo = document.getElementById("correo").value.trim();
+          const telefono = document.getElementById("telefono").value.trim();
+          const direccion = document.getElementById("direccion").value.trim();
+          const contraseña = document.getElementById("contraseña").value.trim();
+          const confirmar_contraseña = document
+            .getElementById("confirmar_contraseña")
+            .value.trim();
 
-                // 1. Validar campos vacíos
-                if ([nombre, apellido, correo, telefono, direccion, contraseña, confirmar_contraseña].some(field => field === "")) {
-                    e.preventDefault();
-                    mostrarAlerta("Por favor, completa todos los campos.");
-                    return;
-                }
+          // 1. Validar campos vacíos
+          if (
+            [
+              nombre,
+              apellido,
+              correo,
+              telefono,
+              direccion,
+              contraseña,
+              confirmar_contraseña,
+            ].some((field) => field === "")
+          ) {
+            e.preventDefault();
+            mostrarAlerta("Por favor, completa todos los campos.");
+            return;
+          }
 
-                // 2. Validar que nombre y apellido solo contengan letras
-                const regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
-                if (!regexNombre.test(nombre) || !regexNombre.test(apellido)) {
-                    e.preventDefault();
-                    mostrarAlerta("El nombre y el apellido solo pueden contener letras.");
-                    return;
-                }
+          // 2. Validar que nombre y apellido solo contengan letras
+          const regexNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+          if (!regexNombre.test(nombre) || !regexNombre.test(apellido)) {
+            e.preventDefault();
+            mostrarAlerta(
+              "El nombre y el apellido solo pueden contener letras."
+            );
+            return;
+          }
 
-                // 3. Validar que el número de teléfono solo contenga números
-                const regexTelefono = /^\d+$/;
-                if (!regexTelefono.test(telefono)) {
-                    e.preventDefault();
-                    mostrarAlerta("El número de teléfono solo puede contener dígitos.");
-                    return;
-                }
+          // 3. Validar que el número de teléfono solo contenga números
+          const regexTelefono = /^\d+$/;
+          if (!regexTelefono.test(telefono)) {
+            e.preventDefault();
+            mostrarAlerta("El número de teléfono solo puede contener dígitos.");
+            return;
+          }
 
-                // 4. Validar la contraseña
-                const regexpassword = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/;
-                if (!regexpassword.test(contraseña)) {
-                    e.preventDefault();
-                    mostrarAlerta("La contraseña debe tener al menos 8 caracteres, contener letras y números, y tener al menos un carácter especial.");
-                    return;
-                }
+          // 4. Validar la contraseña
+          const regexpassword =
+            /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/;
+          if (!regexpassword.test(contraseña)) {
+            e.preventDefault();
+            mostrarAlerta(
+              "La contraseña debe tener al menos 8 caracteres, contener letras y números, y tener al menos un carácter especial."
+            );
+            return;
+          }
 
-                // 5. Verificar que las contraseñas coincidan
-                if (contraseña !== confirmar_contraseña) {
-                    e.preventDefault();
-                    mostrarAlerta("Las contraseñas no coinciden.");
-                    return;
-                }
-            });
+          // 5. Verificar que las contraseñas coincidan
+          if (contraseña !== confirmar_contraseña) {
+            e.preventDefault();
+            mostrarAlerta("Las contraseñas no coinciden.");
+            return;
+          }
         });
+      });
     </script>
-</body>
+  </body>
 </html>
