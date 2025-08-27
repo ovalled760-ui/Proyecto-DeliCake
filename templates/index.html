@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-lg  sticky-top" >
         <div class="container">
             <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
-                <img src="{{ url_for('static', filename='img/Galleta 1.png') }}" alt="" style="width: 70px; height: 70px; border-radius: 50%; margin-left: 20px;"><br>DeliCake</a>
+                <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="" style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;"><br>DeliCake</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -50,27 +50,29 @@
 
     <main class="container my-5">
         <div class="text-center mb-5">
-            <h5 class="text-white">Promoción <a href="#" class="text-warning text-decoration-underline ms-2" style="font-size: 12px;">ver más...</a></h5>
+            <h3 class="text-white">Promociónes <a href="" id="btnVerMas1" class="text-warning text-decoration-underline ms-2" style="font-size: 12px;">ver más...</a></h3>
         </div>
 
         <div class="row g-4">
             <div class="col-12 col-md-6">
                 <div class="card h-100 shadow-sm product-card">
-                    <img src="{{ url_for('static', filename='img/imagen1.png') }}" class="card-img-top" alt="Cupcakes variados">
+                    <br>
+                    <img src="{{ url_for('static', filename='img/imagen2.png') }}" class="card-img-top" style="width: 90%; height: 60%; border-radius: 20px; margin-left: auto; margin-right: auto;" alt="Cupcakes variados">
                     <div class="card-body text-center">
                         <h5 class="card-title">Cupcakes Surtidos</h5>
                         <p class="card-text text-muted">Exquisitos cupcakes con sabores variados.</p>
-                        <a href="#" class="btn btn-warning btn-sm mt-2">Ver más</a>
+                        <a href="" class="btn btn-warning btn-sm mt-2" id="btnVerMas2">Ver más</a>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="card h-100 shadow-sm product-card">
-                    <img src="{{ url_for('static', filename='img/imagen2.png') }}" class="card-img-top" alt="Torta de chocolate">
+                    <br>
+                    <img src="{{ url_for('static', filename='img/imagen2.png') }} " style="width: 90%; height: 60%; border-radius: 20px; margin-left: auto; margin-right: auto;" class="card-img-top" alt="Torta de chocolate">
                     <div class="card-body text-center">
                         <h5 class="card-title">Torta de Chocolate</h5>
                         <p class="card-text text-muted">Deliciosa torta para tus celebraciones.</p>
-                        <a href="" class="btn btn-warning btn-sm mt-2">Ver más</a>
+                        <a href="" class="btn btn-warning btn-sm mt-2"  id="btnVerMas3">Ver más</a>
                     </div>
                 </div>
             </div>
@@ -102,4 +104,21 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<script>
+    document.getElementById("btnVerMas1").addEventListener("click", function(event){
+    event.preventDefault(); 
+    alert("Debes iniciar sesión o registrarte para acceder a nuestros productos.");
+    });
+
+    document.getElementById("btnVerMas2").addEventListener("click", function(event){
+    event.preventDefault(); 
+    alert("Debes iniciar sesión o registrarte para acceder a nuestros productos.");
+    });
+
+    document.getElementById("btnVerMas3").addEventListener("click", function(event){
+    event.preventDefault(); 
+    alert("Debes iniciar sesión o registrarte para acceder a nuestros productos.");
+    });
+    
+</script>
 </html>

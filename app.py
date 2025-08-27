@@ -118,13 +118,6 @@ def logout():
     logout_user()
     flash('Has cerrado sesión.')
     return redirect(url_for('publica'))
- #index ver-mas
-
-@app.route("/ver-mas")
-def ver_mas():
-    if "usuario" not in session:
-        return jsonify({"error": "Debes iniciar sesión o registrarte"})
-    return jsonify({"data": "Contenido exclusivo"})
 
 
 
