@@ -87,7 +87,7 @@ body {
 .navbar a button {
     background-color: var(--primary-color);
     border: none;
-    color: white;
+    color: rgb(44, 41, 41);
     padding: 6px 14px;
     margin-right: 20px;
     border-radius: 7px;
