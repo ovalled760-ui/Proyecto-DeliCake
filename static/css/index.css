@@ -46,60 +46,82 @@ body {
     100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
 }
 
-/* Estilos de la barra de navegación */
-.navbar-brand {
-    font-size: 1.5rem;
-    font-weight: 700;
+
+.navbar {
+    background: var(--dark-color);
+    padding: 0.8rem 1.2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
+
+
+.navbar-brand {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.navbar-brand:hover {
+    transform: scale(1.05);
+    color: #ffd54f !important;
+}
+
+
 .navbar .nav-link {
-    transition: color 0.3s ease;
+    color: #e0e0e0 !important;
+    margin: 0 0.5rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 .navbar .nav-link:hover {
     color: var(--warning-color) !important;
+    transform: translateY(-2px);
+}
+.navbar .nav-link.active {
+    color: var(--warning-color) !important;
+    border-bottom: 2px solid var(--warning-color);
+    padding-bottom: 3px;
 }
 
-/* Estilos para las tarjetas de productos */
-.product-card {
+/* Botones login/registro */
+.navbar a button {
+    background-color: var(--primary-color);
     border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
+    color: white;
+    padding: 6px 14px;
+    margin-left: 20px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: ;
 }
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-}
-.product-card img {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
+.navbar a button:hover {
+    background-color: #ff7b7b;
+    transform: scale(1.05);
 }
 
-/* Estilos para el botón de favoritos */
-.btn-fav {
+/* Input búsqueda */
+.navbar .form-control {
+    border-radius: 20px;
+    border: none;
+    padding: 8px 14px;
+    transition: box-shadow 0.3s ease;
+}
+.navbar .form-control:focus {
+    outline: none;
+    box-shadow: 0 0 6px rgba(255,193,7,0.7);
+}
+
+/* Botón lupa */
+.navbar .btn-outline-warning {
+    border-radius: 50%;
+    padding: 6px 10px;
+    margin-left: 6px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.navbar .btn-outline-warning:hover {
     background-color: var(--warning-color);
     color: var(--dark-color);
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-}
-.btn-fav:hover {
-    background-color: #ffda79;
-}
-.btn-fav small {
-    font-size: 0.7rem;
-    margin-top: -5px;
+    transform: scale(1.1);
 }
