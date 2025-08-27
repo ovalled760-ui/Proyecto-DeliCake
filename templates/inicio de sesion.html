@@ -45,8 +45,11 @@
         <label class="form-label" style="font-size: 15px; font-family: cursive;">Contraseña*</label>
         <input type="password" class="form-control" name="contraseña" required>
       </div>
+      <a href="{{ url_for('publica') }}">
+          <button type="submit" class="btn btn-dark login-btn">Ingresar</button>
+      </a>
 
-      <button type="submit" class="btn btn-dark login-btn">Ingresar</button>
+    
     </form>
 
     <div class="text-center mt-2 small-link">
