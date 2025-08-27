@@ -1,10 +1,10 @@
  body {
-      background: linear-gradient(135deg, #f7a4a4 100%, #ffe6e6  );
+      background: linear-gradient(135deg,  hsl(0, 94%, 87%) 0%,  #f7a4a4 100%  );
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     /* Navbar */
     .navbar-custom {
-      background-color: #7b1fa2;
+      background-color: #3b3a3b;
       padding: 10px 20px;
     }
     .navbar-custom a.nav-link {
@@ -29,19 +29,19 @@
       padding: 10px;
     }
     .form-control:focus {
-      border-color: #7b1fa2;
+      border-color: #222222;
       box-shadow: 0 0 8px rgba(123, 31, 162, 0.3);
     }
     .btn-primary {
-      background-color:  #f7a4a4;
-      border: none;
+      background-color:  linear-gradient(to right,  hsl(0, 94%, 87%) 0%,  #f7a4a4 100%);
       border-radius: 8px;
+      border: none;
       padding: 10px;
       font-size: 16px;
       font-weight: bold;
     }
     .btn-primary:hover {
-      background-color:  #f7a4a4;
+      background-color:  linear-gradient(to right,  hsl(0, 94%, 87%) 0%,  #f7a4a4 100%);
     }
     /* Footer */
     .footer {
