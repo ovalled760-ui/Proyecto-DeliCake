@@ -1,6 +1,6 @@
 body {
   min-height: 100vh;
-  background: linear-gradient(to bottom, #ffe6e6 0%,  #f7a4a4 100%);
+  background: linear-gradient(to right,  hsl(55, 71%, 84%) 0%,   #ffeb77 100%);
   font-family: "Inter", sans-serif;
   padding-bottom: 100px;
 }
@@ -140,7 +140,7 @@ body {
   }
 }
 .login-btn {
-  background: linear-gradient(to right,  hsl(0, 94%, 87%) 0%,  #f7a4a4 100%);
+  background: linear-gradient(to right,  hsl(55, 100%, 82%) 0%,   #ffe75f 100%);
   border: none;
   color: white;
   font-weight: bold;
