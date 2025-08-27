@@ -20,7 +20,8 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand text-warning fw-bold" href="#">Sweet Bakes</a>
+            <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
+                <img src="{{ url_for('static', filename='img/Galleta 1.png') }}" alt="" style="width: 70px; height: 70px; border-radius: 50%; margin-left: 20px;"><br>DeliCake</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,9 +30,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Catálogo</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Mi Cuenta</a>
-                    </li>
+                    
                 </ul>
                 <a href="{{ url_for('login') }}" >
                     <button>inicar sesion</button>
@@ -40,7 +39,7 @@
                     <button>registrate</button>
                 </a>
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Buscar productos">
+                    <input class="form-control me-2" style="width: 260px;" type="search" placeholder="Buscar productos" aria-label="Buscar productos">
                     <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
                 </form>
                 

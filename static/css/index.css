@@ -1,8 +1,8 @@
 :root {
-    --primary-color: #f7a4a4; /* Un rosa suave */
-    --secondary-color: #ffe6e6; /* Un rosa aún más claro */
-    --dark-color: #343a40; /* Color oscuro para el fondo del navbar/footer */
-    --warning-color: #ffc107; /* El amarillo de Bootstrap */
+    --primary-color: #f7a4a4; 
+    --secondary-color: #ffe6e6; 
+    --dark-color: #343a40; 
+    --warning-color: #ffc107; 
 }
 
 body {
@@ -12,7 +12,7 @@ body {
     color: var(--dark-color);
 }
 
-/* Animación de productos cayendo */
+
 .falling-products {
     position: fixed;
     top: -50px;
@@ -49,8 +49,8 @@ body {
 
 .navbar {
     background: var(--dark-color);
-    padding: 0.8rem 1.2rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    padding: 0.5rem 1rem;
+    box-shadow: 0 7px 10px rgba(0,0,0,0.25);
 }
 
 
@@ -80,6 +80,7 @@ body {
     color: var(--warning-color) !important;
     border-bottom: 2px solid var(--warning-color);
     padding-bottom: 3px;
+    font-size: 20px;
 }
 
 /* Botones login/registro */
@@ -88,13 +89,12 @@ body {
     border: none;
     color: white;
     padding: 6px 14px;
-    margin-left: 20px;
-    border-radius: 5px;
-    font-size: 0.9rem;
+    margin-right: 20px;
+    border-radius: 7px;
+    font-size: 15px;
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    text-align: ;
 }
 .navbar a button:hover {
     background-color: #ff7b7b;
@@ -105,7 +105,7 @@ body {
 .navbar .form-control {
     border-radius: 20px;
     border: none;
-    padding: 8px 14px;
+    padding: 10px 19px;
     transition: box-shadow 0.3s ease;
 }
 .navbar .form-control:focus {
@@ -116,7 +116,7 @@ body {
 /* Botón lupa */
 .navbar .btn-outline-warning {
     border-radius: 50%;
-    padding: 6px 10px;
+    padding: 6px 14px;
     margin-left: 6px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
