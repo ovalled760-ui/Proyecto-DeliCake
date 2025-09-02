@@ -101,7 +101,8 @@ def login():
         # Buscar el usuario en la base de datos
         usuario = Usuario.query.filter_by(Correo=correo).first()
 
-        # Verificar si el usuario existe y la contraseña es correcta
+        # Verificar si el usuario existe y la contraseña es co
+        # rrecta
         if usuario and check_password_hash(usuario.Contraseña, contraseña):
             # Usar la instancia de la base de datos directamente, ya que hereda de UserMixin
             login_user(usuario)
