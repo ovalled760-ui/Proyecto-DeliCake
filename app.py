@@ -31,7 +31,7 @@ def home():
 def publica():
     return render_template('index-1.html')
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST', UserMixin])
 def register():
     if request.method == 'POST':
         nombre = request.form.get('nombre')
