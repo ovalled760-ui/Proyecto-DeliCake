@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
-from dataBase.models import db, Usuario, Cliente
+from controladores.models import db, Usuario, Cliente
 
 app = Flask(__name__)
 
