@@ -83,7 +83,18 @@ body {
     font-size: 20px;
 }
 
-/* Botones login/registro */
+.dropdown-menu{
+    background-color:var(--secondary-color) ;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow:0 10px 10px #ffe75f;
+}
+.dropdown-item{
+    color: #000000 !important;
+    padding: 10px 15px;
+}
+
+
 .navbar a button {
     background-color: var(--primary-color);
     border: none;
@@ -101,7 +112,7 @@ body {
     transform: scale(1.05);
 }
 
-/* Input búsqueda */
+
 .navbar .form-control {
     border-radius: 20px;
     border: none;
@@ -113,7 +124,7 @@ body {
     box-shadow: 0 0 6px rgba(255,193,7,0.7);
 }
 
-/* Botón lupa */
+
 .navbar .btn-outline-warning {
     border-radius: 50%;
     padding: 6px 14px;
@@ -126,9 +137,6 @@ body {
     transform: scale(1.1);
 }
 
-/*buttom navbar*/
-
-/* Hace que las tres líneas (icono hamburguesa) sean blancas */
 .navbar-toggler .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10'  d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
