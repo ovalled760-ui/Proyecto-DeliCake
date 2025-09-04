@@ -94,6 +94,10 @@ body {
     padding: 10px 15px;
 }
 
+.dropdown-item:hover{
+    background-color: var(--primary-color);
+}
+
 
 .navbar a button {
     background-color: var(--primary-color);
