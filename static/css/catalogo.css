@@ -1,0 +1,76 @@
+:root {
+    --primary-color: #ffe75f; 
+    --secondary-color: #ffe6e6; 
+    --dark-color: #d683cb; 
+    --warning-color: #e6ac00; 
+}
+
+body {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--dark-color);
+     
+}
+
+.agregar-producto-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: var(--secondary-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+
+.navbar {
+    background-color: rgb(53, 53, 53);
+    padding: 0.5rem 1rem;
+    box-shadow: 0 7px 10px rgba(0,0,0,0.25);
+}
+
+
+.navbar-brand {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.navbar-brand:hover {
+    transform: scale(1.05);
+    color: #ffd54f !important;
+}
+
+
+.navbar .nav-link {
+    color: #e0e0e0 !important;
+    margin: 0 0.5rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+.navbar .nav-link:hover {
+    color: var(--warning-color) !important;
+    transform: translateY(-2px);
+}
+.navbar .nav-link.active {
+    color: var(--warning-color) !important;
+    border-bottom: 2px solid var(--warning-color);
+    padding-bottom: 3px;
+    font-size: 20px;
+}
+
+.dropdown-menu{
+    background-color:var(--secondary-color) ;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow:0 10px 10px #ffe75f;
+}
+.dropdown-item{
+    color: #000000 !important;
+    padding: 10px 15px;
+}
+
+.dropdown-item:hover{
+    background-color: var(--primary-color);
+}
