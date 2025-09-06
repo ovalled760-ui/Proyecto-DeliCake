@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from controladores.models import db, Producto
+from controladores.models import db, Producto, Categoria
 import os
 
 bp = Blueprint("admin", __name__, url_prefix="/admin")
@@ -11,7 +11,7 @@ def agregar_producto():
         descripcion = request.form["descripcion"]
         precio = request.form["precio"]
         descuento = request.form["descuento"]
-        categoria = request.form["categoria"]
+        ID_Categoria = request.form["categoria"]
 
  
         imagen_file = request.files["imagen"]
@@ -31,15 +31,15 @@ def agregar_producto():
         )
         db.session.add(nuevo)
         db.session.commit()
-
+        
+        categoria = Categoria.query.get(ID_Categoria)
+        if categoria:
+            categoria.ID_Producto = nuevo.ID_Producto
+            categoria.Nombre_Producto  = nuevo.nombre
+            db.session.commit() 
         flash("Producto agregado con éxito ✅")
-        return redirect(url_for("admin.agregar_producto"))
+        return redirect(url_for("admin.catalogo"))
+    categorias = Categoria.query.filter_by(Estado="Activa").all() 
+    return render_template("admin/agregar_producto.html",categorias=categorias)
 
-    return render_template("admin/agregar_producto.html")
 
-@bp.route("/catalogo")
-def catalogo():
-    productos = Producto.query.all()
-    
-    return render_template('catalogo.html', productos = productos)
-    
