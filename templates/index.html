@@ -33,10 +33,11 @@
 
             </button>
             </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
-                        <a class="nav-link active c" aria-current="page" href="#" id="catalogoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catálogo</a>
+                        <a class="nav-link active c" aria-current="page" href="#" id="catalogoDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Catálogo</a>
                         <ul class="dropdown-menu" aria-labelledby="catalogoDropdown">
                             <li><a class="dropdown-item" href="#">Chescake</a></li>
                             <li><a class="dropdown-item" href="#">Tortas</a></li>
@@ -49,10 +50,18 @@
                 </ul>
                 <br>
                 <div margin-left: 5px;>
-                    
-                    <a href="{{ url_for('login') }}">
-                        <button>Iniciar Sesión</button>
-                    </a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="extraDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" style=" margin-right: 20px; width: 100px; height: 35px; background-color: #ffe75f; border-radius: 8px; text-align: center;">
+                            iniciar sesion 
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="extraDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('login') }}">administrador</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('login') }}">cliente</a></li>
+                        </ul>
+                    </li>
+                    </ul>
                     <a href="{{ url_for('register') }}">
                         <button>Registrarte</button>
                     </a>
