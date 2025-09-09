@@ -109,7 +109,7 @@ def login():
             # Usar la instancia de la base de datos directamente, ya que hereda de UserMixin
             login_user(usuario)
             flash('Inicio de sesión exitoso.')
-            return redirect(url_for('home'))
+            return redirect(url_for('publica'))
         else:
             flash('Correo o contraseña incorrectos.')
             
