@@ -113,7 +113,7 @@ def login():
         else:
             flash('Correo o contraseña incorrectos.')
             
-    return render_template('inicio de sesion.html')
+    return render_template('templates/clientes/inicio de sesion.html')
 
 @app.route('/logout')
 @login_required
