@@ -88,6 +88,7 @@ body {
     border-radius: 8px;
     border: 1px solid #ddd;
     box-shadow:0 10px 10px #ffe75f;
+    color: #000000;
 }
 .dropdown-item{
     color: #000000 !important;
@@ -143,4 +144,38 @@ body {
 
 .navbar-toggler .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10'  d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar .btn-warning {
+  background: linear-gradient(45deg, #ffe75f, #ffd54f);
+  border: none;
+  color: #2c2c2c;
+  border-radius: 20px; 
+  padding: 8px 20px;
+ 
+  margin-top: 24px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.navbar .btn-warning:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(255, 231, 95, 0.5);
+}
+
+.navbar .btn-outline-light {
+  border: 2px solid #ffe75f;
+  color: #ffe75f;
+  border-radius: 20px; 
+  padding: 8px 20px;
+  margin-top: -65px;
+   margin-left: 170px; 
+  transition: all 0.3s ease;
+}
+.navbar .btn-outline-light:hover {
+  background: #ffe75f;
+  color: #2c2c2c;
+  transform: scale(1.05);
+}
+
+.navbar .dropdown-toggle::after {
+  display: none !important;
 }
