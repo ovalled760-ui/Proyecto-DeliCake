@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recuperar contraseña</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/recuperar_con.css') }}">
+</head>
+
+<div class="falling-products">
+  <span>🧁</span>
+  <span>🍪</span>
+  <span>🎂</span>
+  <span>🍩</span>
+  <span>🍰</span>
+  <span>🧁</span>
+  <span>🍪</span>
+  <span>🎂</span>
+</div>
+
+<body>
+  <form method="POST" action="{{ url_for('recuperar') }}">
+    <label for="correo">Correo electrónico:</label>
+    <input type="email" name="correo" id="correo" required>
+    <button type="submit">Enviar código</button>
+  </form>
+
+  <footer class="bg-dark text-white text-center py-4 mt-5" style="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <i class="bi bi-clock me-2"></i>Horarios de atención<br>
+                    <small>lun-viernes 9am a 5pm</small>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <i class="bi bi-question-circle me-2"></i><a href="#"
+                        class="text-warning text-decoration-none">¿Tienes preguntas?</a>
+                </div>
+                <div class="col-md-3">
+                    <i class="bi bi-geo-alt me-3"></i><a href="#" class="text-warning text-decoration-none">Dónde nos
+                        ubicamos</a><br>
+                    <small>Carrera 95a #19c</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -5,6 +5,8 @@ import os
 bp = Blueprint("admin", __name__, url_prefix="/admin")
 
 
+
+
 @bp.route("/agregar", methods=["GET", "POST"])
 def agregar_producto():
     if request.method == "POST":

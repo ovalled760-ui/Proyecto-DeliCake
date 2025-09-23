@@ -5,64 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mi Cuenta</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/mi cuenta.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mi cuenta.css') }}">
 </head>
 
-<div class="falling-products">
-  <span>🧁</span>
-  <span>🍪</span>
-  <span>🎂</span>
-  <span>🍩</span>
-  <span>🍰</span>
-  <span>🧁</span>
-  <span>🍪</span>
-  <span>🎂</span>
-</div>
-
-<body>
-
-<!-- Barra de navegación -->
-<nav class="navbar navbar-expand-lg" style="background-color: #7B1FA2; padding: 10px;">
-  <div class="container-fluid">
-
-    <!-- Menú izquierdo -->
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item">
-        <a class="nav-link text-white fw-bold" href="#">Catálogo</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white fw-bold" href="#">Mi Cuenta</a>
-      </li>
-    </ul>
-
-    <!-- Barra de búsqueda -->
-    <form class="d-flex align-items-center me-3">
-      <input class="form-control" type="search" placeholder="Buscar productos" aria-label="Buscar">
-      <button class="btn btn-warning" type="submit" style="border-radius: 0 6px 6px 0;">
-        🔍
-      </button>
-    </form>
-
-    <!-- Íconos -->
-    <div>
-      <a href="#" class="text-white fs-5 me-3">🛒</a>
-      <a href="#" class="text-white fs-5">👤</a>
-    </div>
-  </div>
-</nav>
 
 
+<body class="bg-light">
 
- <div class="section-box mx-auto" style="max-width: 1000px;">
-  <h5 class="text-center mb-4">Mi Cuenta</h5>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand text-warning fw-bold" href="#">Sweet Bakes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active c" aria-current="page" href="#" id="catalogoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catálogo</a>
+                        <ul class="dropdown-menu" aria-labelledby="catalogoDropdown">
+                            <li><a class="dropdown-item" href="#">Chescake</a></li>
+                            <li><a class="dropdown-item" href="#">Tortas</a></li>
+                            <li><a class="dropdown-item" href="#">Tiramisu</a></li>
+                            <li><a class="dropdown-item" href="#">Hojaldres</a></li>
+                            <li><a class="dropdown-item" href="#">Flan</a></li>
+                        </ul>
+                    </li>
 
+                </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('clientes.mi_cuenta') }}">Mi Cuenta</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Buscar productos">
+                    <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+                </form>
+                <a href="#" class="nav-link text-white ms-lg-3"><i class="bi bi-cart"></i></a>
+                <a href="#" class="nav-link text-white ms-lg-3">
+                    <img src="https://via.placeholder.com/30" alt="👤" class="rounded-circle">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+<div class="container my-5">
+  
+  <h4 class="text-center mb-4">Mi Cuenta</h4>
+
+  <!-- Datos personales -->
   <div class="d-flex flex-wrap justify-content-between text-center mb-4">
-    <div class="flex-fill border p-2 m-1">Nombre: xxxx</div>
-    <div class="flex-fill border p-2 m-1">Teléfono: xxxx</div>
-    <div class="flex-fill border p-2 m-1">Correo: xxx@x.com</div>
-    <div class="flex-fill border p-2 m-1">Dirección: xx xx xx</div>
+    <div class="flex-fill border p-2 m-1">Nombre: {{ usuario.Nombre }} {{ usuario.Apellido }}</div>
+    <div class="flex-fill border p-2 m-1">Teléfono: {{ cliente.Telefono }}</div>
+    <div class="flex-fill border p-2 m-1">Correo: {{ usuario.Correo }}</div>
+    <div class="flex-fill border p-2 m-1">Dirección: {{ cliente.Direccion }}</div>
   </div>
 
+  <!-- Opciones -->
   <div class="d-flex justify-content-between text-center mb-4 flex-wrap gap-3">
     <div class="option-card flex-fill">
       <div class="icon">👤</div>
@@ -89,24 +88,22 @@
     </div>
   </div>
 
+
   <div class="text-center mb-3">
     <span class="change-password">🔐 CAMBIAR CONTRASEÑA</span>
   </div>
 
+  
   <div class="text-end mb-3">
-
-    <button class="btn btn-danger btn-sm" href="{{ url_for('/') }}" >Cerrar Sesión</button>
+    <a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm">Cerrar Sesión</a>
   </div>
 
+
   <div class="text-center small-link">
-    <a href="#">política de privacidad</a>
+    <a href="#">Política de privacidad</a>
   </div>
 </div>
 
-
-   </div> 
-</div> 
-
-
 </body>
+</html>
 </html>

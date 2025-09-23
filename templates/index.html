@@ -52,20 +52,21 @@
                 <div margin-left: 5px;>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="extraDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" style=" margin-right: 20px; width: 100px; height: 35px; background-color: #ffe75f; border-radius: 8px; text-align: center;">
-                            iniciar sesion 
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="extraDropdown">
-                            <li><a class="dropdown-item" href="{{ url_for('login') }}">administrador</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('login') }}">cliente</a></li>
-                        </ul>
-                    </li>
-                    </ul>
-                    <a href="{{ url_for('register') }}">
-                        <button>Registrarte</button>
+                        <a class="btn btn-warning me-3 dropdown-toggle fw-semibold" 
+                        href="#" id="extraDropdown" role="button" 
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Iniciar Sesión
                     </a>
-                </div>
+                    <ul class="dropdown-menu" aria-labelledby="extraDropdown">
+                        <li><a class="dropdown-item" href="{{ url_for('login_admin') }}">Administrador</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('login') }}">Cliente</a></li>
+                    </ul>
+                </li>
+        
+                <a href="{{ url_for('register') }}" class="btn btn-outline-light fw-semibold me-3">
+                    Registrarse
+                </a>
+            </div>
 
                 <br>
                 <div style="display: flex; align-items: center;">
@@ -119,11 +120,7 @@
         </div>
     </main>
 
-    <div class="btn-fav position-fixed bottom-0 end-0 m-3 p-3 text-white rounded-circle shadow-lg">
-        <i class="bi bi-heart"></i><br>
-        <small>favoritos</small>
-    </div>
-
+  
     <footer class="bg-dark text-white text-center py-4 mt-5" style="background-color: rgb(156, 156, 156);">
         <div class="container">
             <div class="row">
