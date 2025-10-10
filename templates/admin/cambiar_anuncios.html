@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrar Banners</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    <h1>🎬 Administrar Banners</h1>
+
+    {% if banner_actual %}
+        <h2>Banner actual</h2>
+        <video autoplay muted loop playsinline width="700">
+            <source src="{{ banner_actual }}" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+    {% else %}
+        <p>No hay banner actual disponible.</p>
+    {% endif %}
+
+    <h2>Seleccionar nuevo banner</h2>
+    <form method="POST">
+        <select name="banner" required>
+            <option value="">-- Elige un video --</option>
+            {% for b in banners %}
+                <option value="{{ b }}">{{ b }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Cambiar banner</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li><strong>{{ message }}</strong></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <!-- 🩷 Vista de todos los banners disponibles -->
+    <h2>Banners disponibles</h2>
+    <div class="banners-grid">
+        {% for b in banners %}
+            <div class="banner-card">
+                <video autoplay muted loop playsinline>
+                    <source src="{{ url_for('static', filename='videos/' + b) }}" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+                <p>{{ b }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

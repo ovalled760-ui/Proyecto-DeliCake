@@ -1,8 +1,48 @@
 body {
-      background: linear-gradient(to bottom, #D3B7F5 0%, #8B5FBF 100%);
+      background: linear-gradient(to bottom, #92007aff 0%, #858585ff 100%);
       font-family: 'Inter', sans-serif;
       padding-bottom: 120px;
     }
+/* =======================
+   NAVBAR
+======================= */
+.navbar {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 239, 254, 0.9); 
+  
+}
+
+.navbar-brand {
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ffffff !important; 
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+  color: var(--highlight-color);
+}
+
+.navbar .nav-link {
+  color: palevioletred;
+  margin: 0 0.5rem;
+  font-weight: 600;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+  transform: translateY(-2px);
+}
+
+.navbar .nav-link.active {
+  color: #d63384;
+  font-weight: bold;
+  border-bottom: 2px solid var(--warning-color);
+  padding-bottom: 3px;
+  font-size: 20px;
+}
 
     .form-container {
       max-width: 600px;

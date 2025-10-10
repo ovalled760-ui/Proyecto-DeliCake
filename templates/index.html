@@ -2,163 +2,270 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agregar Producto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 
 <body>
-
-    <div class="falling-products">
-        <span>🧁</span>
-        <span>🍪</span>
-        <span>🎂</span>
-        <span>🍩</span>
-        <span>🍰</span>
+  <div class="falling-products">
+    <span>🧁</span>
+    <span>🍪</span>
+    <span>🎂</span>
+    <span>🍩</span>
+    <span>🍰</span>
+    <span>🧁</span>
+    <span>🍪</span>
+    <span>🎂</span>
+  </div>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="mt-4">
+    {% for category, message in messages %}
+    <div
+      class="alert alert-{{ 'success' if category == 'success' else 'danger' }} alert-dismissible fade show shadow-sm rounded-3 d-flex align-items-center gap-2"
+      role="alert">
+      {% if category == 'success' %}
+      <i class="bi bi-check-circle-fill text-success fs-5"></i>
+      {% else %}
+      <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
+      {% endif %}
+      <div class="flex-grow-1">
+        {{ message }}
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
     </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
+        <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="Logo"
+          style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;">
+        <br>DeliCake🎀</br>
+      </a>
+      <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <nav class="navbar navbar-expand-lg  sticky-top ">
-        <div class="container">
-            <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
-                <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt=""
-                    style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;"><br>DeliCake</a>
-            <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            </button>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link active c" aria-current="page" href="#" id="catalogoDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Catálogo</a>
-                        <ul class="dropdown-menu" aria-labelledby="catalogoDropdown">
-                            <li><a class="dropdown-item" href="#">Chescake</a></li>
-                            <li><a class="dropdown-item" href="#">Tortas</a></li>
-                            <li><a class="dropdown-item" href="#">Tiramisu</a></li>
-                            <li><a class="dropdown-item" href="#">Hojaldres</a></li>
-                            <li><a class="dropdown-item" href="#">Flan</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-                <br>
-                <div margin-left: 5px;>
-
-                    <li class="nav-item dropdown">
-                        <a class="btn btn-warning me-3 dropdown-toggle fw-semibold" 
-                        href="#" id="extraDropdown" role="button" 
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Iniciar Sesión
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="extraDropdown">
-                        <li><a class="dropdown-item" href="{{ url_for('login_admin') }}">Administrador</a></li>
-                        <li><a class="dropdown-item" href="{{ url_for('login') }}">Cliente</a></li>
-                    </ul>
-                </li>
-        
-                <a href="{{ url_for('register') }}" class="btn btn-outline-light fw-semibold me-3">
-                    Registrarse
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link active c" aria-current="page" href="#" id="catalogoDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Catálogo
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="catalogoDropdown">
+              {% for categoria in categorias %}
+              <li>
+                <a class="dropdown-item"
+                  href="{{ url_for('admin.productos_por_categoria', id_categoria=categoria.ID_Categoria) }}">
+                  {{ categoria.Nombre_categoria }}
                 </a>
-            </div>
-
-                <br>
-                <div style="display: flex; align-items: center;">
-                    <input class="form-control me-2" style="width: 260px;" type="search" placeholder="Buscar productos"
-                        aria-label="Buscar productos">
-                    <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
-
-                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+        </ul>
 
 
-                </form>
+        <div class="d-flex align-items-center gap-2">
+          <div class="nav-item dropdown">
+            <a class="btn btn-pink dropdown-toggle fw-semibold" href="#" id="extraDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Iniciar Sesión
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="extraDropdown">
+              <li><a class="dropdown-item" href="{{ url_for('login_admin') }}">Administrador</a></li>
+              <li><a class="dropdown-item" href="{{ url_for('login') }}">Cliente</a></li>
+            </ul>
+          </div>
 
-                </a>
-            </div>
+          <a href="{{ url_for('register') }}" class="btn btn-outline-light fw-semibold border-white">
+            Registrarse
+          </a>
         </div>
-    </nav>
+      </div>
 
-    <main class="container my-5">
-        <div class="text-center mb-5">
-            <h3 class="text-white">Promociónes <a href="" id="btnVerMas1"
-                    class="text-warning text-decoration-underline ms-2" style="font-size: 12px;">Ver más...</a></h3>
+
+
+      <br>
+
+      <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex" style="margin-left: 20px;">
+        <input class="form-control me-2" style="height: 45px;" type="search" name="q" placeholder="Buscar productos..."
+          value="{{ request.args.get('q','') }}">
+        <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+
+      </form>
+
+      </a>
+    </div>
+    </div>
+  </nav>
+
+<section class="carrusel">
+    {% if banner_actual %}
+        <video autoplay muted loop playsinline width="700">
+            <source src="{{ url_for('static', filename=banner_actual) }}" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+    {% else %}
+        <p>No hay banner disponible</p>
+    {% endif %}
+</section>
+
+ <section class="productos">
+    <h2> PRODUCTOS MAS DESTACADOS</h2>
+    <p class="productos-subtitle">postres únicos con el estilo <span>Dlicado</span> 💕</p>
+
+    <div class="productos-container">
+<div class="producto-card">
+  <div class="producto-img">
+    <img src="{{ url_for('static', filename='img/cerezita.jpg') }}" alt="Producto 1">
+  </div>
+  <div class="producto-info">
+    <h3>PASTEL CEREZITA</h3>
+    <p>Cerezita es un pastel creado por nosotros con el mejor relleno de frutos rojos 🍒</p>
+
+    {% if current_user.is_authenticated %}
+      <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+    {% else %}
+      <a href="{{ url_for('register') }}" class="btn-carrito link-carrito">🛒 ¡AGREGALO!</a>
+    {% endif %}
+  </div>
+
+
+</div>
+
+     <div class="producto-card">
+  <div class="producto-img">
+    <img src="{{ url_for('static', filename='img/tiramisu') }}" alt="Producto 2">
+  </div>
+  <div class="producto-info">
+    <h3>TIRAMISU DE FRESITA</h3>
+    <p>Fue inspirado en lo jugosito de 🍓</p>
+
+    {% if current_user.is_authenticated %}
+      <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+    {% else %}
+      <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
+    {% endif %}
+  </div>
+</div>
+
+
+      <div class="producto-card">
+        <div class="producto-img">
+          <img src="{{ url_for('static', filename='img/tortahellokitty.jpg') }}" alt="Producto 3">
+        </div>
+        <div class="producto-info">
+          <h3>TORTI KITTY 🐱</h3>
+          <p>Creado para los amantes de la gata blanca</p>
+          {% if current_user.is_authenticated %}
+            <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+          {% else %}
+            <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+</section>
+
+ <section class="suscripcion">
+    <div class="container">
+      <h2 class="mb-4">💌 SUSCRIBETE A NUESTRO BOLETIN</h2>
+      <p class="mb-4">Recibe novedades, promociones y lanzamientos de productos directamente en tu correo.</p>
+      <form action="{{ url_for('suscribir') }}" method="POST">
+        <input type="email" name="correo" placeholder="Ingresa tu correo electrónico" required>
+        <button type="submit">Inscribirme 🎀 </button>
+      </form>
+  </section>
+  <section class="calificacion">
+    <div class="container">
+      <h2 class="mb-4">Califica y reseña nuestro servicio</h2>
+
+      <form action="{{ url_for('reseñar') }}" method="POST" class="w-50 mx-auto">
+        <input type="hidden" name="correo" value="{{ session.get('correo') }}">
+
+        <div class="mb-3">
+          <label class="form-label">Tu calificación:</label>
+          <div class="star-rating">
+            {% for i in range(5,0,-1) %}
+            <input type="radio" id="estrella{{i}}" name="estrellas" value="{{i}}" required>
+            <label for="estrella{{i}}">⭐</label>
+            {% endfor %}
+          </div>
         </div>
 
-        <div class="row g-4">
-            <div class="col-12 col-md-6">
-                <div class="card h-100 shadow-sm product-card">
-                    <br>
-                    <img src="{{ url_for('static', filename='img/imagen2.png') }}" class="card-img-top"
-                        style="width: 90%; height: 60%; border-radius: 20px; margin-left: auto; margin-right: auto;"
-                        alt="Cupcakes variados">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Cupcakes Surtidos</h5>
-                        <p class="card-text text-muted">Exquisitos cupcakes con sabores variados.</p>
-                        <a href="" class="btn btn-warning btn-sm mt-2" id="btnVerMas2">Ver más</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="card h-100 shadow-sm product-card">
-                    <br>
-                    <img src="{{ url_for('static', filename='img/imagen2.png') }} "
-                        style="width: 90%; height: 60%; border-radius: 20px; margin-left: auto; margin-right: auto;"
-                        class="card-img-top" alt="Torta de chocolate">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Torta de Chocolate</h5>
-                        <p class="card-text text-muted">Deliciosa torta para tus celebraciones.</p>
-                        <a href="" class="btn btn-warning btn-sm mt-2" id="btnVerMas3">Ver más</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
 
-  
-    <footer class="bg-dark text-white text-center py-4 mt-5" style="background-color: rgb(156, 156, 156);">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 mb-3 mb-md-0">
-                    <i class="bi bi-clock me-2"></i>Horarios de atención<br>
-                    <small>lun-viernes 9am a 5pm</small>
-                </div>
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <i class="bi bi-question-circle me-2"></i><a href="#"
-                        class="text-warning text-decoration-none">¿Tienes preguntas?</a>
-                </div>
-                <div class="col-md-3">
-                    <i class="bi bi-geo-alt me-3"></i><a href="#" class="text-warning text-decoration-none">Dónde nos
-                        ubicamos</a><br>
-                    <small>Carrera 95a #19c</small>
-                </div>
-            </div>
+        <div class="mb-3">
+          <textarea name="comentario" class="form-control" placeholder="Escribe tu opinión..." required></textarea>
         </div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <button type="submit" class="btn btn-pink fw-bold">Enviar reseña</button>
+      </form>
+
+
+      <div class="mt-5">
+        <h3>Opiniones de clientes</h3>
+        {% for r in reseñas %}
+        <div class="card my-3 p-3">
+          <p><strong>{{ r.correo }}</strong> - {{ r.estrellas }} ⭐</p>
+          <p>{{ r.comentario }}</p>
+          <small>{{ r.fecha.strftime("%d/%m/%Y") }}</small>
+        </div>
+        {% else %}
+        <p>No hay reseñas todavía.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="nosotros">
+    <h2>👩‍🍳 Nuestro Equipo</h2>
+    <div class="nosotros-contenido">
+      <img src="{{ url_for('static', filename='img/Nosotros.png') }}" alt="Equipo DeliCake">
+      <p>Somos un equipo apasionado por la repostería 💕, dedicados a crear postres únicos con un estilo delicado,
+        elegante y lleno de amor. 🎀</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-contenido">
+      <div class="footer-item">
+        <h4>⏰ Horarios de atención</h4>
+        <p>Lunes - Viernes: 8am</p>
+        <p>Sábados y festivos: 9am - 4:30pm</p>
+      </div>
+      <div class="footer-item">
+        <h4>👩‍💻 Contáctanos</h4>
+        <p>Comunícate con nosotros</p>
+      </div>
+
+      <div class="footer-item">
+        <h4>❓ Preguntas</h4>
+        <p>¿Tienes dudas?</p>
+      </div>
+      <div class="footer-item">
+        <h4>📍 Ubicación</h4>
+        <p>Carrera #56 #19c -</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<script>
-    document.getElementById("btnVerMas1").addEventListener("click", function (event) {
-        event.preventDefault();
-        alert("Debes iniciar sesión o registrarte para acceder a nuestros productos.");
-    });
 
-    document.getElementById("btnVerMas2").addEventListener("click", function (event) {
-        event.preventDefault();
-        alert("Debes iniciar sesión o registrarte para acceder a nuestros productos.");
-    });
 
-    document.getElementById("btnVerMas3").addEventListener("click", function (event) {
-        event.preventDefault();
-        alert("Debes iniciar sesión o registrarte para acceder a nuestros productos.");
-    });
-
-</script>
 
 </html>

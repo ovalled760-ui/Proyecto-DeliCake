@@ -19,6 +19,9 @@
     <span>🍪</span>
     <span>🎂</span>
   </div>
+  <a href="javascript:history.back()" class="volver-btn">
+  ← Volver
+</a>
 
   <div class="form-box">
    
@@ -56,9 +59,9 @@
       <a href="{{ url_for('recuperar') }}">¿Olvidaste tu contraseña?</a>
     </div>
 
-    <div class="text-center mt-3 small-link">
-      <a href="#">Política de privacidad</a>
-    </div>
+   <div class="small-link">
+  <a href="{{ url_for('clientes.politica_privacidad') }}">Política de privacidad</a>
+</div>
   </div>
 </body>
 </html>
