@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Carrito</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/carrito.css') }}">
+</head>
+
+<body>
+  <a href="javascript:history.back()" class="volver-btn">
+  ← Volver
+</a>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
+        <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="Logo"
+          style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;">
+        <br>DeliCake🎀</br>
+      </a>
+      <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link active c" aria-current="page" href="#" id="catalogoDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Catálogo
+            </a>
+
+             <!-- 🔹 Nuevo enlace Carrito -->
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('clientes.carrito') }}">
+      🛒 Carrito
+    </a>
+  </li>
+</ul>
+            <ul class="dropdown-menu" aria-labelledby="catalogoDropdown">
+              {% for categoria in categorias %}
+              <li>
+                <a class="dropdown-item"
+                  href="{{ url_for('admin.productos_por_categoria', id_categoria=categoria.ID_Categoria) }}">
+                  {{ categoria.Nombre_categoria }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+        </ul>  <br>
+
+      <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex" style="margin-left: 20px;">
+        <input class="form-control me-2" style="height: 45px;" type="search" name="q" placeholder="Buscar productos..."
+          value="{{ request.args.get('q','') }}">
+        <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+
+      </form>
+
+      </a>
+    </div>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+
+    
+    <h1 class="text-center mb-4">🛒 Tu Carrito</h1>
+
+    {% if carrito %}
+    <div class="table-responsive shadow rounded-3 bg-white p-3">
+      <table class="table align-middle text-center">
+        <thead class="table-light">
+          <tr>
+            <th>Imagen</th>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in carrito %}
+          <tr>
+            <td><img src="{{ item.imagen }}" alt="{{ item.nombre }}" class="img-thumbnail product-img"></td>
+            <td class="fw-semibold">{{ item.nombre }}</td>
+            <td>${{ "%.2f"|format(item.precio) }}</td>
+            <td>{{ item.cantidad }}</td>
+            <td class="text-danger fw-bold">${{ "%.2f"|format(item.precio * item.cantidad) }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="text-end mt-4 p-3 bg-light rounded-3 shadow-sm">
+  <h4 class="mb-3">
+    Total: <span class="text-danger fw-bold">${{ "%.2f"|format(total) }}</span>
+  </h4>
+
+  <a href="{{ url_for('clientes.confirmacion_pedido') }}" 
+     class="btn btn-coquette btn-lg px-4">
+    🎀 Confirmar compra
+  </a>
+</div>
+
+    
+    {% else %}
+    <div class="alert alert-warning text-center shadow-sm rounded-3">
+      <i class="bi bi-bag-x-fill"></i> Tu carrito está vacío.  
+    
+</a>
+
+    </div>
+    {% endif %}
+  </div>
+
+   <!-- Footer -->
+     <footer class="footer">
+    <div class="footer-contenido">
+      <div class="footer-item">
+        <h4>⏰ Horarios de atención</h4>
+        <p>Lunes - Viernes: 8am</p>
+        <p>Sábados y festivos: 9am - 4:30pm</p>
+      </div>
+      <div class="footer-item">
+        <h4>👩‍💻 Contáctanos</h4>
+        <p>Comunícate con nosotros</p>
+      </div>
+
+      <div class="footer-item">
+        <h4>❓ Preguntas</h4>
+        <p>¿Tienes dudas?</p>
+      </div>
+      <div class="footer-item">
+        <h4>📍 Ubicación</h4>
+        <p>Carrera #56 #19c -</p>
+      </div>
+    </div>
+  </footer>
+</body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</html>

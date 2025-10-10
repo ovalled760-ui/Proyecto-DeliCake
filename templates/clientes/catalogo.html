@@ -1,112 +1,260 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Agregar Producto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/catalogo.css') }}">
 </head>
 
-<div class="falling-products">
-  <span>🧁</span>
-  <span>🍪</span>
-  <span>🎂</span>
-  <span>🍩</span>
-  <span>🍰</span>
-  <span>🧁</span>
-  <span>🍪</span>
-  <span>🎂</span>
+<body>
+
+  <div class="falling-products">
+    <span>🧁</span>
+    <span>🍪</span>
+    <span>🎂</span>
+    <span>🍩</span>
+    <span>🍰</span>
+    <span>🧁</span>
+    <span>🍪</span>
+    <span>🎂</span>
+  </div>
+
+
+  <a href="javascript:history.back()" class="volver-btn">
+  ← Volver
+</a>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
+        <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="Logo"
+          style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;">
+        <br>DeliCake🎀</br>
+      </a>
+      <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link active" href="#" id="catalogoDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">Catálogo</a>
+            <ul class="dropdown-menu" aria-labelledby="catalogoDropdown">
+              {% for categoria in categorias %}
+              <li>
+                <a class="dropdown-item"
+                  href="{{ url_for('admin.productos_por_categoria', id_categoria=categoria.ID_Categoria) }}">
+                  {{ categoria.Nombre_categoria }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('clientes.mi_cuenta') }}">Mi Cuenta</a>
+          </li>
+        </ul>
+        <!-- 🔹 Nuevo enlace Carrito -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('clientes.carrito') }}">
+              🛒 Carrito
+            </a>
+          </li>
+</ul>
+
+        <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex me-3" style="text-align: cover;">
+          <input class="form-control me-2" style="height: 45px;"  type="search" name="q" placeholder="Buscar productos..."
+            value="{{ request.args.get('q','') }}">
+          <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+
+        <a href="#" class="nav-link text-warning ms-lg-3"><i class="bi bi-cart"></i></a>
+        <a href="#" class="nav-link text-warning ms-lg-3">👤</a>
+      </div>
+    </div>
+  </nav>
+
+
+<div class="container my-5">
+ <div class="p-1 mb-3 bg-light rounded-2 shadow text-center">
+
+    <h1 class="display-5 fw-bold">🎉 Promoción en {{ categoria.Nombre_categoria if categoria else 'nuestros productos' }} 🎉</h1>
+
+    <!-- Imagen en lugar del párrafo -->
+    <img src="{{ url_for('static', filename='img/bannerimg.png') }}" alt="Promoción especial" class="img-fluid my-3" style="max-height: 300px;">
+
+    <a href="#" class="btn btn-danger btn-lg">Comprar Ahora</a>
+  </div>
 </div>
 
-<body>
-   <nav class="navbar navbar-expand-lg  sticky-top ">
-        <div class="container">
-            <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
-                <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt=""
-                    style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;"><br>DeliCake</a>
-            <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            </button>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link active c" aria-current="page" href="#" id="catalogoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catálogo</a>
-                        <ul class="dropdown-menu" aria-labelledby="catalogoDropdown">
-                            <li><a class="dropdown-item" href="#">Chescake</a></li>
-                            <li><a class="dropdown-item" href="#">Tortas</a></li>
-                            <li><a class="dropdown-item" href="#">Tiramisu</a></li>
-                            <li><a class="dropdown-item" href="#">Hojaldres</a></li>
-                            <li><a class="dropdown-item" href="#">Flan</a></li>
-                        </ul>
-                    </li>
 
-                </ul>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Mi Cuenta</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Buscar productos">
-                    <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
-                </form>
-                <a href="#" class="nav-link text-white ms-lg-3"><i class="bi bi-cart"></i></a>
-                <a href="#" class="nav-link text-white ms-lg-3">
-                    <img src="https://via.placeholder.com/30" alt="👤" class="rounded-circle">
-                </a>
-            </div>
-        </div>
-    </nav>
-<div class="container py-5">
-    <h1 class="text-center mb-5">🍰 Catálogo de Productos 🍩</h1>
+  <div class="container py-5">
+    <h2 class="text-center mb-5">🍰 Catálogo de {{ categoria.Nombre_categoria if categoria else 'Productos' }} 🍩</h2>
+     <div class="row g-4">
+  {% for p in productos %}
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="card product-card h-100 shadow-sm">
 
-    <div class="row g-4">
-      {% for p in productos %}
-      <div class="col-md-4 col-lg-3">
-        <div class="card product-card">
-          <img src="{{ url_for('static', filename='img/' + p.imagen) }}" class="product-img" alt="{{ p.nombre }}">
+      <!-- Botón carrito circular -->
+          <button class="btn-cart-circle add-to-cart"
+            data-id="{{ p.ID_Producto }}"
+            data-nombre="{{ p.Nombre_producto }}"
+            data-precio="{{ p.Precio_Unitario }}"
+            data-imagen="{{ url_for('static', filename='img/' + p.Imagen) }}">
+            <i class="bi bi-cart-plus"></i>
+          </button>
+
+          <img src="{{ url_for('static', filename='img/' + p.Imagen) }}" class="product-img" alt="{{ p.Nombre_producto }}">
+
           <div class="card-body text-center">
-            <h5 class="card-title">{{ p.nombre }}</h5>
-            <p class="card-text">{{ p.descripcion }}</p>
+            <h5 class="card-title">{{ p.Nombre_producto }}</h5>
+            <p class="card-text">{{ p.Descripcion_producto }}</p>
             <p>
-              <strong>${{ "%.2f"|format(p.precio) }}</strong><br>
-              {% if p.descuento %}
-                <span class="discount">-{{ p.descuento }}% OFF</span>
+              <strong>Precio:</strong> ${{ p.Precio_Unitario }}
+              {% if p.Descuento > 0 %}
+              <br><span class="text-danger fw-bold">Precio con descuento: ${{ p.Precio_Unitario * (1 - p.Descuento/100) }}</span>
               {% endif %}
             </p>
-            <span class="badge bg-primary">{{ p.categoria }}</span>
+            {% if p.categoria %}
+            <span class="badge bg-primary">{{ p.categoria.Nombre_categoria }}</span><br>
+            {% endif %}
+            <a href="{{ url_for('admin.detalle', id=p.ID_Producto) }}" class="btn btn-warning mt-3">Ver más</a>
           </div>
         </div>
       </div>
+      {% else %}
+      <p class="text-center">No hay productos en esta categoría.</p>
       {% endfor %}
     </div>
   </div>
-  
-<footer class="bg-dark text-white text-center py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <i class="bi bi-clock me-2"></i>Horarios de atención<br>
-                    <small>lun-viernes 9am a 5pm</small>
-                </div>
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <i class="bi bi-question-circle me-2"></i><a href="#" class="text-warning text-decoration-none">¿Tienes preguntas?</a>
-                </div>
-                <div class="col-md-4">
-                    <i class="bi bi-geo-alt me-2"></i><a href="#" class="text-warning text-decoration-none">Dónde nos ubicamos</a><br>
-                    <small>Carrera 95a #19c</small>
-                </div>
-            </div>
-        </div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+  <!-- Modal de Confirmación de Carrito -->
+  <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content coquette-modal">
+        <div class="modal-header">
+          <h5 class="modal-title">🛒 Agregar al carrito</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img id="modal-product-img" src="" class="img-fluid rounded mb-3" style="max-height:150px;">
+          <h5 id="modal-product-name"></h5>
+          <p><strong>Precio:</strong> $<span id="modal-product-price"></span></p>
+          <div class="d-flex justify-content-center align-items-center gap-3">
+            <button class="btn btn-outline-secondary" id="decrease-qty">-</button>
+            <input type="number" id="modal-qty" value="1" min="1" class="form-control text-center" style="width:70px;">
+            <button class="btn btn-outline-secondary" id="increase-qty">+</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-coquette" id="confirm-add">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-contenido">
+      <div class="footer-item">
+        <h4>⏰ Horarios de atención</h4>
+        <p>Lunes - Viernes: 8am</p>
+        <p>Sábados y festivos: 9am - 4:30pm</p>
+      </div>
+      <div class="footer-item">
+        <h4>👩‍💻 Contáctanos</h4>
+        <p>Comunícate con nosotros</p>
+      </div>
+      <div class="footer-item">
+        <h4>❓ Preguntas</h4>
+        <p>¿Tienes dudas?</p>
+      </div>
+      <div class="footer-item">
+        <h4>📍 Ubicación</h4>
+        <p>Carrera #56 #19c -</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+  (function(){
+    window.selectedProduct = null;
+
+    document.addEventListener('click', function (e) {
+      const addBtn = e.target.closest('.add-to-cart');
+      if (addBtn) {
+        window.selectedProduct = {
+          id: addBtn.dataset.id,
+          nombre: addBtn.dataset.nombre,
+          precio: addBtn.dataset.precio,
+          imagen: addBtn.dataset.imagen
+        };
+
+        document.getElementById('modal-product-img').src = window.selectedProduct.imagen;
+        document.getElementById('modal-product-name').textContent = window.selectedProduct.nombre;
+        document.getElementById('modal-product-price').textContent = window.selectedProduct.precio;
+        document.getElementById('modal-qty').value = 1;
+
+        const modal = new bootstrap.Modal(document.getElementById('cartModal'));
+        modal.show();
+        return;
+      }
+
+      const confirmBtn = e.target.closest('#confirm-add');
+      if (confirmBtn) {
+        const cantidad = parseInt(document.getElementById('modal-qty').value) || 1;
+
+        const payload = {
+          id: window.selectedProduct.id,
+          nombre: window.selectedProduct.nombre,
+          precio: window.selectedProduct.precio,
+          imagen: window.selectedProduct.imagen,
+          cantidad: cantidad
+        };
+
+        fetch("{{ url_for('clientes.carrito_agregar') }}", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log("Respuesta servidor:", data);
+          bootstrap.Modal.getInstance(document.getElementById("cartModal")).hide();
+          window.location.href = "{{ url_for('clientes.carrito') }}";
+        })
+        .catch(err => {
+          console.error("Error en fetch:", err);
+          window.location.href = "{{ url_for('clientes.carrito') }}";
+        });
+        return;
+      }
+
+      const inc = e.target.closest('#increase-qty');
+      const dec = e.target.closest('#decrease-qty');
+      if (inc || dec) {
+        const qty = document.getElementById('modal-qty');
+        let v = parseInt(qty.value) || 1;
+        if (inc) v++;
+        if (dec) v = Math.max(1, v-1);
+        qty.value = v;
+        return;
+      }
+    });
+  })();
+  </script>
+
 </body>
 </html>

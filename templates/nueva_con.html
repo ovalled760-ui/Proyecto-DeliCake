@@ -21,6 +21,11 @@
 </div>
 
 <body>
+
+  <a href="javascript:history.back()" class="volver-btn">
+  ← Volver
+</a>
+
   <form method="POST" action="{{ url_for('nueva_contrasena') }}">
     <label>Nueva contraseña</label>
     <input type="password" name="password" required>
@@ -29,24 +34,28 @@
     <button type="submit">Actualizar</button>
   </form>
 
-  <footer class="bg-dark text-white text-center py-4 mt-5" style="">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 mb-3 mb-md-0">
-                    <i class="bi bi-clock me-2"></i>Horarios de atención<br>
-                    <small>lun-viernes 9am a 5pm</small>
-                </div>
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <i class="bi bi-question-circle me-2"></i><a href="#"
-                        class="text-warning text-decoration-none">¿Tienes preguntas?</a>
-                </div>
-                <div class="col-md-3">
-                    <i class="bi bi-geo-alt me-3"></i><a href="#" class="text-warning text-decoration-none">Dónde nos
-                        ubicamos</a><br>
-                    <small>Carrera 95a #19c</small>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer -->
+     <footer class="footer">
+    <div class="footer-contenido">
+      <div class="footer-item">
+        <h4>⏰ Horarios de atención</h4>
+        <p>Lunes - Viernes: 8am</p>
+        <p>Sábados y festivos: 9am - 4:30pm</p>
+      </div>
+      <div class="footer-item">
+        <h4>👩‍💻 Contáctanos</h4>
+        <p>Comunícate con nosotros</p>
+      </div>
+
+      <div class="footer-item">
+        <h4>❓ Preguntas</h4>
+        <p>¿Tienes dudas?</p>
+      </div>
+      <div class="footer-item">
+        <h4>📍 Ubicación</h4>
+        <p>Carrera #56 #19c -</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

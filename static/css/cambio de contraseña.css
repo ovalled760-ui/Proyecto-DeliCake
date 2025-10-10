@@ -1,7 +1,7 @@
 body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, #D3B7F5, #8B5FBF);
+      background: linear-gradient(to bottom, #410091ff, #8B5FBF);
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
       display: flex;
