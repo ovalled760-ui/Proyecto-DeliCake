@@ -211,3 +211,13 @@ class Notificacion(db.Model):
 
     # Relación inversa
     usuario = db.relationship("Usuario", back_populates="notificaciones")
+
+class Favorito(db.Model):
+    __tablename__ = "favoritos"
+
+    id_favorito = db.Column(db.Integer, primary_key=True)
+    ID_usuario = db.Column(db.Integer, db.ForeignKey('Usuario.ID_usuario'), nullable=False)
+    ID_Producto = db.Column(db.Integer, db.ForeignKey('Producto.ID_Producto'), nullable=False)
+
+    usuario = db.relationship('Usuario', backref='favoritos', lazy=True)
+    producto = db.relationship('Producto', backref='favoritos', lazy=True)
