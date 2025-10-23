@@ -103,15 +103,12 @@
     <i class="bi bi-search me-1"></i> Ver Estado
   </a>
 </div>
-
-
-      <div class="option-card">
+ <div class="option-card">
         <i class="bi bi-star icon"></i>
         <div class="label">Lista de Favoritos</div>
-        <button class="btn btn-outline-dark btn-sm-custom">
-          <i class="bi bi-heart me-1"></i> Ver Lista
-        </button>
-      </div>
+        <a class="btn btn-outline-dark btn-sm-custom" href="{{ url_for('clientes.mis_favoritos') }}">
+          <i class="bi bi-heart me-1"></i> Ver Lista</a>
+        </div>
     </div>
 
     <!-- Cambiar contraseña -->
