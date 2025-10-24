@@ -3,7 +3,7 @@ from reportlab.pdfgen import canvas
 from flask_login import login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from controladores.models import db, Usuario, Producto
-from controladores.models import db,Categoria,Producto, PersonalizacionProducto, Cliente, Pedido, Disponibilidad, DetallePedido,Notificacion
+from controladores.models import db,Categoria,Favorito,Producto, PersonalizacionProducto, Cliente, Pedido, Disponibilidad, DetallePedido,Notificacion
 from flask import Blueprint, render_template, flash
 from flask_login import login_required, current_user
 from flask import Flask, render_template, request, redirect, url_for
@@ -499,10 +499,34 @@ def notificaciones_json():
 
 @clientes_bp.route("/marcar_leidas", methods=["POST"])
 @login_required
-def marcar_leidas():
+def marcar_leidas():   
     Notificacion.query.filter_by(usuario_id=current_user.ID_usuario, leida=False).update({"leida": True})
     db.session.commit()
     return jsonify({"success": True})
+@clientes_bp.route('/toggle_favorito/<int:producto_id>', methods=['POST'])
+@login_required
+def toggle_favorito(producto_id):
+    favorito = Favorito.query.filter_by(
+        ID_usuario=current_user.ID_usuario,
+        ID_Producto=producto_id
+    ).first()
+
+    if favorito:
+        db.session.delete(favorito)
+        db.session.commit()
+        return jsonify({'favorito': False, 'mensaje': 'Producto eliminado de favoritos 💔'})
+    else:
+        nuevo = Favorito(ID_usuario=current_user.ID_usuario, ID_Producto=producto_id)
+        db.session.add(nuevo)
+        db.session.commit()
+        return jsonify({'favorito': True, 'mensaje': 'Producto añadido a favoritos 💖'})
 
 
+@clientes_bp.route('/mis_favoritos')
+@login_required
+def mis_favoritos():
+    categorias = Categoria.query.all()
+    favoritos = Favorito.query.filter_by(ID_usuario=current_user.ID_usuario).all()
+    productos = [f.producto for f in favoritos]
+    return render_template('clientes/Favoritos.html', productos=productos, categorias=categorias)
 
