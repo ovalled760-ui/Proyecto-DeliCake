@@ -78,6 +78,17 @@ h1 {
   transform: scale(1.05);
 }
 
+.aviso-horario {
+  background-color: #ffeaf0;
+  color: #b83280;
+  font-weight: 500;
+  border: 2px solid #f7bfd8;
+  border-radius: 15px;
+  padding: 15px;
+  margin-top: 20px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
 
 .volver-btn:hover {
   background: #e8a9c9; /* rosa más intenso */
