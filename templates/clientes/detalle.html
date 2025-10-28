@@ -2,12 +2,12 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DETALLE</title>F
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/detalle.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DETALLE</title>F
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/detalle.css') }}">
 </head>
 
 <body>
@@ -21,9 +21,9 @@
     <span>🍪</span>
     <span>🎂</span>
   </div>
-   <a href="javascript:history.back()" class="volver-btn">
-  ← Volver
-</a>
+  <a href="javascript:history.back()" class="volver-btn">
+    ← Volver
+  </a>
   {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
   <div class="mt-4">
@@ -75,134 +75,134 @@
               {% endfor %}
             </ul>
           </li>
-        </ul>  <br>
+        </ul> <br>
 
-      <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex" style="margin-left: 20px;">
-        <input class="form-control me-2" style="height: 45px;" type="search" name="q" placeholder="Buscar productos..."
-          value="{{ request.args.get('q','') }}">
-        <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
-      </form>
+        <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex" style="margin-left: 20px;">
+          <input class="form-control me-2" style="height: 45px;" type="search" name="q"
+            placeholder="Buscar productos..." value="{{ request.args.get('q','') }}">
+          <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+        </form>
 
-      </form>
+        </form>
 
-      </a>
-    </div>
+        </a>
+      </div>
     </div>
   </nav>
 
-     <div class="container">
-        <div class="card">
-            <img src="{{ url_for('static', filename='img/' + producto.Imagen) }}" alt="{{ producto.Nombre_producto }}">
-            <div class="card-content">
-                <h1>{{ producto.Nombre_producto }}</h1>
-                <p class="descripcion">{{ producto.Descripcion_producto }}</p>
-                <p><strong>Ingredientes:</strong> {{ detalle.Ingredientes }}</p>
-                <p><strong>Tiempo de preparación:</strong> {{ detalle.tiempo_preparacion }}</p>
+  <div class="container">
+    <div class="card">
+      <img src="{{ url_for('static', filename='img/' + producto.Imagen) }}" alt="{{ producto.Nombre_producto }}">
+      <div class="card-content">
+        <h1>{{ producto.Nombre_producto }}</h1>
+        <p class="descripcion">{{ producto.Descripcion_producto }}</p>
+        <p><strong>Ingredientes:</strong> {{ detalle.Ingredientes }}</p>
+        <p><strong>Tiempo de preparación:</strong> {{ detalle.tiempo_preparacion }}</p>
 
-                <div class="precio">
-                    <p><strong>Precio:</strong> ${{ producto.Precio_Unitario }}</p>
-                    {% if producto.Descuento %}
-                        <p class="descuento">Descuento: {{ producto.Descuento }}%</p>
-                    {% endif %}
-                </div>
-
-                <div class="calificacion">
-                    <h2>⭐ Calificación</h2>
-                    {% if promedio %}
-                        <p class="promedio">Promedio: {{ promedio }}/5</p>
-                        <div class="stars">
-                            {% for i in range(1,6) %}
-                                <span class="star {% if i <= promedio|round(0, 'floor') %} filled {% endif %}">★</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        <p>Aún no hay calificaciones</p>
-                    {% endif %}
-
-                    <form method="POST" class="rating-form">
-                        <label>Califica este producto:</label>
-                        <div class="rating-input">
-                            {% for i in range(1,6) %}
-                                <input type="radio" id="star{{ i }}" name="puntuacion" value="{{ i }}">
-                                <label for="star{{ i }}">★</label>
-                            {% endfor %}
-                        </div>
-                        <button type="submit" class="btn">Enviar</button>
-                    </form>
-                </div>
-            </div>
+        <div class="precio">
+          <p><strong>Precio:</strong> ${{ producto.Precio_Unitario }}</p>
+          {% if producto.Descuento %}
+          <p class="descuento">Descuento: {{ producto.Descuento }}%</p>
+          {% endif %}
         </div>
+
+        <div class="calificacion">
+          <h2>⭐ Calificación</h2>
+          {% if promedio %}
+          <p class="promedio">Promedio: {{ promedio }}/5</p>
+          <div class="stars">
+            {% for i in range(1,6) %}
+            <span class="star {% if i <= promedio|round(0, 'floor') %} filled {% endif %}">★</span>
+            {% endfor %}
+          </div>
+          {% else %}
+          <p>Aún no hay calificaciones</p>
+          {% endif %}
+
+          <form method="POST" class="rating-form">
+            <label>Califica este producto:</label>
+            <div class="rating-input">
+              {% for i in range(1,6) %}
+              <input type="radio" id="star{{ i }}" name="puntuacion" value="{{ i }}">
+              <label for="star{{ i }}">★</label>
+              {% endfor %}
+            </div>
+            <button type="submit" class="btn">Enviar</button>
+          </form>
+        </div>
+      </div>
     </div>
-    <hr class="my-5">
+  </div>
+  <hr class="my-5">
 
-<div class="text-center mb-4">
-  <h2 class="fw-bold text-warning">✨ Te podría interesar ✨</h2>
-  <p class="text-muted">Descubre más productos similares que podrían encantarte</p>
-  <div style="width: 100px; height: 4px; background: #ffc107; margin: 0 auto; border-radius: 2px;"></div>
-</div>
+  <div class="text-center mb-4">
+    <h2 class="fw-bold text-warning">✨ Te podría interesar ✨</h2>
+    <p class="text-muted">Descubre más productos similares que podrían encantarte</p>
+    <div style="width: 100px; height: 4px; background: #ffc107; margin: 0 auto; border-radius: 2px;"></div>
+  </div>
 
-<div id="sugerenciasCarousel" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
+  <div id="sugerenciasCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
 
-    {% for i in range(0, sugerencias|length, 3) %}
+      {% for i in range(0, sugerencias|length, 3) %}
       <div class="carousel-item {% if i == 0 %}active{% endif %}">
         <div class="row justify-content-center">
           {% for sug in sugerencias[i:i+3] %}
-            <div class="col-md-4 mb-3">
-              <div class="card h-100 shadow-lg border-0 rounded-4">
-                <img src="{{ url_for('static', filename='img/' ~ sug.Imagen) }}" 
-                     class="card-img-top rounded-top-4" alt="{{ sug.Nombre_producto }}">
-                <div class="card-body text-center">
-                  <h5 class="card-title fw-bold">{{ sug.Nombre_producto }}</h5>
-                  <p class="card-text text-success fw-bold fs-5">${{ sug.Precio_Unitario }}</p>
-                  <a href="{{ url_for('admin.detalle', id=sug.ID_Producto) }}" 
-                     class="btn btn-warning text-white fw-bold rounded-pill px-4 shadow-sm">
-                     Ver Detalle
-                  </a>
-                </div>
+          <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-lg border-0 rounded-4">
+              <img src="{{ url_for('static', filename='img/' ~ sug.Imagen) }}" class="card-img-top rounded-top-4"
+                alt="{{ sug.Nombre_producto }}">
+              <div class="card-body text-center">
+                <h5 class="card-title fw-bold">{{ sug.Nombre_producto }}</h5>
+                <p class="card-text text-success fw-bold fs-5">${{ sug.Precio_Unitario }}</p>
+                <a href="{{ url_for('admin.detalle', id=sug.ID_Producto) }}"
+                  class="btn btn-warning text-white fw-bold rounded-pill px-4 shadow-sm">
+                  Ver Detalle
+                </a>
               </div>
             </div>
+          </div>
           {% endfor %}
         </div>
       </div>
-    {% endfor %}
+      {% endfor %}
 
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#sugerenciasCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#sugerenciasCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
   </div>
-
-  <button class="carousel-control-prev" type="button" data-bs-target="#sugerenciasCarousel" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
-    <span class="visually-hidden">Anterior</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#sugerenciasCarousel" data-bs-slide="next">
-    <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
-    <span class="visually-hidden">Siguiente</span>
-  </button>
-</div>
 </body>
 
-      <footer class="footer">
-    <div class="footer-contenido">
-      <div class="footer-item">
-        <h4>⏰ Horarios de atención</h4>
-        <p>Lunes a Viernes: 7am - 8pm</p>
-        <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
-      </div>
-      <div class="footer-item">
-        <h4>👩‍💻 Contáctanos</h4>
-        <p>Comunícate con nosotros</p>
-      </div>
-
-      <div class="footer-item">
-        <h4>❓ Preguntas</h4>
-        <p>¿Tienes dudas?</p>
-      </div>
-      <div class="footer-item">
-        <h4>📍 Ubicación</h4>
-        <p>Carrera #56 #19c -</p>
-      </div>
+<footer class="footer">
+  <div class="footer-contenido">
+    <div class="footer-item">
+      <h4>⏰ Horarios de atención</h4>
+      <p>Lunes a Viernes: 7am - 8pm</p>
+      <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
     </div>
-  </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="footer-item">
+      <h4>👩‍💻 Contáctanos</h4>
+      <p>Comunícate con nosotros</p>
+    </div>
+
+    <div class="footer-item">
+      <h4>❓ Preguntas</h4>
+      <p>¿Tienes dudas?</p>
+    </div>
+    <div class="footer-item">
+      <h4>📍 Ubicación</h4>
+      <p>Carrera #56 #19c -</p>
+    </div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
 </html>
