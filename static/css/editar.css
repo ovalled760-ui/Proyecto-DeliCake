@@ -216,7 +216,8 @@ h1 {
     transition: background 0.3s ease;
 }
 .producto-card form button:hover {
-    background: #219150;
+    background:var(--primary-color
+    );
     cursor: pointer;
 }
 

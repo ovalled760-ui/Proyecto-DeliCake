@@ -23,27 +23,6 @@
  <a href="javascript:history.back()" class="volver-btn">
   ← Volver
 </a>
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-  <div class="mt-4">
-    {% for category, message in messages %}
-    <div
-      class="alert alert-{{ 'success' if category == 'success' else 'danger' }} alert-dismissible fade show shadow-sm rounded-3 d-flex align-items-center gap-2"
-      role="alert">
-      {% if category == 'success' %}
-      <i class="bi bi-check-circle-fill text-success fs-5"></i>
-      {% else %}
-      <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
-      {% endif %}
-      <div class="flex-grow-1">
-        {{ message }}
-      </div>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-    </div>
-    {% endfor %}
-  </div>
-  {% endif %}
-  {% endwith %}
 
  <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
@@ -107,13 +86,12 @@
             {% endfor %}
         </tbody>
     </table>
- <!-- Footer -->
-     <footer class="footer">
+    <footer class="footer">
     <div class="footer-contenido">
       <div class="footer-item">
         <h4>⏰ Horarios de atención</h4>
-        <p>Lunes - Viernes: 8am</p>
-        <p>Sábados y festivos: 9am - 4:30pm</p>
+        <p>Lunes a Viernes: 7am - 8pm</p>
+        <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
       </div>
       <div class="footer-item">
         <h4>👩‍💻 Contáctanos</h4>
