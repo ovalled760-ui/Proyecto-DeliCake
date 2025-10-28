@@ -73,6 +73,15 @@ def home():
 
 from flask_login import current_user
 
+def esta_en_horario():
+    ahora = datetime.now()
+    dia = ahora.weekday()
+    hora_actual = ahora.hour + ahora.minute / 60
+
+    if 0 <= dia <= 4:  
+        return 7 <= hora_actual < 20
+    else:  
+        return 9 <= hora_actual < 17.5
 @app.route('/publica')
 def publica():
     categorias = Categoria.query.all()
@@ -80,6 +89,7 @@ def publica():
     sugerencias = random.sample(productos, min(len(productos), 9))
     reseñas = Reseña.query.filter_by(estado="aprobada").all()
     banner_actual = obtener_banner_actual()
+    en_horario = esta_en_horario()
 
     # 🔹 Si el usuario tiene pedidos, crear notificaciones de estado:
     if current_user.is_authenticated and current_user.cliente:
@@ -96,7 +106,8 @@ def publica():
         sugerencias=sugerencias,
         reseñas=reseñas,
         banner_actual=banner_actual,
-        total_notificaciones=total_notificaciones
+        total_notificaciones=total_notificaciones,
+        en_horario=en_horario
     )
 
 

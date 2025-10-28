@@ -2,7 +2,8 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request,
 from reportlab.pdfgen import canvas
 from flask_login import login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
-from controladores.models import db, Usuario, Producto
+from flask_mail import Mail, Message
+from controladores.models import db, Usuario, Producto, Suscriptor
 from controladores.models import db,Categoria,Favorito,Producto, PersonalizacionProducto, Cliente, Pedido, Disponibilidad, DetallePedido,Notificacion
 from flask import Blueprint, render_template, flash
 from flask_login import login_required, current_user
@@ -10,6 +11,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask import Blueprint, render_template, request, redirect, url_for, session, jsonify
 from flask import session
 import os
+
 
 
 
@@ -165,7 +167,15 @@ def seguimiento_pedido():
         notificaciones=notificaciones,
         categorias=categorias
     )
+def esta_en_horario():
+    ahora = datetime.now()
+    dia = ahora.weekday()
+    hora_actual = ahora.hour + ahora.minute / 60
 
+    if 0 <= dia <= 4:  
+        return 7 <= hora_actual < 20
+    else:  
+        return 9 <= hora_actual < 17.5
 
 
 
@@ -185,6 +195,9 @@ def confirmacion_pedido():
         db.session.commit()
 
     cliente = current_user.cliente  
+    if not esta_en_horario():
+        flash("⏰ Estamos fuera del horario de atención. Tu pedido será procesado el siguiente día hábil.", "warning")
+        return redirect(url_for('clientes.carrito'))
 
   
     disponibilidades = Disponibilidad.query.order_by(Disponibilidad.Fecha, Disponibilidad.Hora).all()
@@ -465,7 +478,7 @@ def suscribir1():
         )
 
     
-    mail.send(msg)
+    Mail.send(msg)
 
     flash("¡Gracias por suscribirte! Revisa tu correo 📩", "success")
     return redirect(url_for('publica'))
