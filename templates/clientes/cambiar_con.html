@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,147 +12,148 @@
 
 <body class="bg-light">
   <a href="javascript:history.back()" class="volver-btn">
-  ← Volver
-</a>
-<body>
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
-      <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
-        <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="Logo"
-          style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;">
-        <br>DeliCake🎀</br>
-      </a>
-      <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    ← Volver
+  </a>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown">
-            <a class="nav-link active" href="#" id="catalogoDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">Catálogo</a>
-            <ul class="dropdown-menu" aria-labelledby="catalogoDropdown">
-              {% for categoria in categorias %}
-              <li>
-                <a class="dropdown-item"
-                  href="{{ url_for('admin.productos_por_categoria', id_categoria=categoria.ID_Categoria) }}">
-                  {{ categoria.Nombre_categoria }}
-                </a>
-              </li>
-              {% endfor %}
-            </ul>
-          </li>
+  <body>
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
+          <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="Logo"
+            style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;">
+          <br>DeliCake🎀</br>
+        </a>
+        <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('clientes.mi_cuenta') }}">Mi Cuenta</a>
-          </li>
-        </ul>
-        
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link active" href="#" id="catalogoDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">Catálogo</a>
+              <ul class="dropdown-menu" aria-labelledby="catalogoDropdown">
+                {% for categoria in categorias %}
+                <li>
+                  <a class="dropdown-item"
+                    href="{{ url_for('admin.productos_por_categoria', id_categoria=categoria.ID_Categoria) }}">
+                    {{ categoria.Nombre_categoria }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('clientes.mi_cuenta') }}">Mi Cuenta</a>
+            </li>
+          </ul>
+
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('clientes.carrito') }}">
               🛒 Carrito
             </a>
           </li>
-</ul>
+          </ul>
 
-        <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex me-3" style="text-align: cover;">
-          <input class="form-control me-2" style="height: 45px;"  type="search" name="q" placeholder="Buscar productos..."
-            value="{{ request.args.get('q','') }}">
-          <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
-        </form>
+          <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex me-3" style="text-align: cover;">
+            <input class="form-control me-2" style="height: 45px;" type="search" name="q"
+              placeholder="Buscar productos..." value="{{ request.args.get('q','') }}">
+            <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+          </form>
 
-        <a href="#" class="nav-link text-warning ms-lg-3">👤</a>
+          <a href="#" class="nav-link text-warning ms-lg-3">👤</a>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <div class="falling-products">
-    <span>🧁</span>
-    <span>🍪</span>
-    <span>🎂</span>
-    <span>🍩</span>
-    <span>🍰</span>
-    <span>🧁</span>
-    <span>🍪</span>
-    <span>🎂</span>
-  </div>
-    
-  {% with mensajes = get_flashed_messages(with_categories=true) %}
+    <div class="falling-products">
+      <span>🧁</span>
+      <span>🍪</span>
+      <span>🎂</span>
+      <span>🍩</span>
+      <span>🍰</span>
+      <span>🧁</span>
+      <span>🍪</span>
+      <span>🎂</span>
+    </div>
+
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
     {% if mensajes %}
-      <div class="container mt-3">
-        {% for categoria, mensaje in mensajes %}
-          <div class="alert alert-{{ categoria }} alert-dismissible fade show shadow-lg border-0 rounded-3" 
-               role="alert" 
-               style="background-color: {% if categoria == 'success' %}#d4edda{% elif categoria == 'danger' %}#f8d7da{% elif categoria == 'warning' %}#fff3cd{% else %}#cce5ff{% endif %}; 
+    <div class="container mt-3">
+      {% for categoria, mensaje in mensajes %}
+      <div class="alert alert-{{ categoria }} alert-dismissible fade show shadow-lg border-0 rounded-3" role="alert"
+        style="background-color: {% if categoria == 'success' %}#d4edda{% elif categoria == 'danger' %}#f8d7da{% elif categoria == 'warning' %}#fff3cd{% else %}#cce5ff{% endif %}; 
                       color: #000;">
-            <i class="bi 
+        <i class="bi 
                 {% if categoria == 'success' %}bi-check-circle-fill
                 {% elif categoria == 'danger' %}bi-x-circle-fill
                 {% elif categoria == 'warning' %}bi-exclamation-triangle-fill
                 {% else %}bi-info-circle-fill{% endif %} me-2"></i>
-            {{ mensaje }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-          </div>
-        {% endfor %}
+        {{ mensaje }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
       </div>
+      {% endfor %}
+    </div>
     {% endif %}
-  {% endwith %}
+    {% endwith %}
 
- 
-  <div class="main-box">
-    <h2 class="text-center mb-4">Cambiar Contraseña</h2>
 
-    <div class="section-box">
-      <h5 class="mb-4"><i class="bi bi-key-fill me-2"></i> Actualiza tu contraseña</h5>
+    <div class="main-box">
+      <h2 class="text-center mb-4">Cambiar Contraseña</h2>
 
-      <form method="POST" action="{{ url_for('clientes.cambiar_contrasena') }}">
-        <div class="mb-3">
-          <label class="form-label">Contraseña actual</label>
-          <input type="password" name="actual" class="form-control" required>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Nueva contraseña</label>
-          <input type="password" name="nueva" class="form-control" required>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Confirmar nueva contraseña</label>
-          <input type="password" name="confirmar" class="form-control" required>
-        </div>
+      <div class="section-box">
+        <h5 class="mb-4"><i class="bi bi-key-fill me-2"></i> Actualiza tu contraseña</h5>
 
-        <div class="text-center mt-4">
-          <button type="submit" class="btn btn-warning px-4">
-            <i class="bi bi-arrow-repeat me-2"></i> Actualizar contraseña
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+        <form method="POST" action="{{ url_for('clientes.cambiar_contrasena') }}">
+          <div class="mb-3">
+            <label class="form-label">Contraseña actual</label>
+            <input type="password" name="actual" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Nueva contraseña</label>
+            <input type="password" name="nueva" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Confirmar nueva contraseña</label>
+            <input type="password" name="confirmar" class="form-control" required>
+          </div>
 
-  <footer class="footer">
-    <div class="footer-contenido">
-      <div class="footer-item">
-        <h4>⏰ Horarios de atención</h4>
-        <p>Lunes a Viernes: 7am - 8pm</p>
-        <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
-      </div>
-      <div class="footer-item">
-        <h4>👩‍💻 Contáctanos</h4>
-        <p>Comunícate con nosotros</p>
-      </div>
-
-      <div class="footer-item">
-        <h4>❓ Preguntas</h4>
-        <p>¿Tienes dudas?</p>
-      </div>
-      <div class="footer-item">
-        <h4>📍 Ubicación</h4>
-        <p>Carrera #56 #19c -</p>
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-warning px-4">
+              <i class="bi bi-arrow-repeat me-2"></i> Actualizar contraseña
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-  </footer>
+
+    <footer class="footer">
+      <div class="footer-contenido">
+        <div class="footer-item">
+          <h4>⏰ Horarios de atención</h4>
+          <p>Lunes a Viernes: 7am - 8pm</p>
+          <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
+        </div>
+        <div class="footer-item">
+          <h4>👩‍💻 Contáctanos</h4>
+          <p>Comunícate con nosotros</p>
+        </div>
+
+        <div class="footer-item">
+          <h4>❓ Preguntas</h4>
+          <p>¿Tienes dudas?</p>
+        </div>
+        <div class="footer-item">
+          <h4>📍 Ubicación</h4>
+          <p>Carrera #56 #19c -</p>
+        </div>
+      </div>
+    </footer>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+
 </html>

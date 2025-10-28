@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,6 +16,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 </head>
+
 <body>
 
   <div class="falling-products">
@@ -51,12 +53,12 @@
     <div class="container">
       <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
         <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="Logo"
-             style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;">
+          style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;">
         <br>DeliCake🎀</br>
       </a>
 
       <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -64,12 +66,12 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
             <a class="nav-link active" href="#" id="catalogoDropdown" role="button" data-bs-toggle="dropdown"
-               aria-expanded="false">Catálogo</a>
+              aria-expanded="false">Catálogo</a>
             <ul class="dropdown-menu" aria-labelledby="catalogoDropdown">
               {% for categoria in categorias %}
               <li>
                 <a class="dropdown-item"
-                   href="{{ url_for('admin.productos_por_categoria', id_categoria=categoria.ID_Categoria) }}">
+                  href="{{ url_for('admin.productos_por_categoria', id_categoria=categoria.ID_Categoria) }}">
                   {{ categoria.Nombre_categoria }}
                 </a>
               </li>
@@ -88,11 +90,11 @@
 
         <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex me-3">
           <input class="form-control me-2" style="height: 45px;" type="search" name="q"
-                 placeholder="Buscar productos..." value="{{ request.args.get('q','') }}">
+            placeholder="Buscar productos..." value="{{ request.args.get('q','') }}">
           <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
         </form>
 
-       
+
         <a href="#" class="nav-link text-warning ms-lg-3">👤</a>
       </div>
     </div>
@@ -101,7 +103,7 @@
   <!-- CONTENIDO -->
   <div class="container1 mt-4">
 
-  
+
 
     <h1 class="text-center mb-4"> Confirmación de Pedido </h1>
 
@@ -113,38 +115,32 @@
         <input type="text" id="nombre" name="nombre" class="form-control" value="{{ current_user.Nombre }}" required>
       </div>
 
-<!-- Dirección -->
-<div class="campo mb-3">
-  <label for="direccion">🏠 Dirección:</label>
-  <input 
-    type="text" 
-    name="direccion" 
-    id="direccion" 
-    class="form-control" 
-    placeholder="Ej: Calle 45 # 10-25" 
-    required
-  >
-  <small id="direccion-error" style="color: #e63946; display: none;">
-    La dirección debe incluir al menos un numeral (#) y solo contener letras, números, espacios o guiones.
-  </small>
-</div>
+      <!-- Dirección -->
+      <div class="campo mb-3">
+        <label for="direccion">🏠 Dirección:</label>
+        <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Ej: Calle 45 # 10-25"
+          required>
+        <small id="direccion-error" style="color: #e63946; display: none;">
+          La dirección debe incluir al menos un numeral (#) y solo contener letras, números, espacios o guiones.
+        </small>
+      </div>
 
-<script>
-  const direccionInput = document.getElementById('direccion');
-  const errorMsg = document.getElementById('direccion-error');
+      <script>
+        const direccionInput = document.getElementById('direccion');
+        const errorMsg = document.getElementById('direccion-error');
 
-  direccionInput.addEventListener('input', function() {
-    const pattern = /^(?=.*#)[A-Za-z0-9#\-\s,.]+$/;
+        direccionInput.addEventListener('input', function () {
+          const pattern = /^(?=.*#)[A-Za-z0-9#\-\s,.]+$/;
 
-    if (!pattern.test(this.value)) {
-      errorMsg.style.display = 'block';
-      this.setCustomValidity('Formato inválido');
-    } else {
-      errorMsg.style.display = 'none';
-      this.setCustomValidity('');
-    }
-  });
-</script>
+          if (!pattern.test(this.value)) {
+            errorMsg.style.display = 'block';
+            this.setCustomValidity('Formato inválido');
+          } else {
+            errorMsg.style.display = 'none';
+            this.setCustomValidity('');
+          }
+        });
+      </script>
 
 
 
@@ -158,29 +154,32 @@
       </div>
 
 
-<h3 class="mt-4">🛒 Carrito de compras</h3>
-<div class="carrito d-flex flex-wrap gap-4">
-  {% for item in carrito %}
-  <div class="producto card shadow-sm p-3 text-center" style="width: 45%;" data-precio="{{ item.precio }}">
-    <!-- imagen -->
-    <img src="{{ item.imagen }}" class="card-img-top mb-2" alt="{{ item.nombre }}" style="height:200px;object-fit:cover; border-radius:8px;">
+      <h3 class="mt-4">🛒 Carrito de compras</h3>
+      <div class="carrito d-flex flex-wrap gap-4">
+        {% for item in carrito %}
+        <div class="producto card shadow-sm p-3 text-center" style="width: 45%;" data-precio="{{ item.precio }}">
+          <!-- imagen -->
+          <img src="{{ item.imagen }}" class="card-img-top mb-2" alt="{{ item.nombre }}"
+            style="height:200px;object-fit:cover; border-radius:8px;">
 
-    <!-- nombre -->
-    <h5 class="card-title">{{ item.nombre }}</h5>
+          <!-- nombre -->
+          <h5 class="card-title">{{ item.nombre }}</h5>
 
-    <!-- controles cantidad -->
-    <div class="d-flex justify-content-center align-items-center my-2" style="gap:10px;">
-      <button type="button" class="menos btn btn-warning btn-cantidad">-</button>
-      <input type="text" name="cantidades[{{ loop.index0 }}]" value="{{ item.cantidad }}" class="cantidad-input text-center" style="width:50px;">
-      <button type="button" class="mas btn btn-warning btn-cantidad">+</button>
-    </div>
+          <!-- controles cantidad -->
+          <div class="d-flex justify-content-center align-items-center my-2" style="gap:10px;">
+            <button type="button" class="menos btn btn-warning btn-cantidad">-</button>
+            <input type="text" name="cantidades[{{ loop.index0 }}]" value="{{ item.cantidad }}"
+              class="cantidad-input text-center" style="width:50px;">
+            <button type="button" class="mas btn btn-warning btn-cantidad">+</button>
+          </div>
 
-    <!-- botón personalizar en esquina -->
-    <a href="{{ url_for('clientes.personalizar_producto', producto_id=item.id) }}"
-       class="btn-personalizar btn btn-outline-danger btn-sm" style="position:absolute; top:10px; right:10px;">✏️</a>
-  </div>
-  {% endfor %}
-</div>
+          <!-- botón personalizar en esquina -->
+          <a href="{{ url_for('clientes.personalizar_producto', producto_id=item.id) }}"
+            class="btn-personalizar btn btn-outline-danger btn-sm"
+            style="position:absolute; top:10px; right:10px;">✏️</a>
+        </div>
+        {% endfor %}
+      </div>
 
       <!-- Fecha y hora -->
       <div class="mb-3">
@@ -206,7 +205,7 @@
 
       <div class="acciones text-center mt-4 mb-5">
         <button type="submit" class="btn-continuar">
-          ✅ Confirmar Pedido 
+          ✅ Confirmar Pedido
         </button>
       </div>
 
@@ -240,33 +239,34 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>
     // ---- FECHAS/HORAS con flatpickr ----
-    (function() {
-      const disponibilidades = (typeof {{ fechas_horas|tojson }} !== 'undefined') ? {{ fechas_horas|tojson }} : {};
-      const horaSelect = document.getElementById('horaEntrega');
-      const dateInputId = '#fechaEntrega';
+    (function () {
+      const disponibilidades = (typeof {{ fechas_horas| tojson
+    }} !== 'undefined') ?{ { fechas_horas | tojson } } : { };
+    const horaSelect = document.getElementById('horaEntrega');
+    const dateInputId = '#fechaEntrega';
 
-      try {
-        flatpickr(dateInputId, {
-          dateFormat: 'Y-m-d',
-          // si no hay fechas, enable será [] -> flatpickr permite seleccionar igual (manejarás en servidor)
-          enable: Object.keys(disponibilidades || {}),
-          onChange: function(selectedDates, dateStr) {
-            // rellenar horas
-            horaSelect.innerHTML = '<option value="">Selecciona una hora</option>';
-            if (disponibilidades && disponibilidades[dateStr]) {
-              disponibilidades[dateStr].forEach(hora => {
-                const opt = document.createElement('option');
-                opt.value = hora;
-                opt.textContent = hora;
-                horaSelect.appendChild(opt);
-              });
-            }
+    try {
+      flatpickr(dateInputId, {
+        dateFormat: 'Y-m-d',
+        // si no hay fechas, enable será [] -> flatpickr permite seleccionar igual (manejarás en servidor)
+        enable: Object.keys(disponibilidades || {}),
+        onChange: function (selectedDates, dateStr) {
+          // rellenar horas
+          horaSelect.innerHTML = '<option value="">Selecciona una hora</option>';
+          if (disponibilidades && disponibilidades[dateStr]) {
+            disponibilidades[dateStr].forEach(hora => {
+              const opt = document.createElement('option');
+              opt.value = hora;
+              opt.textContent = hora;
+              horaSelect.appendChild(opt);
+            });
           }
-        });
-      } catch (err) {
-        console.error('flatpickr error:', err);
-      }
-    })();
+        }
+      });
+    } catch (err) {
+      console.error('flatpickr error:', err);
+    }
+    }) ();
   </script>
 
   <script>
@@ -344,7 +344,8 @@
       actualizarTotal();
     });
   </script>
-  
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,11 +12,11 @@
 
 <body>
 
-<a href="javascript:history.back()" class="volver-btn">
-  ← Volver
-</a>
+  <a href="javascript:history.back()" class="volver-btn">
+    ← Volver
+  </a>
 
-<nav class="navbar navbar-expand-lg sticky-top">
+  <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
       <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
         <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="Logo"
@@ -48,17 +49,17 @@
             <a class="nav-link" href="{{ url_for('clientes.mi_cuenta') }}">Mi Cuenta</a>
           </li>
         </ul>
-  
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('clientes.carrito') }}">
-              🛒 Carrito
-            </a>
-          </li>
-</ul>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('clientes.carrito') }}">
+            🛒 Carrito
+          </a>
+        </li>
+        </ul>
 
         <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex me-3" style="text-align: cover;">
-          <input class="form-control me-2" style="height: 45px;"  type="search" name="q" placeholder="Buscar productos..."
-            value="{{ request.args.get('q','') }}">
+          <input class="form-control me-2" style="height: 45px;" type="search" name="q"
+            placeholder="Buscar productos..." value="{{ request.args.get('q','') }}">
           <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
         </form>
 
@@ -92,7 +93,8 @@
 
 
     <div class="section-box">
-      <h5 class="mb-4 font-family: cursive;"><i class="bi bi-pencil-square me-2"></i> Modificar Información Personal</h5>
+      <h5 class="mb-4 font-family: cursive;"><i class="bi bi-pencil-square me-2"></i> Modificar Información Personal
+      </h5>
 
       <form method="POST" action="{{ url_for('clientes.actualizar_datos') }}">
         <div class="row g-3">
@@ -151,4 +153,5 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
