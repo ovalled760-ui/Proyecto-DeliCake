@@ -1,15 +1,15 @@
 :root {
-    --primary-color: #e0c2deff; 
-    --secondary-color: #dbbcceff; 
-    --dark-color: #d683cb; 
-    --warning-color: #e6ac00; 
+  --primary-color: #e0c2deff;
+  --secondary-color: #dbbcceff;
+  --dark-color: #d683cb;
+  --warning-color: #e6ac00;
 }
 
 body {
-    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-    min-height: 100vh;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    color: var(--dark-color);
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--dark-color);
 }
 
 
@@ -34,23 +34,64 @@ body {
   opacity: 0.8;
 }
 
-.falling-products span:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
-.falling-products span:nth-child(2) { left: 25%; animation-duration: 9s; animation-delay: 2s; }
-.falling-products span:nth-child(3) { left: 40%; animation-duration: 7s; animation-delay: 4s; }
-.falling-products span:nth-child(4) { left: 60%; animation-duration: 6s; animation-delay: 1s; }
-.falling-products span:nth-child(5) { left: 80%; animation-duration: 10s; animation-delay: 3s; }
-.falling-products span:nth-child(6) { left: 15%; animation-duration: 9s; animation-delay: 5s; }
-.falling-products span:nth-child(7) { left: 50%; animation-duration: 7s; animation-delay: 0s; }
-.falling-products span:nth-child(8) { left: 75%; animation-duration: 8s; animation-delay: 6s; }
+.falling-products span:nth-child(1) {
+  left: 10%;
+  animation-duration: 8s;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(2) {
+  left: 25%;
+  animation-duration: 9s;
+  animation-delay: 2s;
+}
+
+.falling-products span:nth-child(3) {
+  left: 40%;
+  animation-duration: 7s;
+  animation-delay: 4s;
+}
+
+.falling-products span:nth-child(4) {
+  left: 60%;
+  animation-duration: 6s;
+  animation-delay: 1s;
+}
+
+.falling-products span:nth-child(5) {
+  left: 80%;
+  animation-duration: 10s;
+  animation-delay: 3s;
+}
+
+.falling-products span:nth-child(6) {
+  left: 15%;
+  animation-duration: 9s;
+  animation-delay: 5s;
+}
+
+.falling-products span:nth-child(7) {
+  left: 50%;
+  animation-duration: 7s;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(8) {
+  left: 75%;
+  animation-duration: 8s;
+  animation-delay: 6s;
+}
 
 @keyframes fall {
   0% {
     transform: translateY(-50px) rotate(0deg);
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(110vh) rotate(360deg);
     opacity: 0;
@@ -59,15 +100,15 @@ body {
 
 .navbar {
   padding: 0.5rem 1rem;
-  background: rgba(255, 239, 254, 0.9); 
-  
+  background: rgba(255, 239, 254, 0.9);
+
 }
 
 .navbar-brand {
   font-size: 2.1rem;
   font-weight: 800;
   letter-spacing: 1px;
-  color: #ffffff !important; 
+  color: #ffffff !important;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -96,37 +137,39 @@ body {
 }
 
 
-.dropdown-menu{
-    background-color:var(--secondary-color) ;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    box-shadow:0 10px 10px #ffe75f;
-}
-.dropdown-item{
-    color: #000000 !important;
-    padding: 10px 15px;
+.dropdown-menu {
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 10px 10px #ffe75f;
 }
 
-.dropdown-item:hover{
-    background-color: var(--primary-color);
+.dropdown-item {
+  color: #000000 !important;
+  padding: 10px 15px;
+}
+
+.dropdown-item:hover {
+  background-color: var(--primary-color);
 }
 
 
 .navbar a button {
-    background-color: var(--primary-color);
-    border: none;
-    color: rgb(44, 41, 41);
-    padding: 6px 14px;
-    margin-right: 20px;
-    border-radius: 7px;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  background-color: var(--primary-color);
+  border: none;
+  color: rgb(44, 41, 41);
+  padding: 6px 14px;
+  margin-right: 20px;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
 .navbar a button:hover {
-    background-color: #ff7b7b;
-    transform: scale(1.05);
+  background-color: #ff7b7b;
+  transform: scale(1.05);
 }
 
 

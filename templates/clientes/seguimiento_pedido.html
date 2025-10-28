@@ -1,129 +1,132 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Seguimiento de Pedidos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/seguimiento_del_pedido.css') }}">
 </head>
+
 <body>
 
-<a href="javascript:history.back()" class="btn btn-primary volver-btn" 
-   style="position: absolute; top: 15px; left: 20px; border-radius: 10px; padding: 12px 25px;">
-   ← Volver
-</a>
+    <a href="javascript:history.back()" class="btn btn-primary volver-btn"
+        style="position: absolute; top: 15px; left: 20px; border-radius: 10px; padding: 12px 25px;">
+        ← Volver
+    </a>
 
-<div class="falling-products">
-    <span>🧁</span>
-    <span>🍪</span>
-    <span>🎂</span>
-    <span>🍩</span>
-    <span>🍰</span>
-    <span>🧁</span>
-    <span>🍪</span>
-    <span>🎂</span>
-</div>
+    <div class="falling-products">
+        <span>🧁</span>
+        <span>🍪</span>
+        <span>🎂</span>
+        <span>🍩</span>
+        <span>🍰</span>
+        <span>🧁</span>
+        <span>🍪</span>
+        <span>🎂</span>
+    </div>
 
-<header>
-    <h2>📦 SEGUIMIENTO DE TUS PEDIDOS</h2>
-</header>
+    <header>
+        <h2>📦 SEGUIMIENTO DE TUS PEDIDOS</h2>
+    </header>
 
-<main class="container">
+    <main class="container">
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert {{ category }}">
-                    {{ message }}
-                    <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
-                </div>
-            {% endfor %}
+        {% for category, message in messages %}
+        <div class="alert {{ category }}">
+            {{ message }}
+            <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+        {% endfor %}
         {% endif %}
-    {% endwith %}
+        {% endwith %}
 
-    <div id="pedidos-container">
-        {% if pedidos %}
-        <table class="tabla-pedidos">
-            <thead>
-                <tr>
-                    <th>ID Pedido</th>
-                    <th>Cliente</th>
-                    <th>Fecha Solicitud</th>
-                    <th>Fecha Entrega</th>
-                    <th>Total</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for pedido in pedidos %}
-                <tr>
-                    <td>{{ pedido.ID_Pedido }}</td>
-                    <td>{{ pedido.Cliente }}</td>
-                    <td>{{ pedido.Fecha_Solicitud }}</td>
-                    <td>{{ pedido.Fecha_Entrega }}</td>
-                    <td>${{ pedido.Total }}</td>
-                    <td>{{ pedido.Estado_Pedido }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% else %}
+        <div id="pedidos-container">
+            {% if pedidos %}
+            <table class="tabla-pedidos">
+                <thead>
+                    <tr>
+                        <th>ID Pedido</th>
+                        <th>Cliente</th>
+                        <th>Fecha Solicitud</th>
+                        <th>Fecha Entrega</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pedido in pedidos %}
+                    <tr>
+                        <td>{{ pedido.ID_Pedido }}</td>
+                        <td>{{ pedido.Cliente }}</td>
+                        <td>{{ pedido.Fecha_Solicitud }}</td>
+                        <td>{{ pedido.Fecha_Entrega }}</td>
+                        <td>${{ pedido.Total }}</td>
+                        <td>{{ pedido.Estado_Pedido }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
             <p class="sin-pedido">No se encontró ningún pedido.</p>
-        {% endif %}
-    </div>
+            {% endif %}
+        </div>
 
-</main>
+    </main>
 
-{% block footer %}
-  {% include './footer.html' %}
-{% endblock %}
+    {% block footer %}
+    {% include './footer.html' %}
+    {% endblock %}
 
-<!-- 🔄 ACTUALIZACIÓN EN TIEMPO REAL -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Actualiza la tabla cada 5 segundos (puedes ajustar el tiempo)
-    setInterval(async () => {
-        try {
-            const response = await fetch('{{ url_for("clientes.seguimiento_pedido") }}', {
-                headers: { 'X-Requested-With': 'XMLHttpRequest' }
-            });
-            const html = await response.text();
+    <!-- 🔄 ACTUALIZACIÓN EN TIEMPO REAL -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Actualiza la tabla cada 5 segundos (puedes ajustar el tiempo)
+            setInterval(async () => {
+                try {
+                    const response = await fetch('{{ url_for("clientes.seguimiento_pedido") }}', {
+                        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                    });
+                    const html = await response.text();
 
-            // Extrae solo el contenido del div con los pedidos
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const nuevosPedidos = doc.querySelector('#pedidos-container');
+                    // Extrae solo el contenido del div con los pedidos
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const nuevosPedidos = doc.querySelector('#pedidos-container');
 
-            // Reemplaza el contenido actual con el nuevo
-            if (nuevosPedidos) {
-                document.querySelector('#pedidos-container').innerHTML = nuevosPedidos.innerHTML;
-            }
-        } catch (error) {
-            console.error("Error actualizando pedidos:", error);
-        }
-    }, 5000);
-});
-</script>
-<footer class="footer">
-    <div class="footer-contenido">
-      <div class="footer-item">
-        <h4>⏰ Horarios de atención</h4>
-        <p>Lunes a Viernes: 7am - 8pm</p>
-        <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
-      </div>
-      <div class="footer-item">
-        <h4>👩‍💻 Contáctanos</h4>
-        <p>Comunícate con nosotros</p>
-      </div>
+                    // Reemplaza el contenido actual con el nuevo
+                    if (nuevosPedidos) {
+                        document.querySelector('#pedidos-container').innerHTML = nuevosPedidos.innerHTML;
+                    }
+                } catch (error) {
+                    console.error("Error actualizando pedidos:", error);
+                }
+            }, 5000);
+        });
+    </script>
+    <footer class="footer">
+        <div class="footer-contenido">
+            <div class="footer-item">
+                <h4>⏰ Horarios de atención</h4>
+                <p>Lunes a Viernes: 7am - 8pm</p>
+                <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
+            </div>
+            <div class="footer-item">
+                <h4>👩‍💻 Contáctanos</h4>
+                <p>Comunícate con nosotros</p>
+            </div>
 
-      <div class="footer-item">
-        <h4>❓ Preguntas</h4>
-        <p>¿Tienes dudas?</p>
-      </div>
-      <div class="footer-item">
-        <h4>📍 Ubicación</h4>
-        <p>Carrera #56 #19c -</p>
-      </div>
-    </div>
-  </footer>
+            <div class="footer-item">
+                <h4>❓ Preguntas</h4>
+                <p>¿Tienes dudas?</p>
+            </div>
+            <div class="footer-item">
+                <h4>📍 Ubicación</h4>
+                <p>Carrera #56 #19c -</p>
+            </div>
+        </div>
+    </footer>
 </body>
+
 </html>
