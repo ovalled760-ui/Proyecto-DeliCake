@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+<<<<<<< HEAD
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,3 +72,55 @@
 
 </body>
 </html>
+=======
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Pedido</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/detalle_pedido.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Detalle de tu Pedido</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Masa</th>
+                    <th>Relleno</th>
+                    <th>Cobertura</th>
+                    <th>Porciones</th>
+                    <th>Adicionales</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in carrito %}
+                <tr>
+                    <td>{{ item.Nombre_producto }}</td>
+                    <td>{{ item.masa }}</td>
+                    <td>{{ item.relleno }}</td>
+                    <td>{{ item.cobertura }}</td>
+                    <td>{{ item.porciones }}</td>
+                    <td>{{ item.adicionales }}</td>
+                    <td>{{ item.cantidad }}</td>
+                    <td>${{ item.precio }}</td>
+                    <td>${{ item.precio * item.cantidad }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <form method="POST">
+            <button type="submit" class="btn-listo">✅ Listo</button>
+        </form>
+    </div>
+</body>
+
+</html>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61

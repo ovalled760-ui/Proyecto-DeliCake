@@ -7,11 +7,19 @@
   <title>Catálogo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<<<<<<< HEAD
+=======
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   <link rel="stylesheet" href="{{ url_for('static', filename='css/catalogo.css') }}">
 </head>
 
 <body>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   <div class="falling-products">
     <span>🧁</span>
     <span>🍪</span>
@@ -24,17 +32,27 @@
   </div>
 
 
+<<<<<<< HEAD
   <a href="javascript:history.back()" class="volver-btn">
   ← Volver
 </a>
 
 <nav class="navbar navbar-expand-lg sticky-top">
+=======
+  <a href="javascript:history.back()" class="volver-btn">← Volver</a>
+
+  <nav class="navbar navbar-expand-lg sticky-top">
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     <div class="container">
       <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
         <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="Logo"
           style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;">
         <br>DeliCake🎀</br>
       </a>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
       <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -60,6 +78,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('clientes.mi_cuenta') }}">Mi Cuenta</a>
           </li>
+<<<<<<< HEAD
         </ul>
         <!-- 🔹 Nuevo enlace Carrito -->
           <li class="nav-item">
@@ -77,10 +96,24 @@
 
         <a href="#" class="nav-link text-warning ms-lg-3"><i class="bi bi-cart"></i></a>
         <a href="#" class="nav-link text-warning ms-lg-3">👤</a>
+=======
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('clientes.carrito') }}">🛒 Carrito</a>
+          </li>
+        </ul>
+
+        <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex me-3">
+          <input class="form-control me-2" style="height: 45px;" type="search" name="q"
+            placeholder="Buscar productos..." value="{{ request.args.get('q','') }}">
+          <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
       </div>
     </div>
   </nav>
 
+<<<<<<< HEAD
 
 <div class="container my-5">
  <div class="p-1 mb-3 bg-light rounded-2 shadow text-center">
@@ -108,11 +141,38 @@
             data-id="{{ p.ID_Producto }}"
             data-nombre="{{ p.Nombre_producto }}"
             data-precio="{{ p.Precio_Unitario }}"
+=======
+  <div class="container my-5">
+    <div class="p-1 mb-3 bg-light rounded-2 shadow text-center">
+      <h1 class="display-5 fw-bold">🎉 Promoción en {{ categoria.Nombre_categoria if categoria else 'nuestros productos'
+        }} 🎉</h1>
+      <img src="{{ url_for('static', filename='img/bannerimg.png') }}" alt="Promoción especial" class="img-fluid my-3"
+        style="max-height: 300px;">
+      <a href="#" class="btn btn-danger btn-lg">Comprar Ahora</a>
+    </div>
+  </div>
+
+  <div class="container py-5">
+    <h2 class="text-center mb-5">🍰 Catálogo de {{ categoria.Nombre_categoria if categoria else 'Productos' }} 🍩</h2>
+    <div class="row g-4">
+      {% for p in productos %}
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card product-card h-100 shadow-sm">
+
+          <button class="btn-cart-circle add-to-cart" data-id="{{ p.ID_Producto }}"
+            data-nombre="{{ p.Nombre_producto }}" data-precio="{{ p.Precio_Unitario }}"
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
             data-imagen="{{ url_for('static', filename='img/' + p.Imagen) }}">
             <i class="bi bi-cart-plus"></i>
           </button>
 
+<<<<<<< HEAD
           <img src="{{ url_for('static', filename='img/' + p.Imagen) }}" class="product-img" alt="{{ p.Nombre_producto }}">
+=======
+
+          <img src="{{ url_for('static', filename='img/' + p.Imagen) }}" class="product-img"
+            alt="{{ p.Nombre_producto }}">
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
           <div class="card-body text-center">
             <h5 class="card-title">{{ p.Nombre_producto }}</h5>
@@ -120,6 +180,7 @@
             <p>
               <strong>Precio:</strong> ${{ p.Precio_Unitario }}
               {% if p.Descuento > 0 %}
+<<<<<<< HEAD
               <br><span class="text-danger fw-bold">Precio con descuento: ${{ p.Precio_Unitario * (1 - p.Descuento/100) }}</span>
               {% endif %}
             </p>
@@ -127,6 +188,33 @@
             <span class="badge bg-primary">{{ p.categoria.Nombre_categoria }}</span><br>
             {% endif %}
             <a href="{{ url_for('admin.detalle', id=p.ID_Producto) }}" class="btn btn-warning mt-3">Ver más</a>
+=======
+              <br><span class="text-danger fw-bold">Precio con descuento: ${{ p.Precio_Unitario * (1 - p.Descuento/100)
+                }}</span>
+              {% endif %}
+            </p>
+
+            {% if p.categoria %}
+            <span class="badge bg-primary">{{ p.categoria.Nombre_categoria }}</span><br>
+            {% endif %}
+            <div class="d-flex justify-content-center gap-2">
+              <a href="{{ url_for('admin.detalle', id=p.ID_Producto) }}" class="btn btn-vermas">Ver más</a>
+              {% if current_user.is_authenticated %}
+              <button class="btn-favorito {% if p.ID_Producto in favoritos_ids %}active{% endif %}"
+                data-id="{{ p.ID_Producto }}">
+                <i
+                  class="fa {% if p.ID_Producto in favoritos_ids %}fa-solid fa-heart{% else %}fa-regular fa-heart{% endif %}"></i>
+              </button>
+              {% else %}
+
+              <a href="{{ url_for('login') }}" class="btn-favorito">
+                <i class="fa fa-regular fa-heart"></i>
+              </a>
+              {% endif %}
+            </div>
+            <div id="favorito-alert" class="favorito-alert"></div>
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
           </div>
         </div>
       </div>
@@ -136,7 +224,10 @@
     </div>
   </div>
 
+<<<<<<< HEAD
   <!-- Modal de Confirmación de Carrito -->
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content coquette-modal">
@@ -162,18 +253,30 @@
     </div>
   </div>
 
+<<<<<<< HEAD
   <!-- Footer -->
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   <footer class="footer">
     <div class="footer-contenido">
       <div class="footer-item">
         <h4>⏰ Horarios de atención</h4>
+<<<<<<< HEAD
         <p>Lunes - Viernes: 8am</p>
         <p>Sábados y festivos: 9am - 4:30pm</p>
+=======
+        <p>Lunes a Viernes: 7am - 8pm</p>
+        <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
       </div>
       <div class="footer-item">
         <h4>👩‍💻 Contáctanos</h4>
         <p>Comunícate con nosotros</p>
       </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
       <div class="footer-item">
         <h4>❓ Preguntas</h4>
         <p>¿Tienes dudas?</p>
@@ -185,6 +288,7 @@
     </div>
   </footer>
 
+<<<<<<< HEAD
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -392,4 +496,106 @@
 </script>
 
 </body>
+=======
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    (function () {
+      window.selectedProduct = null;
+
+      document.addEventListener('click', function (e) {
+        const addBtn = e.target.closest('.add-to-cart');
+        if (addBtn) {
+          window.selectedProduct = {
+            id: addBtn.dataset.id,
+            nombre: addBtn.dataset.nombre,
+            precio: addBtn.dataset.precio,
+            imagen: addBtn.dataset.imagen
+          };
+
+          document.getElementById('modal-product-img').src = window.selectedProduct.imagen;
+          document.getElementById('modal-product-name').textContent = window.selectedProduct.nombre;
+          document.getElementById('modal-product-price').textContent = window.selectedProduct.precio;
+          document.getElementById('modal-qty').value = 1;
+
+          const modal = new bootstrap.Modal(document.getElementById('cartModal'));
+          modal.show();
+          return;
+        }
+
+        const confirmBtn = e.target.closest('#confirm-add');
+        if (confirmBtn) {
+          const cantidad = parseInt(document.getElementById('modal-qty').value) || 1;
+
+          const payload = {
+            id: window.selectedProduct.id,
+            nombre: window.selectedProduct.nombre,
+            precio: window.selectedProduct.precio,
+            imagen: window.selectedProduct.imagen,
+            cantidad: cantidad
+          };
+
+          fetch("{{ url_for('clientes.carrito_agregar') }}", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          })
+            .then(res => res.json())
+            .then(data => {
+              console.log("Respuesta servidor:", data);
+              bootstrap.Modal.getInstance(document.getElementById("cartModal")).hide();
+              window.location.href = "{{ url_for('clientes.carrito') }}";
+            })
+            .catch(err => {
+              console.error("Error en fetch:", err);
+              window.location.href = "{{ url_for('clientes.carrito') }}";
+            });
+          return;
+        }
+
+        const inc = e.target.closest('#increase-qty');
+        const dec = e.target.closest('#decrease-qty');
+        if (inc || dec) {
+          const qty = document.getElementById('modal-qty');
+          let v = parseInt(qty.value) || 1;
+          if (inc) v++;
+          if (dec) v = Math.max(1, v - 1);
+          qty.value = v;
+          return;
+        }
+      });
+    })();
+    document.querySelectorAll('.btn-favorito').forEach(btn => {
+      btn.addEventListener('click', async function () {
+        const id = this.dataset.id;
+        if (!id) return;
+
+        const res = await fetch(`/toggle_favorito/${id}`, { method: 'POST' });
+        const data = await res.json();
+
+        const icon = this.querySelector('i');
+        if (data.favorito) {
+          this.classList.add('active');
+          icon.classList.remove('fa-regular');
+          icon.classList.add('fa-solid');
+        } else {
+          this.classList.remove('active');
+          icon.classList.remove('fa-solid');
+          icon.classList.add('fa-regular');
+        }
+
+        const alertBox = document.getElementById('favorito-alert');
+        alertBox.textContent = data.mensaje;
+        alertBox.classList.add('show');
+        setTimeout(() => alertBox.classList.remove('show'), 2000);
+      });
+    });
+
+
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</body>
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 </html>

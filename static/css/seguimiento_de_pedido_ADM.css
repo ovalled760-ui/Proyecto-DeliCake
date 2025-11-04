@@ -2,10 +2,18 @@
    BODY Y FONDO
 ======================= */
 body {
+<<<<<<< HEAD
   background: linear-gradient(to bottom, #f3f3e9ff, #f1d6e5ff); /* amarillo pastel a rosa delicado */
   font-family: 'Segoe UI', sans-serif;
   padding: 0px;
    padding-bottom: 400px;
+=======
+  background: linear-gradient(to bottom, #f3f3e9ff, #f1d6e5ff);
+  /* amarillo pastel a rosa delicado */
+  font-family: 'Segoe UI', sans-serif;
+  padding: 0px;
+  padding-bottom: 400px;
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 }
 
 
@@ -33,6 +41,7 @@ body {
   opacity: 0.8;
 }
 
+<<<<<<< HEAD
 .falling-products span:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
 .falling-products span:nth-child(2) { left: 25%; animation-duration: 9s; animation-delay: 2s; }
 .falling-products span:nth-child(3) { left: 40%; animation-duration: 7s; animation-delay: 4s; }
@@ -41,15 +50,72 @@ body {
 .falling-products span:nth-child(6) { left: 15%; animation-duration: 9s; animation-delay: 5s; }
 .falling-products span:nth-child(7) { left: 50%; animation-duration: 7s; animation-delay: 0s; }
 .falling-products span:nth-child(8) { left: 75%; animation-duration: 8s; animation-delay: 6s; }
+=======
+.falling-products span:nth-child(1) {
+  left: 10%;
+  animation-duration: 8s;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(2) {
+  left: 25%;
+  animation-duration: 9s;
+  animation-delay: 2s;
+}
+
+.falling-products span:nth-child(3) {
+  left: 40%;
+  animation-duration: 7s;
+  animation-delay: 4s;
+}
+
+.falling-products span:nth-child(4) {
+  left: 60%;
+  animation-duration: 6s;
+  animation-delay: 1s;
+}
+
+.falling-products span:nth-child(5) {
+  left: 80%;
+  animation-duration: 10s;
+  animation-delay: 3s;
+}
+
+.falling-products span:nth-child(6) {
+  left: 15%;
+  animation-duration: 9s;
+  animation-delay: 5s;
+}
+
+.falling-products span:nth-child(7) {
+  left: 50%;
+  animation-duration: 7s;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(8) {
+  left: 75%;
+  animation-duration: 8s;
+  animation-delay: 6s;
+}
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
 @keyframes fall {
   0% {
     transform: translateY(-50px) rotate(0deg);
     opacity: 0;
   }
+<<<<<<< HEAD
   10% {
     opacity: 1;
   }
+=======
+
+  10% {
+    opacity: 1;
+  }
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   100% {
     transform: translateY(110vh) rotate(360deg);
     opacity: 0;
@@ -61,15 +127,24 @@ body {
 ======================= */
 .navbar {
   padding: 0.5rem 1rem;
+<<<<<<< HEAD
   background: rgba(255, 239, 254, 0.9); 
   
+=======
+  background: rgba(255, 239, 254, 0.9);
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 }
 
 .navbar-brand {
   font-size: 2.1rem;
   font-weight: 800;
   letter-spacing: 1px;
+<<<<<<< HEAD
   color: #ffffff !important; 
+=======
+  color: #ffffff !important;
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -190,7 +265,11 @@ body {
   background: #fff;
   padding: 25px;
   border-radius: 12px;
+<<<<<<< HEAD
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+=======
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   margin-bottom: 30px;
 }
 
@@ -217,7 +296,12 @@ body {
   background-color: #E1BEE7;
 }
 
+<<<<<<< HEAD
 .table th, .table td {
+=======
+.table th,
+.table td {
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   vertical-align: middle;
   text-align: center;
   font-size: 14px;
@@ -246,7 +330,12 @@ body {
 
 
 .volver-btn:hover {
+<<<<<<< HEAD
   background: #e8a9c9; /* rosa más intenso */
+=======
+  background: #e8a9c9;
+  /* rosa más intenso */
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   color: #fff;
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(166, 77, 121, 0.4);
@@ -258,7 +347,12 @@ body {
   position: absolute;
   top: 200px;
   left: 20px;
+<<<<<<< HEAD
   background: linear-gradient(135deg, #f9c5d1, #fbc2eb); /* rosa pastel degradado */
+=======
+  background: linear-gradient(135deg, #f9c5d1, #fbc2eb);
+  /* rosa pastel degradado */
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   color: #fff;
   font-weight: bold;
   font-family: 'Segoe UI', cursive, sans-serif;
@@ -281,6 +375,7 @@ body {
 }
 
 .volver-btn::before {
+<<<<<<< HEAD
   content: "🎀 "; /* detalle coquette */
 }
 
@@ -290,11 +385,27 @@ body {
   left: 0;
   width: 100%;
   background: rgba(242, 242, 242, 0.9); 
+=======
+  content: "🎀 ";
+  /* detalle coquette */
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(242, 242, 242, 0.9);
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   border-top: 3px solid #ff80ab;
   padding: 15px 30px;
   z-index: 1000;
   box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.1);
+<<<<<<< HEAD
   backdrop-filter: blur(5px); 
+=======
+  backdrop-filter: blur(5px);
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 }
 
 
@@ -317,4 +428,8 @@ body {
   margin-bottom: 5px;
   color: #d63384;
   font-size: 1rem;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61

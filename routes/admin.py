@@ -1,10 +1,17 @@
 import os
 import shutil   
 from flask import Blueprint, render_template, request, redirect, url_for, flash
+<<<<<<< HEAD
 from controladores.models import db, Producto, Categoria, Pedido, Disponibilidad,DetalleProducto, Calificacion, Reseña, Suscriptor , Notificacion, Lanzamiento
 from werkzeug.utils import secure_filename
 from decimal import Decimal
 from flask_migrate import Migrate
+=======
+from flask_login import login_required, current_user 
+from controladores.models import db, Producto, Categoria, Pedido,Favorito, Disponibilidad,DetalleProducto, Calificacion, Reseña, Suscriptor , Notificacion
+from werkzeug.utils import secure_filename
+from decimal import Decimal
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
 
 admin_bp = Blueprint("admin", __name__, url_prefix="/admin")
@@ -91,7 +98,15 @@ def agregar_producto():
 def productos_por_categoria(id_categoria):
     categorias = Categoria.query.all()
     productos = Producto.query.filter_by(ID_Categoria=id_categoria).all()
+<<<<<<< HEAD
     return render_template("clientes/catalogo.html",  productos=productos, categorias=categorias)
+=======
+    favoritos_ids = []
+    if current_user.is_authenticated:
+        favoritos_ids = [f.ID_Producto for f in Favorito.query.filter_by(ID_usuario=current_user.ID_usuario).all()]
+    return render_template("clientes/catalogo.html",  productos=productos, categorias=categorias, favoritos_ids=favoritos_ids
+                           )
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
 @admin_bp.route("/editar", methods=['GET'])
 def editar_producto():
@@ -293,6 +308,7 @@ def anuncios():
         banner_actual=banner_actual
     )
 
+<<<<<<< HEAD
 UPLOAD_FOLDER = 'static/uploads/lanzamientos'
 
 
@@ -358,3 +374,5 @@ def metodos_pago():
     porcentajes = {k: (v / total * 100) if total > 0 else 0 for k, v in pagos.items()}
 
     return render_template("admin/metodos_pago.html", pagos=pagos, porcentajes=porcentajes)
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61

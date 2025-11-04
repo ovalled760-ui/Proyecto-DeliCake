@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+<<<<<<< HEAD
 <head>
     <meta charset="UTF-8">
     <title>Disponibilidad - Admin</title>
@@ -7,6 +8,17 @@
 </head>
 <body>
 {% with messages = get_flashed_messages(with_categories=true) %}
+=======
+
+<head>
+  <meta charset="UTF-8">
+  <title>Disponibilidad - Admin</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_disponibilidad.css') }}">
+</head>
+
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   {% if messages %}
   <div class="mt-4">
     {% for category, message in messages %}
@@ -28,6 +40,7 @@
   {% endif %}
   {% endwith %}
 
+<<<<<<< HEAD
   
   
  <a href="javascript:history.back()" class="volver-btn">
@@ -36,11 +49,22 @@
 
 
   
+=======
+
+
+  <a href="javascript:history.back()" class="volver-btn">
+    ← Volver
+  </a>
+
+
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   <!-- CONTENIDO PRINCIPAL -->
   <div class="container">
     <h1>📅 Disponibilidad de pedidos</h1>
 
     <form method="POST" class="form-disponibilidad">
+<<<<<<< HEAD
         <label>Fecha:</label>
         <input type="date" name="fecha" required>
         <label>Hora:</label>
@@ -73,17 +97,59 @@
   </div>
 
   <!-- FOOTER -->
+=======
+      <label>Fecha:</label>
+      <input type="date" name="fecha" required>
+      <label>Hora:</label>
+      <input type="time" name="hora" required>
+      <button type="submit">Agregar ✅</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for d in disponibilidades %}
+        <tr>
+          <td>{{ d.Fecha.strftime('%Y-%m-%d') }}</td>
+          <td>{{ d.Hora.strftime('%H:%M') }}</td>
+          <td>
+            <form method="POST" action="{{ url_for('admin.borrar_disponibilidad', id=d.ID) }}">
+              <button type="submit">Eliminar 🗑️</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   <footer class="footer">
     <div class="footer-contenido">
       <div class="footer-item">
         <h4>⏰ Horarios de atención</h4>
+<<<<<<< HEAD
         <p>Lunes - Viernes: 8am</p>
         <p>Sábados y festivos: 9am - 4:30pm</p>
+=======
+        <p>Lunes a Viernes: 7am - 8pm</p>
+        <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
       </div>
       <div class="footer-item">
         <h4>👩‍💻 Contáctanos</h4>
         <p>Comunícate con nosotros</p>
       </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
       <div class="footer-item">
         <h4>❓ Preguntas</h4>
         <p>¿Tienes dudas?</p>
@@ -94,6 +160,7 @@
       </div>
     </div>
   </footer>
+<<<<<<< HEAD
 <script>
 (function() {
   const TIEMPO_INACTIVIDAD = 5 * 60 * 1000;; 
@@ -138,3 +205,9 @@
 </script>
 </body>
 </html>
+=======
+
+</body>
+
+</html>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61

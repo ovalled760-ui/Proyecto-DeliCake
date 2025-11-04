@@ -57,6 +57,11 @@ class Producto(db.Model):
     Nombre_producto = db.Column(db.String(255))
     Descripcion_producto = db.Column(db.Text)
     Precio_Unitario = db.Column(db.Numeric(10, 2))
+<<<<<<< HEAD
+=======
+    Unidades_disponibles = db.Column(db.Integer)
+    Fecha_Disponibilidad = db.Column(db.Date)
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     ID_Administrador = db.Column(db.Integer, db.ForeignKey('Administrador.ID_admin'))
     Imagen = db.Column(db.String(255))
     Descuento = db.Column(db.Numeric(5,2),default=0.00)
@@ -66,8 +71,11 @@ class Producto(db.Model):
     detalles_pedido = db.relationship("DetallePedido", back_populates="producto")
     detalles= db.relationship('DetalleProducto', back_populates='producto', cascade='all, delete-orphan')
     calificaciones = db.relationship("Calificacion", back_populates="producto")
+<<<<<<< HEAD
 
     pedidos = db.relationship("Pedido", back_populates="producto", lazy=True)
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   
   
 class PersonalizacionProducto(db.Model):
@@ -81,12 +89,18 @@ class PersonalizacionProducto(db.Model):
 
     ID_Producto = db.Column(db.Integer, db.ForeignKey("Producto.ID_Producto"))
     ID_Cliente = db.Column(db.Integer, db.ForeignKey("Cliente.ID_cliente"))
+<<<<<<< HEAD
     ID_Pedido = db.Column(db.Integer, db.ForeignKey("Pedido.ID_Pedido"))  # 🔹 Nueva relación
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
     producto = db.relationship("Producto", back_populates="personalizaciones")
     cliente = db.relationship("Cliente", back_populates="personalizaciones")
     detalles_pedido = db.relationship("DetallePedido", back_populates="personalizacion")
+<<<<<<< HEAD
     pedido = db.relationship("Pedido", back_populates="personalizaciones")  # 🔹 Nuevo vínculo
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
 
 
@@ -96,6 +110,7 @@ class Pedido(db.Model):
     Fecha_Solicitud = db.Column(db.Date)
     Fecha_Entrega = db.Column(db.Date)
     Tiempo_Realizacion = db.Column(db.String(50))
+<<<<<<< HEAD
     Estado_Pedido = db.Column(db.Enum('Pendiente', 'En proceso', 'Enviado', 'Entregado', 'Finalizado'))
     Total = db.Column(db.Numeric(10, 2))
 
@@ -109,6 +124,15 @@ class Pedido(db.Model):
     
     detalles_pedido = db.relationship("DetallePedido", back_populates="pedido")
     personalizaciones = db.relationship("PersonalizacionProducto", back_populates="pedido")  
+=======
+    Estado_Pedido = db.Column(db.Enum('Pendiente', 'En proceso', 'Enviado', 'Entregado', 'Cancelado'))
+    Total = db.Column(db.Numeric(10, 2))
+
+    ID_Cliente = db.Column(db.Integer, db.ForeignKey("Cliente.ID_cliente"), nullable=False)
+
+    cliente = db.relationship("Cliente", back_populates="pedidos")
+    detalles_pedido = db.relationship("DetallePedido", back_populates="pedido")
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
 
 
@@ -119,6 +143,11 @@ class DetallePedido(db.Model):
     Cantidad_unidades_producto = db.Column(db.Integer)
     Nombre_producto = db.Column(db.String(300))
     Fecha_Solicitud = db.Column(db.Date)
+<<<<<<< HEAD
+=======
+    Fecha_Entrega = db.Column(db.Date)
+    Tiempo_Realizacion = db.Column(db.String(50))
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     Descuento = db.Column(db.String(100))
     Masa = db.Column(db.Enum('batida', 'azucarada', 'fermentadas'), default='batida')
     Relleno = db.Column(db.Enum('vainilla', 'dulce de leche', 'nueces', 'crema de limon'))
@@ -126,7 +155,13 @@ class DetallePedido(db.Model):
     Porciones = db.Column(db.Enum('1 porcion', '2 porciones', '1/2', 'entero', '3 a 5 porciones'))
     Adicionales = db.Column(db.Enum('chantilly', 'leche condensada', 'arequipe ', 'chocolate', 'fresa'))
     Precio_Unitario = db.Column(db.Numeric(10, 2))
+<<<<<<< HEAD
     Total = db.Column(db.Numeric(10, 2))
+=======
+    IVA = db.Column(db.Integer)
+    Total = db.Column(db.Numeric(10, 2))
+    Estado_pedido = db.Column(db.Enum('Pendiente', 'En proceso', 'Enviado', 'Entregado', 'Cancelado'))
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
     ID_pedido = db.Column(db.Integer, db.ForeignKey("Pedido.ID_Pedido"))
     ID_producto = db.Column(db.Integer, db.ForeignKey("Producto.ID_Producto"))
@@ -216,6 +251,7 @@ class Notificacion(db.Model):
     # Relación inversa
     usuario = db.relationship("Usuario", back_populates="notificaciones")
 
+<<<<<<< HEAD
 
 class Lanzamiento(db.Model):
     __tablename__ = 'Lanzamiento'
@@ -223,3 +259,14 @@ class Lanzamiento(db.Model):
     descripcion = db.Column(db.String(255), nullable=False)
     fecha_catalogo = db.Column(db.Date, nullable=False)
     imagen = db.Column(db.String(255), nullable=False)
+=======
+class Favorito(db.Model):
+    __tablename__ = "favoritos"
+
+    id_favorito = db.Column(db.Integer, primary_key=True)
+    ID_usuario = db.Column(db.Integer, db.ForeignKey('Usuario.ID_usuario'), nullable=False)
+    ID_Producto = db.Column(db.Integer, db.ForeignKey('Producto.ID_Producto'), nullable=False)
+
+    usuario = db.relationship('Usuario', backref='favoritos', lazy=True)
+    producto = db.relationship('Producto', backref='favoritos', lazy=True)
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61

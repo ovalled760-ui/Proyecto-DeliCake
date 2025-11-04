@@ -28,6 +28,7 @@ h5 {
   background-color: #ffe6f0;
   color: #5a3d57;
 }
+<<<<<<< HEAD
 .table td {
   font-size: 14px;
   vertical-align: middle;
@@ -68,6 +69,52 @@ h5 {
   background-color: #a64d79;
 }
 
+=======
+
+.table td {
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+/* Botones */
+.btn-outline-dark {
+  border-color: #d88fb5;
+  color: #d88fb5;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-dark:hover {
+  background-color: #d88fb5;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #ff80aa;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #e55f8a;
+}
+
+.btn-volver {
+  display: block;
+  margin: 40px auto 0;
+  background-color: #d88fb5;
+  color: white;
+  border: none;
+  padding: 10px 40px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-volver:hover {
+  background-color: #a64d79;
+}
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 /* Seguimiento */
 .tracking-wrapper {
   position: relative;
@@ -141,23 +188,64 @@ h5 {
   opacity: 0.85;
 }
 
-.falling-products span:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
-.falling-products span:nth-child(2) { left: 25%; animation-duration: 9s; animation-delay: 2s; }
-.falling-products span:nth-child(3) { left: 40%; animation-duration: 7s; animation-delay: 4s; }
-.falling-products span:nth-child(4) { left: 60%; animation-duration: 6s; animation-delay: 1s; }
-.falling-products span:nth-child(5) { left: 80%; animation-duration: 10s; animation-delay: 3s; }
-.falling-products span:nth-child(6) { left: 15%; animation-duration: 9s; animation-delay: 5s; }
-.falling-products span:nth-child(7) { left: 50%; animation-duration: 7s; animation-delay: 0s; }
-.falling-products span:nth-child(8) { left: 75%; animation-duration: 8s; animation-delay: 6s; }
+.falling-products span:nth-child(1) {
+  left: 10%;
+  animation-duration: 8s;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(2) {
+  left: 25%;
+  animation-duration: 9s;
+  animation-delay: 2s;
+}
+
+.falling-products span:nth-child(3) {
+  left: 40%;
+  animation-duration: 7s;
+  animation-delay: 4s;
+}
+
+.falling-products span:nth-child(4) {
+  left: 60%;
+  animation-duration: 6s;
+  animation-delay: 1s;
+}
+
+.falling-products span:nth-child(5) {
+  left: 80%;
+  animation-duration: 10s;
+  animation-delay: 3s;
+}
+
+.falling-products span:nth-child(6) {
+  left: 15%;
+  animation-duration: 9s;
+  animation-delay: 5s;
+}
+
+.falling-products span:nth-child(7) {
+  left: 50%;
+  animation-duration: 7s;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(8) {
+  left: 75%;
+  animation-duration: 8s;
+  animation-delay: 6s;
+}
 
 @keyframes fall {
   0% {
     transform: translateY(-50px) rotate(0deg);
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(110vh) rotate(360deg);
     opacity: 0;

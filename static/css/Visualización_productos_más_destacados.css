@@ -1,4 +1,5 @@
   .navbar-custom {
+<<<<<<< HEAD
       background-color: #7b1fa2;
       padding: 10px 20px;
     }
@@ -79,3 +80,133 @@
     opacity: 0;
   }
 }
+=======
+    background-color: #7b1fa2;
+    padding: 10px 20px;
+  }
+
+  .navbar-custom a.nav-link {
+    color: white;
+    font-weight: bold;
+  }
+
+  .navbar-custom .form-control {
+    border-radius: 5px 0 0 5px;
+  }
+
+  .navbar-custom .btn-search {
+    background-color: gold;
+    border-radius: 0 5px 5px 0;
+    border: none;
+  }
+
+  .navbar-custom .btn-search i {
+    color: black;
+  }
+
+  /* Estilos de productos */
+  .card img {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .list-group-item img {
+    height: 80px;
+    object-fit: cover;
+  }
+
+  .btn-fav {
+    border: 1px solid #7b1fa2;
+    color: #7b1fa2;
+  }
+
+  .btn-fav:hover {
+    background-color: #7b1fa2;
+    color: white;
+  }
+
+  .falling-products {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .falling-products span {
+    position: absolute;
+    top: -50px;
+    font-size: 24px;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    opacity: 0.8;
+  }
+
+  .falling-products span:nth-child(1) {
+    left: 10%;
+    animation-duration: 8s;
+    animation-delay: 0s;
+  }
+
+  .falling-products span:nth-child(2) {
+    left: 25%;
+    animation-duration: 9s;
+    animation-delay: 2s;
+  }
+
+  .falling-products span:nth-child(3) {
+    left: 40%;
+    animation-duration: 7s;
+    animation-delay: 4s;
+  }
+
+  .falling-products span:nth-child(4) {
+    left: 60%;
+    animation-duration: 6s;
+    animation-delay: 1s;
+  }
+
+  .falling-products span:nth-child(5) {
+    left: 80%;
+    animation-duration: 10s;
+    animation-delay: 3s;
+  }
+
+  .falling-products span:nth-child(6) {
+    left: 15%;
+    animation-duration: 9s;
+    animation-delay: 5s;
+  }
+
+  .falling-products span:nth-child(7) {
+    left: 50%;
+    animation-duration: 7s;
+    animation-delay: 0s;
+  }
+
+  .falling-products span:nth-child(8) {
+    left: 75%;
+    animation-duration: 8s;
+    animation-delay: 6s;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(-50px) rotate(0deg);
+      opacity: 0;
+    }
+
+    10% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(110vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61

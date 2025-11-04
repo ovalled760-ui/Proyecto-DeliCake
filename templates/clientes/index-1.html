@@ -21,7 +21,11 @@
     <span>🍪</span>
     <span>🎂</span>
   </div>
+<<<<<<< HEAD
     {% with messages = get_flashed_messages(with_categories=true) %}
+=======
+  {% with messages = get_flashed_messages(with_categories=true) %}
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   {% if messages %}
   <div class="mt-4">
     {% for category, message in messages %}
@@ -76,6 +80,7 @@
           </li>
         </ul>
         <!-- 🔹 Nuevo enlace Carrito -->
+<<<<<<< HEAD
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('clientes.carrito') }}">
               🛒 Carrito
@@ -100,10 +105,36 @@
         </form>
 
      
+=======
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('clientes.carrito') }}">
+            🛒 Carrito
+          </a>
+        </li>
+        </ul>
+
+        <div class="notificacion-wrapper">
+          <a href="{{ url_for('clientes.campanita') }}" class="campana">
+            🔔
+            {% if total_notificaciones|default(0) > 0 %}
+            <span class="contador">{{ total_notificaciones }}</span>
+            {% endif %}
+          </a>
+        </div>
+
+        <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex me-3" style="text-align: cover;">
+          <input class="form-control me-2" style="height: 45px;" type="search" name="q"
+            placeholder="Buscar productos..." value="{{ request.args.get('q','') }}">
+          <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
         <a href="#" class="nav-link text-warning ms-lg-3">👤</a>
       </div>
     </div>
   </nav>
+<<<<<<< HEAD
 <section class="carrusel">
     {% if banner_actual %}
         <video autoplay muted loop playsinline width="700">
@@ -253,6 +284,70 @@ window.addEventListener("resize", actualizarFlechas);
 document.addEventListener("DOMContentLoaded", actualizarFlechas);
 </script>
 
+=======
+
+  {% if not en_horario %}
+  <div id="mensaje-horario" class="fuera-horario">
+    <div class="contenido-aviso">
+      <h2>🕒 ¡Fuera del horario de atención!</h2>
+      <p>Nuestro horario es de <strong>Lunes a Viernes: 7am - 8pm</strong> y <strong>Sábados, Domingos y Festivos: 9am -
+          5:30pm</strong>.</p>
+      <p>Puedes hacer tu pedido, pero será procesado al siguiente día hábil 💌.</p>
+    </div>
+  </div>
+  {% endif %}
+
+  <section class="carrusel">
+    {% if banner_actual %}
+    <video autoplay muted loop playsinline width="700">
+      <source src="{{ url_for('static', filename=banner_actual) }}" type="video/mp4">
+      Tu navegador no soporta el video.
+    </video>
+    {% else %}
+    <p>No hay banner disponible</p>
+    {% endif %}
+  </section>
+
+  <section class="productos">
+    <h2> PRODUCTOS MAS DESTACADOS</h2>
+    <p class="productos-subtitle">postres únicos con el estilo <span>delicado</span> 💕</p>
+
+    <div class="productos-container">
+      <div class="producto-card">
+        <div class="producto-img">
+          <img src="{{ url_for('static', filename='img/cerezita.jpg') }}" alt="Producto 1">
+        </div>
+        <div class="producto-info">
+          <h3>PASTEL CEREZITA</h3>
+          <p>Cerezita es un pastel creado por nosotros con el mejor relleno de frutos rojos 🍒</p>
+          <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-img">
+          <img src="{{ url_for('static', filename='img/tiramisu') }}" alt="Producto 2">
+        </div>
+        <div class="producto-info">
+          <h3>TIRAMISU DE FRESITA</h3>
+          <p>Fue inspirado en lo jugosito de 🍓</p>
+          <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-img">
+          <img src="{{ url_for('static', filename='img/tortahellokitty.jpg') }}" alt="Producto 3">
+        </div>
+        <div class="producto-info">
+          <h3>TORTI KITTY 🐱</h3>
+          <p>Creado para los amantes de la gata blanca</p>
+          <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+        </div>
+      </div>
+    </div>
+  </section>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   <section class="suscripcion">
     <div class="container">
       <h2 class="mb-4">💌 SUSCRIBETE A NUESTRO BOLETIN</h2>
@@ -313,6 +408,7 @@ document.addEventListener("DOMContentLoaded", actualizarFlechas);
         elegante y lleno de amor. 🎀</p>
     </div>
   </section>
+<<<<<<< HEAD
   
 <a href="{{ url_for('clientes.lanzamientos') }}" class="boton-flotante">
   <span class="texto">Ver más</span>
@@ -325,6 +421,24 @@ document.addEventListener("DOMContentLoaded", actualizarFlechas);
         <h4>⏰ Horarios de atención</h4>
         <p>Lunes - Viernes: 8am</p>
         <p>Sábados y festivos: 9am - 4:30pm</p>
+=======
+
+
+
+
+
+  <div class="btn-fav position-fixed bottom-0 end-0 m-3 p-3 text-white rounded-circle shadow-lg">
+    <i class="bi bi-heart"></i><br>
+    <small>favoritos</small>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-contenido">
+      <div class="footer-item">
+        <h4>⏰ Horarios de atención</h4>
+        <p>Lunes a Viernes: 7am - 8pm</p>
+        <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
       </div>
       <div class="footer-item">
         <h4>👩‍💻 Contáctanos</h4>
@@ -341,6 +455,7 @@ document.addEventListener("DOMContentLoaded", actualizarFlechas);
       </div>
     </div>
   </footer>
+<<<<<<< HEAD
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -479,6 +594,19 @@ document.addEventListener("DOMContentLoaded", actualizarFlechas);
   reiniciarInactividad();
 })();
 </script>
+=======
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const aviso = document.getElementById("mensaje-horario");
+      if (aviso) {
+        aviso.addEventListener("click", () => aviso.style.display = "none");
+      }
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 </body>
 
 </html>

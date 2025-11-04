@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 :root {
   --rosa-claro: #ffe6f0;
   --rosa-medio: #ffb6d5;
@@ -44,6 +47,7 @@ body {
   opacity: 0.8;
 }
 
+<<<<<<< HEAD
 .falling-products span:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
 .falling-products span:nth-child(2) { left: 25%; animation-duration: 9s; animation-delay: 2s; }
 .falling-products span:nth-child(3) { left: 40%; animation-duration: 7s; animation-delay: 4s; }
@@ -52,15 +56,72 @@ body {
 .falling-products span:nth-child(6) { left: 15%; animation-duration: 9s; animation-delay: 5s; }
 .falling-products span:nth-child(7) { left: 50%; animation-duration: 7s; animation-delay: 0s; }
 .falling-products span:nth-child(8) { left: 75%; animation-duration: 8s; animation-delay: 6s; }
+=======
+.falling-products span:nth-child(1) {
+  left: 10%;
+  animation-duration: 8s;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(2) {
+  left: 25%;
+  animation-duration: 9s;
+  animation-delay: 2s;
+}
+
+.falling-products span:nth-child(3) {
+  left: 40%;
+  animation-duration: 7s;
+  animation-delay: 4s;
+}
+
+.falling-products span:nth-child(4) {
+  left: 60%;
+  animation-duration: 6s;
+  animation-delay: 1s;
+}
+
+.falling-products span:nth-child(5) {
+  left: 80%;
+  animation-duration: 10s;
+  animation-delay: 3s;
+}
+
+.falling-products span:nth-child(6) {
+  left: 15%;
+  animation-duration: 9s;
+  animation-delay: 5s;
+}
+
+.falling-products span:nth-child(7) {
+  left: 50%;
+  animation-duration: 7s;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(8) {
+  left: 75%;
+  animation-duration: 8s;
+  animation-delay: 6s;
+}
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
 @keyframes fall {
   0% {
     transform: translateY(-50px) rotate(0deg);
     opacity: 0;
   }
+<<<<<<< HEAD
   10% {
     opacity: 1;
   }
+=======
+
+  10% {
+    opacity: 1;
+  }
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   100% {
     transform: translateY(110vh) rotate(360deg);
     opacity: 0;
@@ -85,6 +146,10 @@ body {
   font-weight: 600;
   transition: color 0.3s ease, transform 0.2s ease;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 .nav-link:hover {
   color: var(--rosa-fuerte) !important;
   transform: translateY(-2px);
@@ -94,12 +159,20 @@ body {
 .notificacion-wrapper {
   position: relative;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 .campana {
   font-size: 1.6rem;
   color: palevioletred;
   text-decoration: none;
   position: relative;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 .contador {
   position: absolute;
   top: -8px;
@@ -118,6 +191,10 @@ body {
   border: 2px solid var(--rosa-fuerte);
   color: var(--texto);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 .form-control::placeholder {
   color: palevioletred;
 }
@@ -135,6 +212,10 @@ body {
   transition: all 0.3s ease;
   font-weight: 500;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 .volver-btn:hover {
   background: var(--rosa-fuerte);
   transform: scale(1.05);
@@ -150,6 +231,10 @@ header {
   border-bottom: 4px double var(--rosa-fuerte);
   position: relative;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 header::before,
 header::after {
   content: "🎀";
@@ -157,8 +242,19 @@ header::after {
   top: 10px;
   font-size: 24px;
 }
+<<<<<<< HEAD
 header::before { left: 15%; }
 header::after { right: 15%; }
+=======
+
+header::before {
+  left: 15%;
+}
+
+header::after {
+  right: 15%;
+}
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
 /* Contenido */
 .container {
@@ -174,7 +270,12 @@ header::after { right: 15%; }
 
 
 .volver-btn:hover {
+<<<<<<< HEAD
   background: #e8a9c9; /* rosa más intenso */
+=======
+  background: #e8a9c9;
+  /* rosa más intenso */
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   color: #fff;
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(166, 77, 121, 0.4);
@@ -186,7 +287,12 @@ header::after { right: 15%; }
   position: absolute;
   top: 200px;
   left: 20px;
+<<<<<<< HEAD
   background: linear-gradient(135deg, #f9c5d1, #fbc2eb); /* rosa pastel degradado */
+=======
+  background: linear-gradient(135deg, #f9c5d1, #fbc2eb);
+  /* rosa pastel degradado */
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   color: #fff;
   font-weight: bold;
   font-family: 'Segoe UI', cursive, sans-serif;
@@ -209,7 +315,12 @@ header::after { right: 15%; }
 }
 
 .volver-btn::before {
+<<<<<<< HEAD
   content: "🎀 "; /* detalle coquette */
+=======
+  content: "🎀 ";
+  /* detalle coquette */
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 }
 
 /* Lista */
@@ -217,6 +328,10 @@ header::after { right: 15%; }
   list-style: none;
   padding: 0;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 .lista-notificaciones li {
   background: var(--rosa-claro);
   margin: 10px 0;
@@ -225,6 +340,10 @@ header::after { right: 15%; }
   box-shadow: 0 3px 6px var(--sombra);
   transition: transform 0.2s ease, background 0.3s ease;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 .lista-notificaciones li:hover {
   background: var(--rosa-medio);
   color: var(--blanco);
@@ -243,16 +362,28 @@ header::after { right: 15%; }
 }
 
 .footer {
+<<<<<<< HEAD
   position: fixed;  
   bottom: 0;
   left: 0;
   width: 100%;
   background: rgba(242, 242, 242, 0.9); 
+=======
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(242, 242, 242, 0.9);
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   border-top: 3px solid #ff80ab;
   padding: 15px 30px;
   z-index: 1000;
   box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.1);
+<<<<<<< HEAD
   backdrop-filter: blur(5px); 
+=======
+  backdrop-filter: blur(5px);
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 }
 
 
@@ -283,6 +414,10 @@ header::after { right: 15%; }
     flex-direction: row;
     justify-content: center;
     align-items: center;
+<<<<<<< HEAD
     text-align: left; 
+=======
+    text-align: left;
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   }
 }

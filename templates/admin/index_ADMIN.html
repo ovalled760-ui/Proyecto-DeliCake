@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Inicio</title>
+=======
+    <title>Delicake</title>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
@@ -72,6 +76,32 @@
     </div>
   </nav>
 
+<<<<<<< HEAD
+=======
+   {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="mt-4">
+    {% for category, message in messages %}
+    <div
+      class="alert alert-{{ 'success' if category == 'success' else 'danger' }} alert-dismissible fade show shadow-sm rounded-3 d-flex align-items-center gap-2"
+      role="alert">
+      {% if category == 'success' %}
+      <i class="bi bi-check-circle-fill text-success fs-5"></i>
+      {% else %}
+      <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
+      {% endif %}
+      <div class="flex-grow-1">
+        {{ message }}
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 <section class="carrusel">
     {% if banner_actual %}
         <video autoplay muted loop playsinline width="700">
@@ -89,7 +119,62 @@
 
 
 
+<<<<<<< HEAD
  
+=======
+ <section class="productos">
+    <h2> PRODUCTOS MAS DESTACADOS</h2>
+    <p class="productos-subtitle">postres únicos con el estilo <span>coquette</span> 💕</p>
+
+    <div class="productos-container">
+      <div class="producto-card">
+        <div class="producto-img">
+          <img src="{{ url_for('static', filename='img/cerezita.jpg') }}" alt="Producto 1">
+        </div>
+        <div class="producto-info">
+          <h3>PASTEL CEREZITA</h3>
+          <p>Cerezita es un pastel creado por nosotros con el mejor relleno de frutos rojos 🍒</p>
+          {% if current_user.is_authenticated %}
+            <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+          {% else %}
+            <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-img">
+          <img src="{{ url_for('static', filename='img/tiramisu') }}" alt="Producto 2">
+        </div>
+        <div class="producto-info">
+          <h3>TIRAMISU DE FRESITA</h3>
+          <p>Fue inspirado en lo jugosito de 🍓</p>
+          {% if current_user.is_authenticated %}
+            <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+          {% else %}
+            <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-img">
+          <img src="{{ url_for('static', filename='img/tortahellokitty.jpg') }}" alt="Producto 3">
+        </div>
+        <div class="producto-info">
+          <h3>TORTI KITTY 🐱</h3>
+          <p>Creado para los amantes de la gata blanca</p>
+          {% if current_user.is_authenticated %}
+            <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+          {% else %}
+            <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+</section>
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 <style>
     :root {
       --bg: #fff7fb;
@@ -156,6 +241,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+<<<<<<< HEAD
 <section class="productos">
   <h2>🌸 PRODUCTOS MÁS DESTACADOS</h2>
   <p class="productos-subtitle">Postres únicos con el estilo <span>delicado</span> 💕</p>
@@ -190,6 +276,8 @@
 </section>
 
 
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
   <section class="info-section">
     <div class="info-logo">DeliCAKE</div>
@@ -214,6 +302,7 @@
 
     <div class="separator">🌸</div>
   </section>
+<<<<<<< HEAD
 
 <a href="{{ url_for('admin.lanzamientos')}}" class="boton-flotante">
   <span class="texto">LANZAMIENTOS</span>
@@ -227,6 +316,14 @@
         <h4>⏰ Horarios de atención</h4>
         <p>Lunes - Viernes: 8am</p>
         <p>Sábados y festivos: 9am - 4:30pm</p>
+=======
+  <footer class="footer">
+    <div class="footer-contenido">
+      <div class="footer-item">
+        <h4>⏰ Horarios de atención</h4>
+        <p>Lunes a Viernes: 7am - 8pm</p>
+        <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
       </div>
       <div class="footer-item">
         <h4>👩‍💻 Contáctanos</h4>
@@ -245,6 +342,7 @@
   </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<<<<<<< HEAD
 <script>
 (function() {
   const TIEMPO_INACTIVIDAD = 5 * 60 * 1000;; 
@@ -287,5 +385,7 @@
   reiniciarInactividad();
 })();
 </script>
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 </body>
 </html>

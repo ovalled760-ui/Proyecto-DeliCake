@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 
 body {
     background-color: #fff0f5; 
+=======
+body {
+    background-color: #fff0f5;
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #444;
     margin: 0;
@@ -9,7 +14,11 @@ body {
 }
 
 h1 {
+<<<<<<< HEAD
     color: #d63384; 
+=======
+    color: #d63384;
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     font-size: 2.8em;
     margin-bottom: 10px;
 }
@@ -31,7 +40,12 @@ form {
     margin-top: 20px;
 }
 
+<<<<<<< HEAD
 select, button {
+=======
+select,
+button {
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     padding: 10px 15px;
     font-size: 1em;
     border-radius: 8px;
@@ -75,7 +89,11 @@ ul {
     background-color: #ffe4ec;
     padding: 10px;
     border-radius: 10px;
+<<<<<<< HEAD
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+=======
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     transition: transform 0.2s ease;
     width: 100%;
     max-width: 250px;
@@ -95,4 +113,8 @@ ul {
     margin-top: 10px;
     font-size: 0.95em;
     color: #7b1c4b;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61

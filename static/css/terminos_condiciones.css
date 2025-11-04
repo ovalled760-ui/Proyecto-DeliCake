@@ -1,9 +1,20 @@
 /* Paleta delicada y coquette */
 :root {
+<<<<<<< HEAD
   --soft-pink: #f9d7e3;   /* rosado claro */
   --pastel-rose: #f8c1d9; /* rosa pastel más fuerte */
   --dark-rose: #b95f89;   /* rosa oscuro para títulos */
   --text-gray: #5a4a4a;   /* gris delicado */
+=======
+  --soft-pink: #f9d7e3;
+  /* rosado claro */
+  --pastel-rose: #f8c1d9;
+  /* rosa pastel más fuerte */
+  --dark-rose: #b95f89;
+  /* rosa oscuro para títulos */
+  --text-gray: #5a4a4a;
+  /* gris delicado */
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   --white: #fff;
 }
 
@@ -58,8 +69,15 @@ a:hover {
   font-style: italic;
   color: var(--dark-rose);
 }
+<<<<<<< HEAD
 .volver-btn:hover {
   background: #e8a9c9; /* rosa más intenso */
+=======
+
+.volver-btn:hover {
+  background: #e8a9c9;
+  /* rosa más intenso */
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   color: #fff;
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(166, 77, 121, 0.4);
@@ -76,11 +94,19 @@ a:hover {
   font-weight: bold;
   font-family: 'Comic Neue', cursive;
   text-decoration: none;
+<<<<<<< HEAD
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+=======
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   transition: all 0.3s ease;
 }
 
 .btn-volver:hover {
   background: #ff8dcf;
   transform: scale(1.05);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61

@@ -2,12 +2,21 @@
 <html lang="es">
 
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EDITAR</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/editar.css') }}">
+=======
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDITAR</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/editar.css') }}">
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 </head>
 
 <body>
@@ -24,9 +33,57 @@
 
 
   <a href="javascript:history.back()" class="volver-btn">
+<<<<<<< HEAD
   ← Volver
 </a>
 {% with messages = get_flashed_messages(with_categories=true) %}
+=======
+    ← Volver
+  </a>
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
+        <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="Logo"
+          style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;">
+        <br>DeliCake🎀</br>
+      </a>
+      <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="catalogoDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">Productos</a>
+            <ul class="dropdown-menu" aria-labelledby="catalogoDropdown">
+              {% for categoria in categorias %}
+              <li>
+                <a class="dropdown-item" href="{{ url_for('productos_admin', id_categoria=categoria.ID_Categoria) }}">
+                  {{ categoria.Nombre_categoria }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('admin.panel') }}">Mi Cuenta</a>
+          </li>
+        </ul>
+
+        <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex me-3" style="text-align: cover;">
+          <input class="form-control me-2" style="height: 45px;" type="search" name="q"
+            placeholder="Buscar productos..." value="{{ request.args.get('q','') }}">
+          <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+
+        <a href="#" class="nav-link text-warning ms-lg-3">👤</a>
+      </div>
+    </div>
+  </nav>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   {% if messages %}
   <div class="mt-4">
     {% for category, message in messages %}
@@ -47,6 +104,7 @@
   </div>
   {% endif %}
   {% endwith %}
+<<<<<<< HEAD
  <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
       <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
@@ -168,6 +226,90 @@
         <h4>⏰ Horarios de atención</h4>
         <p>Lunes - Viernes: 8am</p>
         <p>Sábados y festivos: 9am - 4:30pm</p>
+=======
+
+  <h1 class="text-center mt-4">EDITAR PRODUCTOS 🍯</h1>
+
+  <div class="container my-4">
+    <input type="text" id="buscar" class="form-control mb-4" placeholder="Buscar producto..."
+      onkeyup="filtrarProductos()">
+
+    <div id="lista-productos" class="row">
+      {% for producto in productos %}
+      <div class="col-md-4 mb-4 producto-card">
+        <div class="card shadow">
+          <img src="{{ url_for('static', filename='img/' ~ producto.Imagen) }}" class="card-img-top"
+            alt="Imagen del producto">
+          <div class="card-body">
+            <h5 class="card-title">{{ producto.Nombre_producto }}</h5>
+            <p class="card-text">Precio: ${{ producto.Precio_Unitario }}</p>
+            <p class="card-text">Descuento: {{ producto.Descuento }}%</p>
+            <p class="card-text">Categoría:
+              {% for cat in categorias %}
+              {% if cat.ID_Categoria == producto.ID_Categoria %}
+              {{ cat.Nombre_categoria }}
+              {% endif %}
+              {% endfor %}
+            </p>
+
+            <form action="{{ url_for('admin.actualizar_producto', id=producto.ID_Producto) }}" method="POST"
+              enctype="multipart/form-data">
+              <div class="mb-2">
+                <input type="text" class="form-control" name="nombre" value="{{ producto.Nombre_producto }}" required>
+              </div>
+              <div class="mb-2">
+                <textarea class="form-control" name="descripcion"
+                  required>{{ producto.Descripcion_producto }}</textarea>
+              </div>
+              <div class="mb-2">
+                <input type="number" class="form-control" name="precio" step="0.01"
+                  value="{{ producto.Precio_Unitario }}" required>
+              </div>
+              <div class="mb-2">
+                <input type="number" class="form-control" name="descuento" step="0.01" value="{{ producto.Descuento }}">
+              </div>
+              <div class="mb-2">
+                <select class="form-select" name="categoria" required>
+                  {% for cat in categorias %}
+                  <option value="{{ cat.ID_Categoria }}" {% if cat.ID_Categoria==producto.ID_Categoria %}selected{%
+                    endif %}>
+                    {{ cat.Nombre_categoria }}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="mb-2">
+                <label class="form-label">Imagen:</label>
+                <input type="file" class="form-control" name="imagen">
+              </div>
+              <button type="submit" class="btn btn-success w-100">Actualizar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script>
+    function filtrarProductos() {
+      let input = document.getElementById("buscar").value.toLowerCase();
+      let productos = document.getElementsByClassName("producto-card");
+
+      for (let i = 0; i < productos.length; i++) {
+        let titulo = productos[i].getElementsByTagName("h5")[0].innerText.toLowerCase();
+        productos[i].style.display = titulo.includes(input) ? "" : "none";
+      }
+    }
+  </script>
+
+  <footer class="footer">
+    <div class="footer-contenido">
+      <div class="footer-item">
+        <h4>⏰ Horarios de atención</h4>
+        <p>Lunes a Viernes: 7am - 8pm</p>
+        <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
       </div>
       <div class="footer-item">
         <h4>👩‍💻 Contáctanos</h4>
@@ -184,6 +326,7 @@
       </div>
     </div>
   </footer>
+<<<<<<< HEAD
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -230,4 +373,9 @@
 })();
 </script>
 </body>
+=======
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 </html>

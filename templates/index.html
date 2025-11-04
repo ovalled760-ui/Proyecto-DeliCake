@@ -4,7 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
   <title>Agregar Producto</title>
+=======
+  <title>DeliCake</title>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
@@ -107,6 +111,7 @@
 
       </a>
     </div>
+<<<<<<< HEAD
     </div>
   </nav>
 
@@ -177,8 +182,42 @@
     <div class="modal-footer">
       <button class="cancelar" onclick="cerrarModal()">Cancelar</button>
       <button class="confirmar" onclick="confirmarAgregar()">Confirmar</button>
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     </div>
+  </nav>
+
+<section class="carrusel">
+    {% if banner_actual %}
+        <video autoplay muted loop playsinline width="700">
+            <source src="{{ url_for('static', filename=banner_actual) }}" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+    {% else %}
+        <p>No hay banner disponible</p>
+    {% endif %}
+</section>
+
+ <section class="productos">
+    <h2> PRODUCTOS MAS DESTACADOS</h2>
+    <p class="productos-subtitle">postres únicos con el estilo <span>Dlicado</span> 💕</p>
+
+    <div class="productos-container">
+<div class="producto-card">
+  <div class="producto-img">
+    <img src="{{ url_for('static', filename='img/cerezita.jpg') }}" alt="Producto 1">
   </div>
+  <div class="producto-info">
+    <h3>PASTEL CEREZITA</h3>
+    <p>Cerezita es un pastel creado por nosotros con el mejor relleno de frutos rojos 🍒</p>
+
+    {% if current_user.is_authenticated %}
+      <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+    {% else %}
+      <a href="{{ url_for('register') }}" class="btn-carrito link-carrito">🛒 ¡AGREGALO!</a>
+    {% endif %}
+  </div>
+<<<<<<< HEAD
 </div>
 
 
@@ -237,6 +276,46 @@ window.addEventListener("resize", actualizarFlechas);
 document.addEventListener("DOMContentLoaded", actualizarFlechas);
 </script>
 
+=======
+
+
+</div>
+
+     <div class="producto-card">
+  <div class="producto-img">
+    <img src="{{ url_for('static', filename='img/tiramisu') }}" alt="Producto 2">
+  </div>
+  <div class="producto-info">
+    <h3>TIRAMISU DE FRESITA</h3>
+    <p>Fue inspirado en lo jugosito de 🍓</p>
+
+    {% if current_user.is_authenticated %}
+      <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+    {% else %}
+      <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
+    {% endif %}
+  </div>
+</div>
+
+
+      <div class="producto-card">
+        <div class="producto-img">
+          <img src="{{ url_for('static', filename='img/tortahellokitty.jpg') }}" alt="Producto 3">
+        </div>
+        <div class="producto-info">
+          <h3>TORTI KITTY 🐱</h3>
+          <p>Creado para los amantes de la gata blanca</p>
+          {% if current_user.is_authenticated %}
+            <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+          {% else %}
+            <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+</section>
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
  <section class="suscripcion">
     <div class="container">
       <h2 class="mb-4">💌 SUSCRIBETE A NUESTRO BOLETIN</h2>
@@ -297,6 +376,7 @@ document.addEventListener("DOMContentLoaded", actualizarFlechas);
         elegante y lleno de amor. 🎀</p>
     </div>
   </section>
+<<<<<<< HEAD
 
 <a href="{{ url_for('clientes.lanzamientos') }}" class="boton-flotante">
   <span class="texto">Ver más</span>
@@ -305,12 +385,19 @@ document.addEventListener("DOMContentLoaded", actualizarFlechas);
 
 
 
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   <footer class="footer">
     <div class="footer-contenido">
       <div class="footer-item">
         <h4>⏰ Horarios de atención</h4>
+<<<<<<< HEAD
         <p>Lunes - Viernes: 8am</p>
         <p>Sábados y festivos: 9am - 4:30pm</p>
+=======
+        <p>Lunes a Viernes: 7am - 8pm</p>
+        <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
       </div>
       <div class="footer-item">
         <h4>👩‍💻 Contáctanos</h4>

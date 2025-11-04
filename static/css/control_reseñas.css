@@ -1,4 +1,5 @@
 :root {
+<<<<<<< HEAD
     --primary-color: #ecb2cdff; 
     --secondary-color: #ece5d7ff; 
     --dark-color: #b3a9adff; 
@@ -17,13 +18,38 @@ body {
   padding: 0.5rem 1rem;
   background: rgba(255, 239, 254, 0.9); 
   
+=======
+  --primary-color: #ecb2cdff;
+  --secondary-color: #ece5d7ff;
+  --dark-color: #b3a9adff;
+  --warning-color: #e7dec4ff;
+}
+
+body {
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--dark-color);
+  padding-bottom: 300%;
+
+}
+
+.navbar {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 239, 254, 0.9);
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 }
 
 .navbar-brand {
   font-size: 2.1rem;
   font-weight: 800;
   letter-spacing: 1px;
+<<<<<<< HEAD
   color: #ffffff !important; 
+=======
+  color: #ffffff !important;
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -60,7 +86,11 @@ body {
 
 .dropdown-menu {
   border-radius: 8px;
+<<<<<<< HEAD
   box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+=======
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   border: none;
 }
 
@@ -71,6 +101,7 @@ body {
 
 
 .navbar a button {
+<<<<<<< HEAD
     background-color: var(--primary-color);
     border: none;
     color: rgb(44, 41, 41);
@@ -85,6 +116,23 @@ body {
 .navbar a button:hover {
     background-color: #ff7b7b;
     transform: scale(1.05);
+=======
+  background-color: var(--primary-color);
+  border: none;
+  color: rgb(44, 41, 41);
+  padding: 6px 14px;
+  margin-right: 20px;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar a button:hover {
+  background-color: #ff7b7b;
+  transform: scale(1.05);
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 }
 
 .falling-products {
@@ -108,6 +156,7 @@ body {
   opacity: 0.8;
 }
 
+<<<<<<< HEAD
 .falling-products span:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
 .falling-products span:nth-child(2) { left: 25%; animation-duration: 9s; animation-delay: 2s; }
 .falling-products span:nth-child(3) { left: 40%; animation-duration: 7s; animation-delay: 4s; }
@@ -116,15 +165,72 @@ body {
 .falling-products span:nth-child(6) { left: 15%; animation-duration: 9s; animation-delay: 5s; }
 .falling-products span:nth-child(7) { left: 50%; animation-duration: 7s; animation-delay: 0s; }
 .falling-products span:nth-child(8) { left: 75%; animation-duration: 8s; animation-delay: 6s; }
+=======
+.falling-products span:nth-child(1) {
+  left: 10%;
+  animation-duration: 8s;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(2) {
+  left: 25%;
+  animation-duration: 9s;
+  animation-delay: 2s;
+}
+
+.falling-products span:nth-child(3) {
+  left: 40%;
+  animation-duration: 7s;
+  animation-delay: 4s;
+}
+
+.falling-products span:nth-child(4) {
+  left: 60%;
+  animation-duration: 6s;
+  animation-delay: 1s;
+}
+
+.falling-products span:nth-child(5) {
+  left: 80%;
+  animation-duration: 10s;
+  animation-delay: 3s;
+}
+
+.falling-products span:nth-child(6) {
+  left: 15%;
+  animation-duration: 9s;
+  animation-delay: 5s;
+}
+
+.falling-products span:nth-child(7) {
+  left: 50%;
+  animation-duration: 7s;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(8) {
+  left: 75%;
+  animation-duration: 8s;
+  animation-delay: 6s;
+}
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
 @keyframes fall {
   0% {
     transform: translateY(-50px) rotate(0deg);
     opacity: 0;
   }
+<<<<<<< HEAD
   10% {
     opacity: 1;
   }
+=======
+
+  10% {
+    opacity: 1;
+  }
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   100% {
     transform: translateY(110vh) rotate(360deg);
     opacity: 0;
@@ -171,12 +277,37 @@ body {
   color: #ec407a;
 }
 
+<<<<<<< HEAD
 .tabla::before { top: 6px; left: 8px; }
 .tabla::after { top: 6px; right: 8px; }
 .tabla tbody::before { bottom: 6px; left: 8px; }
 .tabla tbody::after { bottom: 6px; right: 8px; }
 
 .tabla th, .tabla td {
+=======
+.tabla::before {
+  top: 6px;
+  left: 8px;
+}
+
+.tabla::after {
+  top: 6px;
+  right: 8px;
+}
+
+.tabla tbody::before {
+  bottom: 6px;
+  left: 8px;
+}
+
+.tabla tbody::after {
+  bottom: 6px;
+  right: 8px;
+}
+
+.tabla th,
+.tabla td {
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   padding: 14px;
   border-bottom: 1px solid #ffe0eb;
   text-align: center;
@@ -202,7 +333,11 @@ body {
   font-weight: 600;
   text-decoration: none;
   transition: 0.3s;
+<<<<<<< HEAD
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+=======
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   border: none;
   cursor: pointer;
 }
@@ -234,7 +369,12 @@ body {
 }
 
 .volver-btn:hover {
+<<<<<<< HEAD
   background: #eea2ddff; /* rosa más intenso */
+=======
+  background: #eea2ddff;
+  /* rosa más intenso */
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   color: #fff;
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(166, 77, 121, 0.4);
@@ -246,7 +386,12 @@ body {
   position: absolute;
   top: 20px;
   left: 20px;
+<<<<<<< HEAD
   background: linear-gradient(135deg, #f9c5d1, #fbc2eb); /* rosa pastel degradado */
+=======
+  background: linear-gradient(135deg, #f9c5d1, #fbc2eb);
+  /* rosa pastel degradado */
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   color: #fff;
   font-weight: bold;
   font-family: 'Segoe UI', cursive, sans-serif;
@@ -271,6 +416,7 @@ body {
 }
 
 .volver-btn::before {
+<<<<<<< HEAD
   content: "🎀 "; 
 }
 
@@ -281,11 +427,27 @@ body {
   width: 100%;
   height:95px;
   background: rgba(242, 242, 242, 0.9); 
+=======
+  content: "🎀 ";
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 95px;
+  background: rgba(242, 242, 242, 0.9);
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
   border-top: 3px solid #ff80ab;
   padding: 15px 30px;
   z-index: 1000;
   box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.1);
+<<<<<<< HEAD
   backdrop-filter: blur(5px); 
+=======
+  backdrop-filter: blur(5px);
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 }
 
 

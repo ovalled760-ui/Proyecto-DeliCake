@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 <head>
     <meta charset="UTF-8">
     <title>Administrar Banners</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
 </head>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 <body>
     <h1>🎬 Administrar Banners</h1>
 
     {% if banner_actual %}
+<<<<<<< HEAD
         <h2>Banner actual</h2>
         <video autoplay muted loop playsinline width="700">
             <source src="{{ banner_actual }}" type="video/mp4">
@@ -16,6 +25,15 @@
         </video>
     {% else %}
         <p>No hay banner actual disponible.</p>
+=======
+    <h2>Banner actual</h2>
+    <video autoplay muted loop playsinline width="700">
+        <source src="{{ banner_actual }}" type="video/mp4">
+        Tu navegador no soporta el video.
+    </video>
+    {% else %}
+    <p>No hay banner actual disponible.</p>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     {% endif %}
 
     <h2>Seleccionar nuevo banner</h2>
@@ -23,13 +41,18 @@
         <select name="banner" required>
             <option value="">-- Elige un video --</option>
             {% for b in banners %}
+<<<<<<< HEAD
                 <option value="{{ b }}">{{ b }}</option>
+=======
+            <option value="{{ b }}">{{ b }}</option>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
             {% endfor %}
         </select>
         <button type="submit">Cambiar banner</button>
     </form>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
+<<<<<<< HEAD
       {% if messages %}
         <ul>
           {% for category, message in messages %}
@@ -37,12 +60,22 @@
           {% endfor %}
         </ul>
       {% endif %}
+=======
+    {% if messages %}
+    <ul>
+        {% for category, message in messages %}
+        <li><strong>{{ message }}</strong></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     {% endwith %}
 
     <!-- 🩷 Vista de todos los banners disponibles -->
     <h2>Banners disponibles</h2>
     <div class="banners-grid">
         {% for b in banners %}
+<<<<<<< HEAD
             <div class="banner-card">
                 <video autoplay muted loop playsinline>
                     <source src="{{ url_for('static', filename='videos/' + b) }}" type="video/mp4">
@@ -96,3 +129,17 @@
 </script>
 </body>
 </html>
+=======
+        <div class="banner-card">
+            <video autoplay muted loop playsinline>
+                <source src="{{ url_for('static', filename='videos/' + b) }}" type="video/mp4">
+                Tu navegador no soporta el video.
+            </video>
+            <p>{{ b }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61

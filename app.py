@@ -1,18 +1,27 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session, send_file
 from werkzeug.security import generate_password_hash, check_password_hash
+<<<<<<< HEAD
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from controladores.models import db, Usuario, Cliente, Administrador, Categoria, Producto, Reseña, Suscriptor,Pedido
+=======
+from flask_login import LoginManager,UserMixin, login_user, logout_user, login_required, current_user
+from controladores.models import db, Usuario, Cliente, Administrador, Categoria, Producto,Reseña,Suscriptor
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 from reportlab.pdfgen import canvas
 from flask_mail import Mail, Message
 from datetime import datetime
 from routes.clientes import clientes_bp
 from routes.admin import admin_bp
 from flask_login import current_user, login_required
+<<<<<<< HEAD
 from sqlalchemy import func
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 import random
 import string
 from datetime import datetime
 from email.mime.image import MIMEImage
+<<<<<<< HEAD
 from flask_migrate import Migrate
 import os
 
@@ -24,6 +33,16 @@ app.secret_key = "12345678"
 def generar_codigo():
     return ''.join(random.choices(string.digits, k=6))
 
+=======
+import os
+
+app = Flask(__name__)
+#configurar mi SECRECT KEY para que session funcione correctamente
+app.secret_key = "12345678"
+def generar_codigo():
+    return ''.join(random.choices(string.digits, k=6))
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 # Configuración de la base de datos
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@127.0.0.1:3306/delicake'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -32,6 +51,7 @@ app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 app.config['MAIL_USERNAME'] = 'deli.cake404@gmail.com'
+<<<<<<< HEAD
 app.config['MAIL_PASSWORD'] = 'xmwh hxnu zzvd pslv'
 app.config['MAIL_DEFAULT_SENDER'] = ('DeliCake', 'deli.cake404@gmail.com')
 
@@ -39,11 +59,24 @@ app.config['MAIL_DEFAULT_SENDER'] = ('DeliCake', 'deli.cake404@gmail.com')
 db.init_app(app)
 migrate = Migrate(app, db)
 
+=======
+app.config['MAIL_PASSWORD'] = 'xmwh hxnu zzvd pslv'  
+app.config['MAIL_DEFAULT_SENDER'] = ('DeliCake', 'deli.cake404@gmail.com')
+
+mail = Mail(app)
+# Inicialización de la base de datos y Flask-Login
+db.init_app(app)
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
+<<<<<<< HEAD
 mail = Mail(app)
+=======
+
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 @login_manager.user_loader
 def load_user(user_id):
     #La función debe devolver una instancia de la clase que hereda de UserMixin
@@ -53,6 +86,10 @@ def load_user(user_id):
 
 
 def obtener_banner_actual():
+<<<<<<< HEAD
+=======
+    """Devuelve la ruta del banner actual si existe, sino None"""
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     banner_actual_path = os.path.join('static', 'videos', 'banner_actual.mp4')
     if os.path.exists(banner_actual_path):
         return 'videos/banner_actual.mp4'
@@ -66,6 +103,7 @@ def home():
     sugerencias = random.sample(productos, min(len(productos), 9))
     reseñas = Reseña.query.filter_by(estado="aprobada").all()
     banner_actual = obtener_banner_actual()
+<<<<<<< HEAD
       # 🔹 Productos destacados (más comprados)
     productos_destacados = (
         db.session.query(Producto, func.count(Pedido.ID_Producto).label("num_compras"))
@@ -81,22 +119,42 @@ def home():
     for p in productos_destacados:
         if not p.Imagen:
             p.Imagen = "default"
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     return render_template(
         "index.html",
         categorias=categorias,
         sugerencias=sugerencias,
         reseñas=reseñas,
+<<<<<<< HEAD
         banner_actual=banner_actual,
         productos_destacados=productos_destacados
+=======
+        banner_actual=banner_actual
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     )
 
 from flask_login import current_user
 
+<<<<<<< HEAD
 
+=======
+def esta_en_horario():
+    ahora = datetime.now()
+    dia = ahora.weekday()
+    hora_actual = ahora.hour + ahora.minute / 60
+
+    if 0 <= dia <= 4:  
+        return 7 <= hora_actual < 20
+    else:  
+        return 9 <= hora_actual < 17.5
+    
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 @app.route('/publica')
 def publica():
     categorias = Categoria.query.all()
     productos = Producto.query.all()
+<<<<<<< HEAD
     reseñas = Reseña.query.filter_by(estado="aprobada").all()
     banner_actual = obtener_banner_actual()
 
@@ -117,6 +175,13 @@ def publica():
             p.Imagen = "default"
 
     # 🔹 Notificaciones
+=======
+    sugerencias = random.sample(productos, min(len(productos), 9))
+    reseñas = Reseña.query.filter_by(estado="aprobada").all()
+    banner_actual = obtener_banner_actual()
+    en_horario = esta_en_horario()
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     if current_user.is_authenticated and current_user.cliente:
         pedidos = current_user.cliente.pedidos
         notificaciones = [f"Pedido #{p.ID_Pedido} está en {p.Estado_Pedido}" for p in pedidos]
@@ -128,6 +193,7 @@ def publica():
     return render_template(
         "clientes/index-1.html",
         categorias=categorias,
+<<<<<<< HEAD
         reseñas=reseñas,
         banner_actual=banner_actual,
         total_notificaciones=total_notificaciones,
@@ -135,12 +201,24 @@ def publica():
     )
 
 
+=======
+        sugerencias=sugerencias,
+        reseñas=reseñas,
+        banner_actual=banner_actual,
+        total_notificaciones=total_notificaciones,
+        en_horario=en_horario
+    )
+
+
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 @app.route('/index_ADMIN')
 def index_ADMIN():
     categorias = Categoria.query.all()
     productos = Producto.query.all()
     sugerencias = random.sample(productos, min(len(productos), 9))
 
+<<<<<<< HEAD
     productos_destacados = (
         db.session.query(Producto, func.count(Pedido.ID_Producto).label("num_compras"))
         .join(Pedido, Pedido.ID_Producto == Producto.ID_Producto)
@@ -157,6 +235,8 @@ def index_ADMIN():
             p.Imagen = "default"
 
 
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
    
     import os
     banner_actual_path = os.path.join('static', 'videos', 'banner_actual.mp4')
@@ -171,8 +251,12 @@ def index_ADMIN():
         'admin/index_ADMIN.html',
         categorias=categorias,
         sugerencias=sugerencias,
+<<<<<<< HEAD
         banner_actual=banner_actual ,
         productos_destacados=productos_destacados 
+=======
+        banner_actual=banner_actual  
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     )
 
 
@@ -256,7 +340,11 @@ def login():
             return redirect(url_for('login'))
 
         login_user(usuario)
+<<<<<<< HEAD
         flash('Inicio de sesión exitos')
+=======
+        flash('Inicio de sesión exitoso',"success")
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
         return redirect(url_for('publica'))
 
     return render_template('clientes/inicio de sesion.html')
@@ -296,7 +384,11 @@ def login_admin():
             return redirect(url_for("login_admin"))
 
         login_user(usuario)
+<<<<<<< HEAD
         flash("Inicio de sesión exitoso como Administrador.")
+=======
+        flash("Inicio de sesión exitoso como Administrador.","success")
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
         return redirect(url_for("index_ADMIN"))
 
     return render_template('admin/inicio_sesion_ADMIN.html')

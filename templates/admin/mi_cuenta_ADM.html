@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PANEL DE CONTROL</title>
@@ -9,6 +10,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mi_cuenta_ADM.css') }}">
      <style>
+=======
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PANEL DE CONTROL</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mi_cuenta_ADM.css') }}">
+  <style>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     /* Video de fondo */
     .video-background {
       position: fixed;
@@ -16,11 +26,19 @@
       left: 0;
       width: 100%;
       height: 100%;
+<<<<<<< HEAD
       object-fit: cover; 
       z-index: -1; 
     }
 
   
+=======
+      object-fit: cover;
+      z-index: -1;
+    }
+
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     body::before {
       content: "";
       position: fixed;
@@ -28,11 +46,19 @@
       left: 0;
       width: 100%;
       height: 100%;
+<<<<<<< HEAD
       background: rgba(61, 59, 59, 0.4); 
       z-index: 0;
     }
 
     
+=======
+      background: rgba(61, 59, 59, 0.4);
+      z-index: 0;
+    }
+
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     body * {
       position: relative;
       z-index: 1;
@@ -42,10 +68,17 @@
 
 <body>
   <!-- 🎥 Video de fondo -->
+<<<<<<< HEAD
 <video autoplay muted loop class="video-background">
   <source src="{{ url_for('static', filename='videos/banner2.mp4') }}" type="video/mp4">
   Tu navegador no soporta videos en HTML5.
 </video>
+=======
+  <video autoplay muted loop class="video-background">
+    <source src="{{ url_for('static', filename='videos/banner2.mp4') }}" type="video/mp4">
+    Tu navegador no soporta videos en HTML5.
+  </video>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
   <div class="falling-products">
     <span>🧁</span>
@@ -58,6 +91,7 @@
     <span>🎂</span>
   </div>
 
+<<<<<<< HEAD
 <br><br><b><br></b>
   <a href="javascript:history.back()" class="volver-btn">
   ← Volver
@@ -128,6 +162,74 @@
         <h4>⏰ Horarios de atención</h4>
         <p>Lunes - Viernes: 8am</p>
         <p>Sábados y festivos: 9am - 4:30pm</p>
+=======
+  <br><br><b><br></b>
+  <a href="javascript:history.back()" class="volver-btn">
+    ← Volver
+  </a>
+
+  <div class="container mt-5">
+    <div class="text-center mb-4">
+      <h2>PANEL DE CONTROL</h2>
+
+    </div>
+
+    <div class="row g-3 text-center">
+      <div class="col-md-4">
+        <a href="{{ url_for('admin.agregar_producto') }}" class="btn btn-outline-primary w-100 py-4">
+          ➕ Agregar Producto
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="{{ url_for('admin.editar_producto') }}" class="btn btn-outline-secondary w-100 py-4">
+          ✏️ Editar Producto
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="{{ url_for('admin.listar_productos') }}" class="btn btn-outline-danger w-100 py-4">
+          🗑 Eliminar Producto
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="{{ url_for('admin.seguimiento_pedidos') }}" class="btn btn-outline-danger w-100 py-4">
+          📦 Seguimiento del pedido
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="{{ url_for('admin.gestionar_disponibilidad') }}" class="btn btn-outline-danger w-100 py-4">
+          📞 Gestion Disponibilidad
+
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="#" class="btn btn-outline-success w-100 py-4">
+          📊 Reporte Ventas
+        </a>
+      </div>
+      <div class="col-md-12">
+        <a href="{{ url_for('admin.lista_reseñas') }}" class="btn btn-outline-warning w-100 py-4">
+          ⭐ Control de Reseñas
+        </a>
+      </div>
+      <div class="col-md-12">
+        <a href="{{ url_for('admin.lista_suscriptores') }}" class="btn btn-outline-warning w-100 py-4">
+          ⭐ Lista de Suscriptores
+        </a>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="{{ url_for('logout') }}" class="btn btn-dark">Cerrar Sesión</a>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-contenido">
+      <div class="footer-item">
+        <h4>⏰ Horarios de atención</h4>
+        <p>Lunes a Viernes: 7am - 8pm</p>
+        <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
       </div>
       <div class="footer-item">
         <h4>👩‍💻 Contáctanos</h4>
@@ -144,6 +246,7 @@
       </div>
     </div>
   </footer>
+<<<<<<< HEAD
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 (function() {
@@ -189,3 +292,9 @@
 </script>
 </body>
 </html>
+=======
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61

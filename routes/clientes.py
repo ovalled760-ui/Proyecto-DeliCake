@@ -1,16 +1,28 @@
+<<<<<<< HEAD
 from flask_wtf.csrf import generate_csrf
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 from flask import Blueprint, render_template, redirect, url_for, flash, request, session, send_file
 from reportlab.pdfgen import canvas
 from flask_login import login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
+<<<<<<< HEAD
 from controladores.models import db, Usuario, Producto
 from controladores.models import db,Categoria,Producto, PersonalizacionProducto, Cliente, Pedido, Disponibilidad, DetallePedido,Notificacion,Lanzamiento
+=======
+from flask_mail import Mail, Message
+from controladores.models import db, Usuario, Producto, Suscriptor
+from controladores.models import db,Categoria,Favorito,Producto, PersonalizacionProducto, Cliente, Pedido, Disponibilidad, DetallePedido,Notificacion
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 from flask import Blueprint, render_template, flash
 from flask_login import login_required, current_user
 from flask import Flask, render_template, request, redirect, url_for
 from flask import Blueprint, render_template, request, redirect, url_for, session, jsonify
 from flask import session
+<<<<<<< HEAD
 from flask_migrate import Migrate
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 import os
 
 
@@ -41,11 +53,16 @@ def mi_cuenta():
 @clientes_bp.route("/actualizar_datos", methods=["GET", "POST"])
 @login_required
 def actualizar_datos():
+<<<<<<< HEAD
     
     token = generate_csrf()
 
     if not current_user.cliente:
         flash("No tienes perfil de cliente.", "warning")
+=======
+    if not current_user.cliente:
+        flash("No tienes perfil de cliente.")
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
         return redirect(url_for("publica"))
 
     if request.method == "POST":
@@ -67,7 +84,11 @@ def actualizar_datos():
             return redirect(url_for("clientes.actualizar_datos"))
 
         try:
+<<<<<<< HEAD
             # ✅ Verificar correo duplicado
+=======
+            # Verificar correo duplicado
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
             if Usuario.query.filter(
                 Usuario.Correo == correo,
                 Usuario.ID_usuario != current_user.ID_usuario
@@ -75,7 +96,11 @@ def actualizar_datos():
                 flash("Ese correo ya está registrado por otro usuario", "danger")
                 return redirect(url_for("clientes.actualizar_datos"))
 
+<<<<<<< HEAD
             # ✅ Actualizar datos
+=======
+            # Actualizar datos
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
             current_user.Nombre = nombre
             current_user.Apellido = apellido
             current_user.Correo = correo
@@ -83,6 +108,7 @@ def actualizar_datos():
             current_user.cliente.Direccion = direccion
 
             db.session.commit()
+<<<<<<< HEAD
             flash("Datos actualizados correctamente ✅", "success")
             return redirect(url_for("clientes.mi_cuenta"))
 
@@ -93,6 +119,17 @@ def actualizar_datos():
 
     
     return render_template("clientes/actualizar_dat.html", csrf_token=token)
+=======
+            flash("Datos actualizados correctamente", "success")
+            return redirect(url_for("clientes.actualizar_datos"))
+
+        except Exception as e:
+            db.session.rollback()
+            flash("Ocurrió un error al actualizar: " + str(e), "danger")
+            return redirect(url_for("clientes.actualizar_datos"))
+    categorias = Categoria.query.all()
+    return render_template("clientes/actualizar_dat.html", usuario=current_user, categorias=categorias)
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
 
 @clientes_bp.route("/cambiar_contrasena", methods=["GET", "POST"])
@@ -135,13 +172,21 @@ def cambiar_contrasena():
 @clientes_bp.route("/seguimiento", methods=["GET"])
 @login_required
 def seguimiento_pedido():
+<<<<<<< HEAD
     
+=======
+    # 1️⃣ Identificar cliente
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     cliente = Cliente.query.filter_by(ID_usuario=current_user.ID_usuario).first()
     if not cliente:
         flash("No tienes un perfil de cliente asociado.", "warning")
         return render_template("clientes/seguimiento_pedido.html", pedidos=[])
 
+<<<<<<< HEAD
     
+=======
+    # 2️⃣ Obtener sus pedidos
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     pedidos = Pedido.query.filter_by(ID_Cliente=cliente.ID_cliente).all()
 
     pedidos_data = []
@@ -155,16 +200,27 @@ def seguimiento_pedido():
             "Estado_Pedido": pedido.Estado_Pedido
         })
 
+<<<<<<< HEAD
 
     notificaciones = Notificacion.query.filter_by(usuario_id=current_user.ID_usuario).order_by(Notificacion.fecha.desc()).all()
 
    
+=======
+    # 3️⃣ Obtener notificaciones del usuario actual
+    notificaciones = Notificacion.query.filter_by(usuario_id=current_user.ID_usuario).order_by(Notificacion.fecha.desc()).all()
+
+    # 4️⃣ Marcar las no leídas como leídas al entrar a la página
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     for n in notificaciones:
         if not n.leida:
             n.leida = True
     db.session.commit()
 
+<<<<<<< HEAD
 
+=======
+    # 5️⃣ Renderizar vista con pedidos + notificaciones
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     categorias = Categoria.query.all()
     return render_template(
         "clientes/seguimiento_pedido.html",
@@ -173,6 +229,18 @@ def seguimiento_pedido():
         categorias=categorias
     )
 
+<<<<<<< HEAD
+=======
+def esta_en_horario():
+    ahora = datetime.now()
+    dia = ahora.weekday()
+    hora_actual = ahora.hour + ahora.minute / 60
+
+    if 0 <= dia <= 4:  
+        return 7 <= hora_actual < 20
+    else:  
+        return 9 <= hora_actual < 17.5
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
 
 
@@ -182,18 +250,33 @@ def confirmacion_pedido():
     carrito = session.get("carrito", [])
     categorias = Categoria.query.all()
 
+<<<<<<< HEAD
     # Si el usuario no tiene un cliente asociado, lo crea
     if not current_user.cliente:
         nuevo_cliente = Cliente(
             Direccion="Por definir",
+=======
+    if not current_user.cliente:
+        nuevo_cliente = Cliente(
+            Direccion="Por definir",
+            Telefono="0000000000",
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
             usuario=current_user  
         )
         db.session.add(nuevo_cliente)
         db.session.commit()
 
     cliente = current_user.cliente  
+<<<<<<< HEAD
 
     # Fechas y horas disponibles
+=======
+    if not esta_en_horario():
+        flash("⏰ Estamos fuera del horario de atención. Tu pedido será procesado el siguiente día hábil.", "warning")
+        return redirect(url_for('clientes.carrito'))
+
+  
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     disponibilidades = Disponibilidad.query.order_by(Disponibilidad.Fecha, Disponibilidad.Hora).all()
     fechas_horas = {}
     for d in disponibilidades:
@@ -201,20 +284,29 @@ def confirmacion_pedido():
             fecha_str = d.Fecha.strftime("%Y-%m-%d")
             hora_str = d.Hora.strftime("%H:%M")
             fechas_horas.setdefault(fecha_str, []).append(hora_str)
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     if request.method == "POST":
         direccion = request.form.get("direccion")
         metodo_pago = request.form.get("metodo_pago")
         fecha_entrega = request.form.get("fechaEntrega") 
         hora_entrega = request.form.get("horaEntrega")     
 
+<<<<<<< HEAD
         # Recuperar carrito
+=======
+ 
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
         carrito_json = request.form.get("carrito_json")
         if carrito_json:
             try:
                 carrito = json.loads(carrito_json)
             except Exception:
                 carrito = session.get("carrito", [])
+<<<<<<< HEAD
         else:
             carrito = session.get("carrito", [])
 
@@ -259,25 +351,41 @@ def confirmacion_pedido():
             return redirect(url_for("clientes.ver_carrito"))
 
         # Crear pedido con ID_Producto (relación a tabla Producto)
+=======
+
+        
+        total = sum(item["precio"] * item["cantidad"] for item in carrito)
+
+    
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
         pedido = Pedido(
             cliente=cliente,  
             Estado_Pedido="Pendiente",
             Total=total,
             Fecha_Solicitud=date.today(),
             Fecha_Entrega=datetime.strptime(fecha_entrega, "%Y-%m-%d").date() if fecha_entrega else None,
+<<<<<<< HEAD
             Tiempo_Realizacion="Pendiente",
             ID_Producto=id_producto  # 👈 Relación directa
+=======
+            Tiempo_Realizacion="Pendiente"
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
         )
         db.session.add(pedido)
         db.session.commit()
 
+<<<<<<< HEAD
         # Guardar en sesión
+=======
+       
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
         session["ultimo_pedido_id"] = pedido.ID_Pedido
         session["carrito_detalle"] = carrito
 
         flash("✅ Pedido confirmado con éxito", "success")
         return redirect(url_for("clientes.detalle_pedido"))
 
+<<<<<<< HEAD
     # Mostrar plantilla
     subtotal = 0
     envio = 5000
@@ -295,19 +403,26 @@ def confirmacion_pedido():
 
     total = subtotal + envio if carrito else 0
 
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     return render_template(
         "clientes/confirmacion_pedido.html",
         carrito=carrito,
         cliente=cliente,
+<<<<<<< HEAD
         fechas_horas=fechas_horas,
         categorias=categorias,
         subtotal=subtotal,
         envio=envio,
         total=total
+=======
+        fechas_horas=fechas_horas, categorias=categorias
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
     )
 
 
 @clientes_bp.route("/detalle_pedido", methods=["GET", "POST"])
+<<<<<<< HEAD
 @login_required
 def detalle_pedido():
     pedido_id = session.get("ultimo_pedido_id")
@@ -331,10 +446,32 @@ def detalle_pedido():
                 Cantidad_unidades_producto=item["cantidad"],
                 Nombre_producto=item["nombre"],
                 Fecha_Solicitud=pedido.Fecha_Solicitud,
+=======
+def detalle_pedido():
+    carrito = session.get("carrito_detalle", [])
+    pedido_id = session.get("ultimo_pedido_id")
+    cliente_id = session.get("cliente_id")
+
+    if not carrito or not pedido_id:
+        flash("⚠️ No hay pedido para mostrar.", "danger")
+        return redirect(url_for("clientes.confirmacion_pedido"))
+
+    if request.method == "POST":
+       
+        for item in carrito:
+            detalle = DetallePedido(
+                Nombre="Cliente",  
+                Cantidad_unidades_producto=item["cantidad"],
+                Nombre_producto=item["nombre_producto"],
+                Fecha_Solicitud=date.today(),
+                Fecha_Entrega=item.get("fecha_entrega", date.today()),  
+                Tiempo_Realizacion="Pendiente",
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
                 Descuento=item.get("descuento", "0%"),
                 Masa=item.get("masa", "batida"),
                 Relleno=item.get("relleno", "vainilla"),
                 Cobertura=item.get("cobertura", "chocolate"),
+<<<<<<< HEAD
                 Porciones=item.get("porciones", "entero"),
                 Adicionales=item.get("adicionales", "ninguno"),
                 Precio_Unitario=item["precio"],
@@ -387,6 +524,36 @@ def personalizar_producto(producto_id):
         )
         db.session.add(pedido_actual)
         db.session.commit()
+=======
+                Porciones=item.get("porciones", "1 porcion"),
+                Adicionales=item.get("adicionales"),
+                Precio_Unitario=item["precio"],
+                IVA=item.get("iva", 0),
+                Total=item["precio"] * item["cantidad"],
+                Estado_pedido="Pendiente",
+                ID_pedido=pedido_id,
+                ID_producto=item["id_producto"],
+                ID_Cliente=cliente_id,
+                ID_Personalizacion=item.get("id_personalizacion")
+            )
+            db.session.add(detalle)
+        db.session.commit()
+
+        # limpiar sesión
+        session.pop("carrito_detalle", None)
+        session.pop("ultimo_pedido_id", None)
+
+        flash("✅ Detalle del pedido guardado con éxito.", "success")
+        return redirect(url_for("clientes.seguimiento_pedido"))
+
+    return render_template("clientes/detalle_pedido.html", carrito=carrito)
+
+
+@clientes_bp.route("/personalizar/<int:producto_id>", methods=["GET", "POST"])
+def personalizar_producto(producto_id):
+    producto = Producto.query.get_or_404(producto_id)
+    cliente_id = 1  
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
     if request.method == "POST":
         masa = request.form.get("masa").strip()
@@ -397,11 +564,18 @@ def personalizar_producto(producto_id):
         adicionales_str = ",".join(adicionales) if adicionales else None
 
         try:
+<<<<<<< HEAD
             # 🔹 Buscar si ya existe una personalización de ese producto en ese pedido
             personalizacion = PersonalizacionProducto.query.filter_by(
                 ID_Producto=producto_id,
                 ID_Cliente=cliente_id,
                 ID_Pedido=pedido_actual.ID_Pedido
+=======
+            personalizacion = PersonalizacionProducto.query.filter_by(
+                ID_Producto=producto_id,
+                ID_Cliente=cliente_id,
+               
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
             ).first()
 
             if personalizacion:
@@ -414,7 +588,11 @@ def personalizar_producto(producto_id):
                 personalizacion = PersonalizacionProducto(
                     ID_Producto=producto_id,
                     ID_Cliente=cliente_id,
+<<<<<<< HEAD
                     ID_Pedido=pedido_actual.ID_Pedido,  # ✅ nueva relación
+=======
+                    
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
                     Masa=masa,
                     Relleno=relleno,
                     Cobertura=cobertura,
@@ -424,6 +602,7 @@ def personalizar_producto(producto_id):
                 db.session.add(personalizacion)
 
             db.session.commit()
+<<<<<<< HEAD
             flash("✅ Personalización guardada con éxito.", "success")
 
             # ✅ Actualizar carrito en sesión con la nueva personalización
@@ -441,6 +620,9 @@ def personalizar_producto(producto_id):
             session["carrito"] = carrito
             session.modified = True
 
+=======
+            flash("✅ Personalización guardada/actualizada con éxito.", "success")
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
             return redirect(url_for("clientes.confirmacion_pedido"))
 
         except Exception as e:
@@ -448,6 +630,7 @@ def personalizar_producto(producto_id):
             flash("❌ Error al guardar la personalización", "danger")
             print(f"Error al guardar personalización: {e}")
 
+<<<<<<< HEAD
     # ✅ Mantener los datos de confirmación en la sesión para no perderlos al volver
     datos_confirmacion = session.get("datos_confirmacion")
     if not datos_confirmacion:
@@ -458,6 +641,11 @@ def personalizar_producto(producto_id):
 
 
 
+=======
+    return render_template("clientes/personalizacion_de_producto.html", producto=producto)
+
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 @clientes_bp.route("/politica_privacidad")
 def politica_privacidad():
     return render_template("clientes/politica_privacidad.html")
@@ -475,6 +663,7 @@ def get_cart():
     return session["carrito"]
 
 @clientes_bp.route("/carrito")
+<<<<<<< HEAD
 @login_required
 def carrito():
     carrito = session.get("carrito", [])
@@ -501,12 +690,20 @@ def carrito():
 
 
    
+=======
+def carrito():
+    carrito = session.get("carrito", [])
+    total = sum(item["precio"] * item["cantidad"] for item in carrito)
+    categorias = Categoria.query.all()
+    return render_template("clientes/carrito.html", categorias=categorias,carrito=carrito, total=total)
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
 @clientes_bp.route("/carrito/agregar", methods=["POST"])
 def carrito_agregar():
     data = request.get_json()
     carrito = get_cart()
 
+<<<<<<< HEAD
     
     producto = Producto.query.get(data["id"])
     if not producto:
@@ -539,6 +736,26 @@ def carrito_agregar():
     return jsonify({"ok": True, "msg": "Producto agregado al carrito", "carrito": carrito})
 
 
+=======
+    # Buscar si ya existe
+    for item in carrito:
+        if str(item["id"]) == str(data["id"]):  # compara como string
+            item["cantidad"] += int(data["cantidad"])
+            break
+    else:
+        carrito.append({
+            "id": str(data["id"]),
+            "nombre": data["nombre"],
+            "precio": float(data["precio"]),
+            "cantidad": int(data["cantidad"]),
+            "imagen": data["imagen"]
+        })
+
+    session["carrito"] = carrito  
+    session.modified = True
+    return jsonify({"ok": True, "msg": "Producto agregado al carrito", "carrito": carrito})
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 @clientes_bp.route("/carrito/eliminar/<id>")
 def carrito_eliminar(id):
     carrito = get_cart()
@@ -564,7 +781,11 @@ def campanita():
 
     notificaciones = []
     for pedido in pedidos:
+<<<<<<< HEAD
         notificaciones.append(f"Pedido #{pedido.ID_Pedido} se encuentra {pedido.Estado_Pedido}")
+=======
+        notificaciones.append(f"Pedido #{pedido.ID_Pedido} está en {pedido.Estado_Pedido}")
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
     total_notificaciones = len(notificaciones)
 
@@ -620,7 +841,11 @@ def suscribir1():
         )
 
     
+<<<<<<< HEAD
     mail.send(msg)
+=======
+    Mail.send(msg)
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
 
     flash("¡Gracias por suscribirte! Revisa tu correo 📩", "success")
     return redirect(url_for('publica'))
@@ -646,7 +871,10 @@ def notificaciones_json():
     ).order_by(Notificacion.fecha.desc()).all()
 
     data = [{
+<<<<<<< HEAD
         
+=======
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
         "mensaje": n.mensaje,
         "fecha": n.fecha.strftime("%Y-%m-%d %H:%M:%S")
     } for n in notificaciones]
@@ -655,6 +883,7 @@ def notificaciones_json():
 
 @clientes_bp.route("/marcar_leidas", methods=["POST"])
 @login_required
+<<<<<<< HEAD
 def marcar_leidas():
     Notificacion.query.filter_by(usuario_id=current_user.ID_usuario, leida=False).update({"leida": True})
     db.session.commit()
@@ -674,3 +903,36 @@ def gracias():
     return render_template("clientes/gracias.html")
 
 
+=======
+def marcar_leidas():   
+    Notificacion.query.filter_by(usuario_id=current_user.ID_usuario, leida=False).update({"leida": True})
+    db.session.commit()
+    return jsonify({"success": True})
+@clientes_bp.route('/toggle_favorito/<int:producto_id>', methods=['POST'])
+@login_required
+def toggle_favorito(producto_id):
+    favorito = Favorito.query.filter_by(
+        ID_usuario=current_user.ID_usuario,
+        ID_Producto=producto_id
+    ).first()
+
+    if favorito:
+        db.session.delete(favorito)
+        db.session.commit()
+        return jsonify({'favorito': False, 'mensaje': 'Producto eliminado de favoritos 💔'})
+    else:
+        nuevo = Favorito(ID_usuario=current_user.ID_usuario, ID_Producto=producto_id)
+        db.session.add(nuevo)
+        db.session.commit()
+        return jsonify({'favorito': True, 'mensaje': 'Producto añadido a favoritos 💖'})
+
+
+@clientes_bp.route('/mis_favoritos')
+@login_required
+def mis_favoritos():
+    categorias = Categoria.query.all()
+    favoritos = Favorito.query.filter_by(ID_usuario=current_user.ID_usuario).all()
+    productos = [f.producto for f in favoritos]
+    return render_template('clientes/Favoritos.html', productos=productos, categorias=categorias)
+
+>>>>>>> 03b2774f5e209368fb164cfcbc278f99dab0bb61
