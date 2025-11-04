@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Personalizar Producto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/personalizacion_de_producto.css') }}">
+</head>
+
+<body>
+  <div class="falling-products">
+    <span>🧁</span>
+    <span>🍪</span>
+    <span>🎂</span>
+    <span>🍩</span>
+    <span>🍰</span>
+    <span>🧁</span>
+    <span>🍪</span>
+    <span>🎂</span>
+  </div>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="mt-4">
+    {% for category, message in messages %}
+    <div
+      class="alert alert-{{ 'success' if category == 'success' else 'danger' }} alert-dismissible fade show shadow-sm rounded-3 d-flex align-items-center gap-2"
+      role="alert">
+      {% if category == 'success' %}
+      <i class="bi bi-check-circle-fill text-success fs-5"></i>
+      {% else %}
+      <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
+      {% endif %}
+      <div class="flex-grow-1">
+        {{ message }}
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+
+
+  <div class="container py-4">
+    <h1 class="text-center mb-4">🎂 Personaliza tu Producto</h1>
+
+    <form method="POST" class="bg-white p-4 rounded shadow">
+
+      <!-- Cobertura -->
+      <div class="mb-4">
+        <label class="form-label fw-bold d-block mb-2">Cobertura:</label>
+        <div class="options-group">
+          <label class="option-circle">
+            <input type="radio" name="cobertura" value="chocolate" required>
+            <span>🍫 Chocolate</span>
+          </label>
+          <label class="option-circle">
+            <input type="radio" name="cobertura" value="maracuya">
+            <span>🥭 Maracuyá</span>
+          </label>
+          <label class="option-circle">
+            <input type="radio" name="cobertura" value="vainilla">
+            <span>🍦 Vainilla</span>
+          </label>
+          <label class="option-circle">
+            <input type="radio" name="cobertura" value="fresa">
+            <span>🍓 Fresa</span>
+          </label>
+          <label class="option-circle">
+            <input type="radio" name="cobertura" value="melocoton">
+            <span>🍑 Melocotón</span>
+          </label>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Relleno -->
+      <div class="mb-4">
+        <label class="form-label fw-bold d-block mb-2">Relleno:</label>
+        <div class="options-group">
+          <label class="option-circle">
+            <input type="radio" name="relleno" value="vainilla" required>
+            <span>🍦 Vainilla</span>
+          </label>
+          <label class="option-circle">
+            <input type="radio" name="relleno" value="dulce de leche">
+            <span>🥛 Dulce de leche</span>
+          </label>
+          <label class="option-circle">
+            <input type="radio" name="relleno" value="nueces">
+            <span>🌰 Nueces</span>
+          </label>
+          <label class="option-circle">
+            <input type="radio" name="relleno" value="crema de limon">
+            <span>🍋 Crema de limón</span>
+          </label>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Masa -->
+      <div class="mb-4">
+        <label class="form-label fw-bold d-block mb-2">Masa:</label>
+        <div class="options-group">
+          <label class="option-circle">
+            <input type="radio" name="masa" value="fermentadas" required>
+            <span>♨️ Fermentada</span>
+          </label>
+          <label class="option-circle">
+            <input type="radio" name="masa" value="azucarada">
+            <span>🍚 Azucarada</span>
+          </label>
+          <label class="option-circle">
+            <input type="radio" name="masa" value="batida">
+            <span>🥣 Batida</span>
+          </label>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Porciones -->
+      <div class="mb-4">
+        <label class="form-label fw-bold">Porciones:</label>
+        <div class="options-group">
+          <label class="option-circle">
+            <input type="radio" name="porciones" value="1" required>
+            <span>🍰 1 porción</span>
+          </label>
+          <label class="option-circle">
+            <input type="radio" name="porciones" value="2">
+            <span>🍰🍰 2 porciones</span>
+          </label>
+          <label class="option-circle">
+            <input type="radio" name="porciones" value="1/2">
+            <span>🍫 1/2</span>
+          </label>
+          <label class="option-circle">
+            <input type="radio" name="porciones" value="entero">
+            <span>🎂 Entero</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Mensaje -->
+      <div class="mb-4">
+        <label class="form-label fw-bold">Mensaje en el pastel (máx. 15 caracteres):</label>
+        <input type="text" class="form-control mt-2" name="mensaje" maxlength="15" placeholder="¡Feliz cumpleaños!">
+      </div>
+
+      <hr>
+
+      <!-- Adicionales -->
+      <div class="mb-4">
+        <label class="form-label fw-bold d-block mb-2">Adicionales:</label>
+        <div class="options-group">
+          <label class="option-circle">
+            <input type="checkbox" name="adicionales" value="fresa">
+            <span>🍓 Fresa</span>
+          </label>
+          <label class="option-circle">
+            <input type="checkbox" name="adicionales" value="arequipe">
+            <span>🥛 Arequipe</span>
+          </label>
+          <label class="option-circle">
+            <input type="checkbox" name="adicionales" value="chocolate">
+            <span>🍫 Chocolate extra</span>
+          </label>
+          <label class="option-circle">
+            <input type="checkbox" name="adicionales" value="chantilly">
+            <span>🍰 Chantilly</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-pastel px-4">
+          ✨ Guardar Personalización
+        </button>
+      </div>
+
+    </form>
+  </div>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

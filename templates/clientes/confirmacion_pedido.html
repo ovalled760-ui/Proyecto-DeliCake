@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Confirmación de Pedido - DeliCake</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/confirmacion_pedido.css') }}">
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+</head>
+
+<body>
+
+  <div class="falling-products">
+    <span>🧁</span><span>🍪</span><span>🎂</span><span>🍩</span>
+    <span>🍰</span><span>🧁</span><span>🍪</span><span>🎂</span>
+  </div>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="mt-4">
+    {% for category, message in messages %}
+    <div
+      class="alert alert-{{ 'success' if category == 'success' else 'danger' }} alert-dismissible fade show shadow-sm rounded-3 d-flex align-items-center gap-2"
+      role="alert">
+      {% if category == 'success' %}
+      <i class="bi bi-check-circle-fill text-success fs-5"></i>
+      {% else %}
+      <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
+      {% endif %}
+      <div class="flex-grow-1">
+        {{ message }}
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+
+  <!-- Volver -->
+  <a href="javascript:history.back()" class="volver-btn">← Volver</a>
+
+
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
+        <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="Logo"
+          style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;">
+        <br>DeliCake🎀</br>
+      </a>
+
+      <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link active" href="#" id="catalogoDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">Catálogo</a>
+            <ul class="dropdown-menu" aria-labelledby="catalogoDropdown">
+              {% for categoria in categorias %}
+              <li>
+                <a class="dropdown-item"
+                  href="{{ url_for('admin.productos_por_categoria', id_categoria=categoria.ID_Categoria) }}">
+                  {{ categoria.Nombre_categoria }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('clientes.mi_cuenta') }}">Mi Cuenta</a>
+          </li>
+        </ul>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('clientes.carrito') }}">🛒 Carrito</a>
+        </li>
+
+        <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex me-3">
+          <input class="form-control me-2" style="height: 45px;" type="search" name="q"
+            placeholder="Buscar productos..." value="{{ request.args.get('q','') }}">
+          <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+
+
+        <a href="#" class="nav-link text-warning ms-lg-3">👤</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <div class="container1 mt-4">
+
+
+
+    <h1 class="text-center mb-4"> Confirmación de Pedido </h1>
+
+    <form method="POST" action="{{ url_for('clientes.confirmacion_pedido') }}">
+
+      <!-- Nombre -->
+      <div class="campo mb-3">
+        <label for="nombre">👤 Nombre:</label>
+        <input type="text" id="nombre" name="nombre" class="form-control" value="{{ current_user.Nombre }}" required>
+      </div>
+
+      <!-- Dirección -->
+      <div class="campo mb-3">
+        <label for="direccion">🏠 Dirección:</label>
+        <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Ej: Calle 45 # 10-25"
+          required>
+        <small id="direccion-error" style="color: #e63946; display: none;">
+          La dirección debe incluir al menos un numeral (#) y solo contener letras, números, espacios o guiones.
+        </small>
+      </div>
+
+      <script>
+        const direccionInput = document.getElementById('direccion');
+        const errorMsg = document.getElementById('direccion-error');
+
+        direccionInput.addEventListener('input', function () {
+          const pattern = /^(?=.*#)[A-Za-z0-9#\-\s,.]+$/;
+
+          if (!pattern.test(this.value)) {
+            errorMsg.style.display = 'block';
+            this.setCustomValidity('Formato inválido');
+          } else {
+            errorMsg.style.display = 'none';
+            this.setCustomValidity('');
+          }
+        });
+      </script>
+
+
+
+      <!-- Método de pago -->
+      <h3>Método de pago</h3>
+      <div class="metodos-pago mb-3">
+
+        <label class="me-3"><input type="radio" name="metodo_pago" value="Tarjeta" required> 💳 Tarjeta</label>
+        <label class="me-3"><input type="radio" name="metodo_pago" value="Nequi" required> 📱 Nequi</label>
+        <label class="me-3"><input type="radio" name="metodo_pago" value="Daviplata" required> 📱 Daviplata</label>
+      </div>
+
+
+      <h3 class="mt-4">🛒 Carrito de compras</h3>
+      <div class="carrito d-flex flex-wrap gap-4">
+        {% for item in carrito %}
+        <div class="producto card shadow-sm p-3 text-center" style="width: 45%;" data-precio="{{ item.precio }}">
+          <!-- imagen -->
+          <img src="{{ item.imagen }}" class="card-img-top mb-2" alt="{{ item.nombre }}"
+            style="height:200px;object-fit:cover; border-radius:8px;">
+
+          <!-- nombre -->
+          <h5 class="card-title">{{ item.nombre }}</h5>
+
+          <!-- controles cantidad -->
+          <div class="d-flex justify-content-center align-items-center my-2" style="gap:10px;">
+            <button type="button" class="menos btn btn-warning btn-cantidad">-</button>
+            <input type="text" name="cantidades[{{ loop.index0 }}]" value="{{ item.cantidad }}"
+              class="cantidad-input text-center" style="width:50px;">
+            <button type="button" class="mas btn btn-warning btn-cantidad">+</button>
+          </div>
+
+          <!-- botón personalizar en esquina -->
+          <a href="{{ url_for('clientes.personalizar_producto', producto_id=item.id) }}"
+            class="btn-personalizar btn btn-outline-danger btn-sm"
+            style="position:absolute; top:10px; right:10px;">✏️</a>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Fecha y hora -->
+      <div class="mb-3">
+        <label for="fechaEntrega" class="form-label">📅 Fecha de entrega:</label>
+        <input type="text" id="fechaEntrega" name="fechaEntrega" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="horaEntrega" class="form-label">⏰ Hora de entrega:</label>
+        <select id="horaEntrega" name="horaEntrega" class="form-control" required>
+          <option value="">Selecciona una hora</option>
+        </select>
+      </div>
+
+      <!-- Resumen -->
+      <div class="resumen mt-4 p-3" style="background:#fff7db;border-radius:8px;">
+        <p>Subtotal: $<span id="subtotal">0</span></p>
+        <p>Envío: $5.000</p>
+        <p><strong>Total: $<span id="total">0</span></strong></p>
+      </div>
+
+      <input type="hidden" name="total" id="total_hidden">
+
+      <div class="acciones text-center mt-4 mb-5">
+        <button type="submit" class="btn-continuar">
+          ✅ Confirmar Pedido
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-contenido">
+      <div class="footer-item">
+        <h4>⏰ Horarios de atención</h4>
+        <p>Lunes a Viernes: 7am - 8pm</p>
+        <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
+      </div>
+      <div class="footer-item">
+        <h4>👩‍💻 Contáctanos</h4>
+        <p>Comunícate con nosotros</p>
+      </div>
+
+      <div class="footer-item">
+        <h4>❓ Preguntas</h4>
+        <p>¿Tienes dudas?</p>
+      </div>
+      <div class="footer-item">
+        <h4>📍 Ubicación</h4>
+        <p>Carrera #56 #19c -</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS (flatpickr, lógica carrito y bootstrap) -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    // ---- FECHAS/HORAS con flatpickr ----
+    (function () {
+      const disponibilidades = (typeof {{ fechas_horas| tojson
+    }} !== 'undefined') ?{ { fechas_horas | tojson } } : { };
+    const horaSelect = document.getElementById('horaEntrega');
+    const dateInputId = '#fechaEntrega';
+
+    try {
+      flatpickr(dateInputId, {
+        dateFormat: 'Y-m-d',
+        // si no hay fechas, enable será [] -> flatpickr permite seleccionar igual (manejarás en servidor)
+        enable: Object.keys(disponibilidades || {}),
+        onChange: function (selectedDates, dateStr) {
+          // rellenar horas
+          horaSelect.innerHTML = '<option value="">Selecciona una hora</option>';
+          if (disponibilidades && disponibilidades[dateStr]) {
+            disponibilidades[dateStr].forEach(hora => {
+              const opt = document.createElement('option');
+              opt.value = hora;
+              opt.textContent = hora;
+              horaSelect.appendChild(opt);
+            });
+          }
+        }
+      });
+    } catch (err) {
+      console.error('flatpickr error:', err);
+    }
+    }) ();
+  </script>
+
+  <script>
+    // ---- CARRITO: + / - y cálculo de totales ----
+    document.addEventListener('DOMContentLoaded', () => {
+      const carritoEl = document.querySelector('.carrito');
+      if (!carritoEl) return;
+
+      // util para parsear precio, tolerante a comas/puntos
+      function parsePrecio(raw) {
+        if (raw === undefined || raw === null) return 0;
+        const s = String(raw).trim();
+        if (!s) return 0;
+        // soportar "1.234,56"
+        if (s.indexOf(',') > -1 && s.indexOf('.') > -1) {
+          return parseFloat(s.replace(/\./g, '').replace(',', '.')) || 0;
+        }
+        // reemplazar coma por punto
+        const cleaned = s.replace(',', '.').replace(/[^0-9\.\-]/g, '');
+        return parseFloat(cleaned) || 0;
+      }
+
+      function actualizarTotal() {
+        const productos = document.querySelectorAll('.producto');
+        let subtotal = 0;
+        productos.forEach(prod => {
+          const input = prod.querySelector('.cantidad-input');
+          const cantidad = parseInt(input.value, 10) || 0;
+          const precioRaw = prod.dataset.precio;
+          const precio = parsePrecio(precioRaw);
+          subtotal += cantidad * precio;
+        });
+
+        document.getElementById('subtotal').innerText = subtotal.toLocaleString();
+        const total = subtotal + 5000;
+        document.getElementById('total').innerText = total.toLocaleString();
+        const hidden = document.getElementById('total_hidden');
+        if (hidden) hidden.value = total;
+      }
+
+      // Delegación: escucha clicks en + / - (robusto aunque se agreguen productos dinámicamente)
+      carritoEl.addEventListener('click', (e) => {
+        const btnMas = e.target.closest('.mas');
+        const btnMenos = e.target.closest('.menos');
+
+        if (btnMas || btnMenos) {
+          e.preventDefault();
+          const prodCard = (btnMas || btnMenos).closest('.producto');
+          if (!prodCard) return;
+          const input = prodCard.querySelector('.cantidad-input');
+          let val = parseInt(input.value, 10) || 0;
+          if (btnMas) {
+            input.value = val + 1;
+          } else {
+            input.value = val > 1 ? val - 1 : 1;
+          }
+          actualizarTotal();
+        }
+      });
+
+      // Escuchar cambios manuales en inputs de cantidad
+      carritoEl.addEventListener('input', (e) => {
+        if (e.target.matches('.cantidad-input')) {
+          let v = parseInt(e.target.value, 10);
+          if (isNaN(v) || v < 1) e.target.value = 1;
+          actualizarTotal();
+        }
+      });
+
+      // Inicializar valores mínimos y calcular total al cargar
+      document.querySelectorAll('.cantidad-input').forEach(inp => {
+        let iv = parseInt(inp.value, 10);
+        if (isNaN(iv) || iv < 1) inp.value = 1;
+      });
+      actualizarTotal();
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

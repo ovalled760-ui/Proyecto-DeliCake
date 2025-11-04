@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DETALLE</title>F
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/detalle.css') }}">
+</head>
+
+<body>
+  <div class="falling-products">
+    <span>🧁</span>
+    <span>🍪</span>
+    <span>🎂</span>
+    <span>🍩</span>
+    <span>🍰</span>
+    <span>🧁</span>
+    <span>🍪</span>
+    <span>🎂</span>
+  </div>
+  <a href="javascript:history.back()" class="volver-btn">
+    ← Volver
+  </a>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="mt-4">
+    {% for category, message in messages %}
+    <div
+      class="alert alert-{{ 'success' if category == 'success' else 'danger' }} alert-dismissible fade show shadow-sm rounded-3 d-flex align-items-center gap-2"
+      role="alert">
+      {% if category == 'success' %}
+      <i class="bi bi-check-circle-fill text-success fs-5"></i>
+      {% else %}
+      <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
+      {% endif %}
+      <div class="flex-grow-1">
+        {{ message }}
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
+        <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="Logo"
+          style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;">
+        <br>DeliCake🎀</br>
+      </a>
+      <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link active c" aria-current="page" href="#" id="catalogoDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Catálogo
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="catalogoDropdown">
+              {% for categoria in categorias %}
+              <li>
+                <a class="dropdown-item"
+                  href="{{ url_for('admin.productos_por_categoria', id_categoria=categoria.ID_Categoria) }}">
+                  {{ categoria.Nombre_categoria }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+        </ul> <br>
+
+        <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex" style="margin-left: 20px;">
+          <input class="form-control me-2" style="height: 45px;" type="search" name="q"
+            placeholder="Buscar productos..." value="{{ request.args.get('q','') }}">
+          <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+
+        </form>
+
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="card">
+      <img src="{{ url_for('static', filename='img/' + producto.Imagen) }}" alt="{{ producto.Nombre_producto }}">
+      <div class="card-content">
+        <h1>{{ producto.Nombre_producto }}</h1>
+        <p class="descripcion">{{ producto.Descripcion_producto }}</p>
+        <p><strong>Ingredientes:</strong> {{ detalle.Ingredientes }}</p>
+        <p><strong>Tiempo de preparación:</strong> {{ detalle.tiempo_preparacion }}</p>
+
+        <div class="precio">
+          <p><strong>Precio:</strong> ${{ producto.Precio_Unitario }}</p>
+          {% if producto.Descuento %}
+          <p class="descuento">Descuento: {{ producto.Descuento }}%</p>
+          {% endif %}
+        </div>
+
+        <div class="calificacion">
+          <h2>⭐ Calificación</h2>
+          {% if promedio %}
+          <p class="promedio">Promedio: {{ promedio }}/5</p>
+          <div class="stars">
+            {% for i in range(1,6) %}
+            <span class="star {% if i <= promedio|round(0, 'floor') %} filled {% endif %}">★</span>
+            {% endfor %}
+          </div>
+          {% else %}
+          <p>Aún no hay calificaciones</p>
+          {% endif %}
+
+          <form method="POST" class="rating-form">
+            <label>Califica este producto:</label>
+            <div class="rating-input">
+              {% for i in range(1,6) %}
+              <input type="radio" id="star{{ i }}" name="puntuacion" value="{{ i }}">
+              <label for="star{{ i }}">★</label>
+              {% endfor %}
+            </div>
+            <button type="submit" class="btn">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="my-5">
+
+  <div class="text-center mb-4">
+    <h2 class="fw-bold text-warning">✨ Te podría interesar ✨</h2>
+    <p class="text-muted">Descubre más productos similares que podrían encantarte</p>
+    <div style="width: 100px; height: 4px; background: #ffc107; margin: 0 auto; border-radius: 2px;"></div>
+  </div>
+
+  <div id="sugerenciasCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+      {% for i in range(0, sugerencias|length, 3) %}
+      <div class="carousel-item {% if i == 0 %}active{% endif %}">
+        <div class="row justify-content-center">
+          {% for sug in sugerencias[i:i+3] %}
+          <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-lg border-0 rounded-4">
+              <img src="{{ url_for('static', filename='img/' ~ sug.Imagen) }}" class="card-img-top rounded-top-4"
+                alt="{{ sug.Nombre_producto }}">
+              <div class="card-body text-center">
+                <h5 class="card-title fw-bold">{{ sug.Nombre_producto }}</h5>
+                <p class="card-text text-success fw-bold fs-5">${{ sug.Precio_Unitario }}</p>
+                <a href="{{ url_for('admin.detalle', id=sug.ID_Producto) }}"
+                  class="btn btn-warning text-white fw-bold rounded-pill px-4 shadow-sm">
+                  Ver Detalle
+                </a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#sugerenciasCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#sugerenciasCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+</body>
+
+<footer class="footer">
+  <div class="footer-contenido">
+    <div class="footer-item">
+      <h4>⏰ Horarios de atención</h4>
+      <p>Lunes a Viernes: 7am - 8pm</p>
+      <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
+    </div>
+    <div class="footer-item">
+      <h4>👩‍💻 Contáctanos</h4>
+      <p>Comunícate con nosotros</p>
+    </div>
+
+    <div class="footer-item">
+      <h4>❓ Preguntas</h4>
+      <p>¿Tienes dudas?</p>
+    </div>
+    <div class="footer-item">
+      <h4>📍 Ubicación</h4>
+      <p>Carrera #56 #19c -</p>
+    </div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</html>

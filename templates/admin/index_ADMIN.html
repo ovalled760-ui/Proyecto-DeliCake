@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicake</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+  <div class="falling-products">
+    <span>🧁</span>
+    <span>🍪</span>
+    <span>🎂</span>
+    <span>🍩</span>
+    <span>🍰</span>
+    <span>🧁</span>
+    <span>🍪</span>
+    <span>🎂</span>
+  </div>
+
+   
+    <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
+        <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="Logo"
+          style="width: 75px; height: 75px; border-radius: 50%; margin-left: 20px;">
+        <br>DeliCake🎀</br>
+      </a>
+      <button class="navbar-toggler border border-white" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="catalogoDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">Productos</a>
+            <ul class="dropdown-menu" aria-labelledby="catalogoDropdown">
+              {% for categoria in categorias %}
+              <li>
+                <a class="dropdown-item"
+                  href="{{ url_for('productos_admin', id_categoria=categoria.ID_Categoria) }}">
+                  {{ categoria.Nombre_categoria }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('admin.panel') }}">Mi Cuenta</a>
+          </li>
+        </ul>
+        <li class="nav-item">
+  <a class="nav-link" href="{{ url_for('admin.anuncios') }}">Anuncios</a>
+</li>
+
+
+
+        <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex me-3" style="text-align: cover;">
+          <input class="form-control me-2" style="height: 45px;"  type="search" name="q" placeholder="Buscar productos..."
+            value="{{ request.args.get('q','') }}">
+          <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+
+        
+        <a href="#" class="nav-link text-warning ms-lg-3">👤</a>
+      </div>
+    </div>
+  </nav>
+
+   {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="mt-4">
+    {% for category, message in messages %}
+    <div
+      class="alert alert-{{ 'success' if category == 'success' else 'danger' }} alert-dismissible fade show shadow-sm rounded-3 d-flex align-items-center gap-2"
+      role="alert">
+      {% if category == 'success' %}
+      <i class="bi bi-check-circle-fill text-success fs-5"></i>
+      {% else %}
+      <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
+      {% endif %}
+      <div class="flex-grow-1">
+        {{ message }}
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+
+
+<section class="carrusel">
+    {% if banner_actual %}
+        <video autoplay muted loop playsinline width="700">
+            <source src="{{ url_for('static', filename=banner_actual) }}" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+    {% else %}
+        <p>No hay banner disponible</p>
+    {% endif %}
+</section>
+
+
+
+
+
+
+
+ <section class="productos">
+    <h2> PRODUCTOS MAS DESTACADOS</h2>
+    <p class="productos-subtitle">postres únicos con el estilo <span>coquette</span> 💕</p>
+
+    <div class="productos-container">
+      <div class="producto-card">
+        <div class="producto-img">
+          <img src="{{ url_for('static', filename='img/cerezita.jpg') }}" alt="Producto 1">
+        </div>
+        <div class="producto-info">
+          <h3>PASTEL CEREZITA</h3>
+          <p>Cerezita es un pastel creado por nosotros con el mejor relleno de frutos rojos 🍒</p>
+          {% if current_user.is_authenticated %}
+            <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+          {% else %}
+            <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-img">
+          <img src="{{ url_for('static', filename='img/tiramisu') }}" alt="Producto 2">
+        </div>
+        <div class="producto-info">
+          <h3>TIRAMISU DE FRESITA</h3>
+          <p>Fue inspirado en lo jugosito de 🍓</p>
+          {% if current_user.is_authenticated %}
+            <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+          {% else %}
+            <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="producto-card">
+        <div class="producto-img">
+          <img src="{{ url_for('static', filename='img/tortahellokitty.jpg') }}" alt="Producto 3">
+        </div>
+        <div class="producto-info">
+          <h3>TORTI KITTY 🐱</h3>
+          <p>Creado para los amantes de la gata blanca</p>
+          {% if current_user.is_authenticated %}
+            <button class="btn-carrito">🛒 ¡AGREGALO!</button>
+          {% else %}
+            <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+</section>
+
+<style>
+    :root {
+      --bg: #fff7fb;
+      --pink-1: #ffd9ec;
+      --pink-2: #ffb6d5;
+      --accent: #ff77b6;
+      --muted: #6b5660;
+      --radius: 16px;
+      --card-shadow: 0 8px 30px rgba(199, 99, 150, 0.12);
+      --glass-border: rgba(255,255,255,0.7);
+      --font-family: 'Poppins', sans-serif;
+    }
+
+
+    .info-section {
+      max-width: 900px;
+      margin: 50px auto;
+      background: linear-gradient(180deg, var(--pink-1), var(--pink-2));
+      border-radius: var(--radius);
+      padding: 30px 25px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      text-align: center;
+      font-family: var(--font-family);
+      color: #3b2a33;
+      
+    }
+
+    .info-logo {
+      display: inline-block;
+      background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.75), transparent 30%), linear-gradient(180deg, #fff, #ffd9ec);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(255,118,173,0.12);
+      padding: 15px 30px;
+      margin-bottom: 18px;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 0.6px;
+    }
+
+    .info-title {
+      margin: 0 0 18px;
+      font-size: 22px;
+      font-weight: 600;
+      color: #3b2a33;
+      letter-spacing: 1px;
+    }
+
+    .info-text {
+      margin: 14px 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .separator {
+      margin: 15px auto;
+      font-size: 18px;
+      color: var(--accent);
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <section class="info-section">
+    <div class="info-logo">DeliCAKE</div>
+    <h2 class="info-title">Acerca de DeliCAKE</h2>
+
+    <p class="info-text">En <strong>DeliCAKE</strong> creemos que lo dulce debe ser siempre <strong>fresco</strong>. 🍰✨</p>
+
+    <p class="info-text">Somos una pastelería con un concepto innovador:<br>
+    cada pedido se prepara <strong>al instante</strong>, sin stock acumulado,<br>
+    asegurando que todo llegue recién hecho a nuestros clientes.</p>
+
+    <div class="separator">💖</div>
+
+    <p class="info-text">Nuestra propuesta elimina <strong>desperdicios de alimentos</strong><br>
+    y garantiza <strong>calidad, sabor y frescura</strong> en cada bocado.</p>
+
+    <div class="separator">💖</div>
+
+    <p class="info-text">Aunque somos <strong>nuevos en el mercado</strong>,<br>
+    llegamos con <strong>ideas creativas y modernas</strong><br>
+    para transformar la manera en que disfrutas de la repostería.</p>
+
+    <div class="separator">🌸</div>
+  </section>
+  <footer class="footer">
+    <div class="footer-contenido">
+      <div class="footer-item">
+        <h4>⏰ Horarios de atención</h4>
+        <p>Lunes a Viernes: 7am - 8pm</p>
+        <p>Sábados, Domingos y Festivos: 9am - 5:30pm</p>
+      </div>
+      <div class="footer-item">
+        <h4>👩‍💻 Contáctanos</h4>
+        <p>Comunícate con nosotros</p>
+      </div>
+
+      <div class="footer-item">
+        <h4>❓ Preguntas</h4>
+        <p>¿Tienes dudas?</p>
+      </div>
+      <div class="footer-item">
+        <h4>📍 Ubicación</h4>
+        <p>Carrera #56 #19c -</p>
+      </div>
+    </div>
+  </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

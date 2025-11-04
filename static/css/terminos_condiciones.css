@@ -1,0 +1,92 @@
+/* Paleta delicada y coquette */
+:root {
+  --soft-pink: #f9d7e3;
+  /* rosado claro */
+  --pastel-rose: #f8c1d9;
+  /* rosa pastel más fuerte */
+  --dark-rose: #b95f89;
+  /* rosa oscuro para títulos */
+  --text-gray: #5a4a4a;
+  /* gris delicado */
+  --white: #fff;
+}
+
+body {
+  font-family: 'Segoe UI', cursive, sans-serif;
+  background: var(--soft-pink);
+  margin: 0;
+  padding: 0;
+}
+
+.terms-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(185, 95, 137, 0.2);
+}
+
+h1 {
+  color: var(--dark-rose);
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: var(--pastel-rose);
+  margin-top: 20px;
+  font-size: 1.3rem;
+}
+
+p {
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+a {
+  color: var(--dark-rose);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.last-note {
+  margin-top: 30px;
+  text-align: center;
+  font-style: italic;
+  color: var(--dark-rose);
+}
+
+.volver-btn:hover {
+  background: #e8a9c9;
+  /* rosa más intenso */
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(166, 77, 121, 0.4);
+}
+
+.btn-volver {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  background: #ffb6d9;
+  color: white;
+  font-weight: bold;
+  font-family: 'Comic Neue', cursive;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.btn-volver:hover {
+  background: #ff8dcf;
+  transform: scale(1.05);
+}

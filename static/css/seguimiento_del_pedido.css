@@ -1,0 +1,340 @@
+/* ============================= */
+/* Fondo general de la página */
+/* ============================= */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom right, #fff0f8, #ffeef5, #ffdce0);
+  color: #333;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* ============================= */
+/* Header y título */
+/* ============================= */
+header {
+  text-align: center;
+  padding: 50px 20px 20px 20px;
+}
+
+header h2 {
+  font-size: 2em;
+  color: #ff69b4;
+}
+
+/* ============================= */
+/* Container principal */
+/* ============================= */
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.falling-products {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.falling-products span {
+  position: absolute;
+  top: -50px;
+  font-size: 24px;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0.6;
+  filter: drop-shadow(0 0 1px rgba(255 213 79 / 0.8));
+}
+
+.falling-products span:nth-child(1) {
+  left: 10%;
+  animation-duration: 8s;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(2) {
+  left: 25%;
+  animation-duration: 9s;
+  animation-delay: 2s;
+}
+
+.falling-products span:nth-child(3) {
+  left: 40%;
+  animation-duration: 7s;
+  animation-delay: 4s;
+}
+
+.falling-products span:nth-child(4) {
+  left: 60%;
+  animation-duration: 6s;
+  animation-delay: 1s;
+}
+
+.falling-products span:nth-child(5) {
+  left: 80%;
+  animation-duration: 10s;
+  animation-delay: 3s;
+}
+
+.falling-products span:nth-child(6) {
+  left: 15%;
+  animation-duration: 9s;
+  animation-delay: 5s;
+}
+
+.falling-products span:nth-child(7) {
+  left: 50%;
+  animation-duration: 7s;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(8) {
+  left: 75%;
+  animation-duration: 8s;
+  animation-delay: 6s;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+
+
+
+
+/* ============================= */
+/* Alertas flash */
+/* ============================= */
+.alert {
+  padding: 15px 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.alert.info {
+  background-color: #ffe4f0;
+  color: #ff69b4;
+  border: 1px solid #ffb6c1;
+}
+
+.alert.success {
+  background-color: #ffdce0;
+  color: #c71585;
+  border: 1px solid #ff99aa;
+}
+
+.alert.warning {
+  background-color: #fff0f5;
+  color: #ff1493;
+  border: 1px solid #ff85b3;
+}
+
+/* ============================= */
+/* Tabla de pedidos */
+/* ============================= */
+.tabla-pedidos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #fff0f8;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(255, 182, 193, 0.2);
+}
+
+.tabla-pedidos th,
+.tabla-pedidos td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ffc0cb;
+  font-size: 1em;
+}
+
+.tabla-pedidos th {
+  background-color: #ffb6c1;
+  color: #fff;
+  font-weight: bold;
+}
+
+.tabla-pedidos tbody tr:nth-child(even) {
+  background-color: #ffe4f0;
+}
+
+.tabla-pedidos tbody tr:hover {
+  background-color: #ffcce0;
+  transform: scale(1.02);
+  transition: 0.2s;
+}
+
+/* ============================= */
+/* Estado del pedido con iconitos */
+/* ============================= */
+.estado {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.estado::before {
+  content: "🧁";
+  /* cupcake al lado del estado */
+}
+
+/* Colores según estado */
+.estado.Pendiente::before {
+  content: "⏳";
+  color: #ff69b4;
+}
+
+.estado.En proceso::before {
+  content: "🛠️";
+  color: #ff69b4;
+}
+
+.estado.Enviado::before {
+  content: "🚚";
+  color: #ff69b4;
+}
+
+.estado.Entregado::before {
+  content: "🎉";
+  color: #ff69b4;
+}
+
+/* ============================= */
+/* Mensaje sin pedidos */
+/* ============================= */
+.sin-pedido {
+  text-align: center;
+  font-size: 1.2em;
+  color: #ff85b3;
+  margin-top: 50px;
+}
+
+/* ============================= */
+/* Footer */
+/* ============================= */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(242, 242, 242, 0.9);
+  border-top: 3px solid #ff80ab;
+  padding: 15px 30px;
+  z-index: 1000;
+  box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+
+.footer-contenido {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-item {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #633835;
+  font-family: 'Comic Neue', cursive;
+}
+
+.footer-item h4 {
+  margin-bottom: 5px;
+  color: #d63384;
+  font-size: 1rem;
+}
+
+
+@media (min-width: 768px) {
+  .nosotros-contenido {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+  }
+}
+
+.close-btn {
+  float: right;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  padding: 0 8px;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
+.close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.volver-btn:hover {
+  background: #e8a9c9;
+  /* rosa más intenso */
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(166, 77, 121, 0.4);
+}
+
+.volver-btn {
+  position: absolute;
+  top: 200px;
+  left: 20px;
+  background: linear-gradient(135deg, #f9c5d1, #fbc2eb);
+  /* rosa pastel degradado */
+  color: #fff;
+  font-weight: bold;
+  font-family: 'Segoe UI', cursive, sans-serif;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 25px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(249, 144, 187, 0.4);
+  transition: all 0.3s ease;
+}
+
+.volver-btn:hover {
+  background: linear-gradient(135deg, #fbc2eb, #f9c5d1);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 14px rgba(249, 144, 187, 0.5);
+}
+
+.volver-btn:active {
+  transform: scale(0.97);
+}
+
+.volver-btn::before {
+  content: "🎀 ";
+  /* detalle coquette */
+}

@@ -1,0 +1,137 @@
+body {
+  background: #f0aec4ff;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+.container {
+  background: #ffe4ec;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.options-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.option-circle {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #f8c6d0;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.option-circle input {
+  display: none;
+}
+
+.option-circle span {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+
+.option-circle input:checked+span {
+  color: #fff;
+  background: #f78fb3;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+}
+
+.option-circle:hover {
+  border-color: #f78fb3;
+  transform: scale(1.05);
+}
+
+.btn-pastel {
+  background: #f78fb3;
+  color: white;
+  font-weight: bold;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+.btn-pastel:hover {
+  background: #f06292;
+  transform: scale(1.05);
+}
+
+hr {
+  border: none;
+  border-top: 2px dashed #f8c6d0;
+  margin: 2rem 0;
+}
+
+.falling-products span {
+  position: absolute;
+  top: -10%;
+  font-size: 2rem;
+  animation: fall 10s linear infinite;
+  opacity: 0.8;
+}
+
+/* Variaciones de posición */
+.falling-products span:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(2) {
+  left: 25%;
+  animation-delay: 2s;
+}
+
+.falling-products span:nth-child(3) {
+  left: 40%;
+  animation-delay: 4s;
+}
+
+.falling-products span:nth-child(4) {
+  left: 55%;
+  animation-delay: 6s;
+}
+
+.falling-products span:nth-child(5) {
+  left: 70%;
+  animation-delay: 8s;
+}
+
+.falling-products span:nth-child(6) {
+  left: 85%;
+  animation-delay: 1s;
+}
+
+.falling-products span:nth-child(7) {
+  left: 50%;
+  animation-delay: 3s;
+}
+
+.falling-products span:nth-child(8) {
+  left: 75%;
+  animation-delay: 5s;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
