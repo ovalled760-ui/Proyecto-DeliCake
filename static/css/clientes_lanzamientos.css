@@ -1,0 +1,267 @@
+/* ---------------------- */
+/* Estilos generales */
+body {
+    background: linear-gradient(to bottom, #f7efcf, #f0c6e2); 
+    font-family: 'Poppins', sans-serif;
+    color: #5b3758;
+    margin: 0;
+    padding-bottom: 10%;
+}
+
+/* ---------------------- */
+/* Iconos flotantes decorativos */
+.icono {
+    width: 50px;
+    opacity: 0.9;
+    position: absolute;
+    animation: flotar 6s ease-in-out infinite;
+}
+
+.flotante1 { top: 40px; left: 10%; animation-delay: 0s; }
+.flotante2 { top: 30px; right: 15%; animation-delay: 1s; }
+.flotante3 { bottom: 30px; left: 50%; animation-delay: 2s; }
+
+@keyframes flotar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* ---------------------- */
+/* Banner con video */
+.banner {
+    position: relative;
+    overflow: hidden;
+    height: 800px; /* aumento de tamaño */
+}
+
+.banner-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* para llenar todo el banner */
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.25); /* sutil overlay */
+    z-index: 1;
+}
+
+.banner-contenido {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    padding: 50px;
+}
+
+/* ---------------------- */
+/* Contenedores y títulos */
+.contenedor {
+    padding: 30px;
+}
+
+.titulo, .subtitulo {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff6f91;
+}
+
+.subtitulo {
+    margin: 40px 0 20px;
+    font-size: 1.6em;
+    color: #ff79b8;
+}
+
+/* ---------------------- */
+/* Grid de productos */
+.grid-productos, .grid-lanzamientos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+/* ---------------------- */
+/* Tarjetas */
+.tarjeta {
+    flex-shrink: 0;
+    width: 250px;       /* tamaño fijo */
+    height: 300px;      /* altura fija para todas */
+    background: #fff0f5;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgba(255, 130, 180, 0.4);
+}
+
+.img-lanzamiento {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.info {
+    padding: 10px;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.info h3 {
+    font-size: 1.1em;
+    color: #823b72;
+    margin: 5px 0;
+}
+
+.info p {
+    color: #a36c9e;
+    font-size: 0.9em;
+}
+
+
+/* Botón eliminar */
+.btn-eliminar {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 14px;
+    border-radius: 15px;
+    background-color: #ffbcd7;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-eliminar:hover {
+    background-color: #ff8ebe;
+}
+
+/* ---------------------- */
+/* Moñitos decorativos */
+.decoracion {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: url("https://cdn-icons-png.flaticon.com/512/993/993622.png") no-repeat center/contain;
+    z-index: 2;
+}
+
+.decoracion-izq { top: -10px; left: -10px; }
+.decoracion-der { top: -10px; right: -10px; }
+
+/* ---------------------- */
+/* Carrusel */
+.carrusel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 30px 0;
+}
+
+.carrusel-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.4s ease-in-out;
+}
+
+.carrusel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2;
+    font-size: 24px;
+}
+
+.carrusel-btn.prev { left: 10px; }
+.carrusel-btn.next { right: 10px; }
+
+/* ---------------------- */
+/* Botón volver */
+.volver-btn {
+    position: absolute;
+    top: 200px;
+    left: 20px;
+    background: linear-gradient(135deg, #f9c5d1, #fbc2eb);
+    color: #fff;
+    font-weight: bold;
+    font-family: 'Segoe UI', cursive, sans-serif;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(249, 144, 187, 0.4);
+    transition: all 0.3s ease;
+}
+
+.volver-btn:hover {
+    background: linear-gradient(135deg, #fbc2eb, #f9c5d1);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 14px rgba(249, 144, 187, 0.5);
+}
+
+.volver-btn:active {
+    transform: scale(0.97);
+}
+
+.volver-btn::before {
+    content: "🎀 ";
+}
+
+/* ---------------------- */
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(242, 242, 242, 0.9); 
+    border-top: 3px solid #ff80ab;
+    padding: 15px 30px;
+    z-index: 1000;
+    box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px); 
+}
+
+.footer-contenido {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-item {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #633835;
+    font-family: 'Comic Neue', cursive;
+}
+
+.footer-item h4 {
+    margin-bottom: 5px;
+    color: #d63384;
+    font-size: 1rem;
+}

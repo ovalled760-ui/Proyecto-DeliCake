@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reporte de Ventas | DeliCake</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/reporte_ventas.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header>
+ 
+  </header>
+
+  <main class="contenido">
+    <h1 class="titulo">Reporte de ventas</h1>
+
+    <section class="grid-reportes">
+      <div class="card pastel1">
+        <div class="icono"><i data-lucide="cupcake"></i></div>
+        <p>Productos vendidos</p>
+      </div>
+      <div class="card pastel2">
+        <div class="icono"><i data-lucide="piggy-bank"></i></div>
+        <p>Ingresos totales</p>
+      </div>
+      <div class="card pastel3">
+        <div class="icono"><i data-lucide="calendar-heart"></i></div>
+        <p>Fechas de ventas</p>
+      </div>
+      <a href="{{ url_for('admin.metodos_pago') }}" class="card pastel4 enlace-card">
+  <div class="icono"><i data-lucide="credit-card"></i></div>
+  <p>Métodos de pago</p>
+</a>
+    </section>
+  </main>
+
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

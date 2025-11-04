@@ -1,0 +1,54 @@
+body {
+  background: linear-gradient(180deg, #ffe6f0, #fffafc);
+  font-family: 'Poppins', sans-serif;
+  color: #4b2e2b;
+  margin: 0;
+  overflow: hidden;
+}
+
+.gracias-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.gracias-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 25px;
+  padding: 30px 40px;
+  box-shadow: 0 6px 20px rgba(255, 150, 180, 0.3);
+  animation: fadeIn 1s ease-in-out;
+  max-width: 380px;
+  text-align: center;
+  height:30px;
+}
+
+.pastel-img {
+  width: 50%; /* 🔸 antes 100%, ahora 70% */
+  max-width: 200px; /* 🔸 más control visual */
+  border-radius: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.4s ease;
+}
+
+.pastel-img:hover {
+  transform: scale(1.05);
+}
+
+.texto h2 {
+  color: #e75480;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.texto p {
+  color: #6a3f3c;
+  font-size: 1rem;
+}
+
+

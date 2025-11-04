@@ -1,0 +1,59 @@
+.metodos-pago {
+  background-color: #fff7f9;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(255, 192, 203, 0.2);
+  font-family: "Poppins", sans-serif;
+  color: #6a3b56;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.metodos-pago h2 {
+  text-align: center;
+  color: #d65d9d;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.tarjeta {
+  background: #ffffff;
+  border: 2px solid #f5d2e4;
+  border-radius: 16px;
+  padding: 12px 16px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.2s ease;
+}
+
+.tarjeta:hover {
+  transform: scale(1.02);
+}
+
+.nombre {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.valor {
+  font-size: 14px;
+  color: #b65a84;
+  text-align: right;
+}
+
+.barra {
+  height: 12px;
+  background: #fde2ec;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progreso {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(to right, #fbb1d3, #fcd7ec);
+  width: 0;
+  transition: width 1s ease-in-out;
+}

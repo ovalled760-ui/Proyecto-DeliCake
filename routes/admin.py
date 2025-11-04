@@ -1,9 +1,10 @@
 import os
 import shutil   
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from controladores.models import db, Producto, Categoria, Pedido, Disponibilidad,DetalleProducto, Calificacion, Reseña, Suscriptor , Notificacion
+from controladores.models import db, Producto, Categoria, Pedido, Disponibilidad,DetalleProducto, Calificacion, Reseña, Suscriptor , Notificacion, Lanzamiento
 from werkzeug.utils import secure_filename
 from decimal import Decimal
+from flask_migrate import Migrate
 
 
 admin_bp = Blueprint("admin", __name__, url_prefix="/admin")
@@ -292,3 +293,68 @@ def anuncios():
         banner_actual=banner_actual
     )
 
+UPLOAD_FOLDER = 'static/uploads/lanzamientos'
+
+
+@admin_bp.route('/lanzamientos', endpoint='lanzamientos')
+def lanzamientos():
+    lanzamientos = Lanzamiento.query.all()
+    return render_template('admin/lanzamientos.html', lanzamientos=lanzamientos)
+
+
+# ➕ Agregar lanzamiento
+@admin_bp.route('/lanzamientos/agregar', methods=['POST'])
+def agregar_lanzamiento():
+    descripcion = request.form['descripcion']
+    fecha_catalogo = request.form['fecha_catalogo']
+    imagen = request.files['imagen']
+
+    if imagen:
+        # Asegurar que exista la carpeta
+        os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+        ruta = os.path.join(UPLOAD_FOLDER, imagen.filename)
+        imagen.save(ruta)
+
+        nuevo = Lanzamiento(
+            descripcion=descripcion,
+            fecha_catalogo=fecha_catalogo,
+            imagen=imagen.filename
+        )
+        db.session.add(nuevo)
+        db.session.commit()
+        flash("✅ Lanzamiento agregado con éxito")
+
+    return redirect(url_for('admin.lanzamientos'))
+
+
+# ❌ Eliminar lanzamiento
+@admin_bp.route('/lanzamientos/eliminar/<int:id>')
+def eliminar_lanzamiento(id):
+    lanzamiento = Lanzamiento.query.get_or_404(id)
+    db.session.delete(lanzamiento)
+    db.session.commit()
+    flash("🗑️ Lanzamiento eliminado con éxito")
+
+    return redirect(url_for('admin.lanzamientos'))
+
+@admin_bp.route("/reporte_ventas")
+def reporte_ventas():
+    return render_template("admin/reporte_ventas.html")
+
+
+@admin_bp.route("/metodos_pago")
+def metodos_pago():
+    # Ejemplo de datos (luego puedes reemplazar por una consulta a tu base de datos)
+    pagos = {
+        "efectivo": 2000000,
+        "datafono": 4500000,
+        "nequi": 3500000
+    }
+
+    total = sum(pagos.values())
+
+    # Calcular porcentajes para las barras de progreso
+    porcentajes = {k: (v / total * 100) if total > 0 else 0 for k, v in pagos.items()}
+
+    return render_template("admin/metodos_pago.html", pagos=pagos, porcentajes=porcentajes)

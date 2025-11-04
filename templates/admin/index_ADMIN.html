@@ -89,58 +89,7 @@
 
 
 
- <section class="productos">
-    <h2> PRODUCTOS MAS DESTACADOS</h2>
-    <p class="productos-subtitle">postres únicos con el estilo <span>coquette</span> 💕</p>
-
-    <div class="productos-container">
-      <div class="producto-card">
-        <div class="producto-img">
-          <img src="{{ url_for('static', filename='img/cerezita.jpg') }}" alt="Producto 1">
-        </div>
-        <div class="producto-info">
-          <h3>PASTEL CEREZITA</h3>
-          <p>Cerezita es un pastel creado por nosotros con el mejor relleno de frutos rojos 🍒</p>
-          {% if current_user.is_authenticated %}
-            <button class="btn-carrito">🛒 ¡AGREGALO!</button>
-          {% else %}
-            <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
-          {% endif %}
-        </div>
-      </div>
-
-      <div class="producto-card">
-        <div class="producto-img">
-          <img src="{{ url_for('static', filename='img/tiramisu') }}" alt="Producto 2">
-        </div>
-        <div class="producto-info">
-          <h3>TIRAMISU DE FRESITA</h3>
-          <p>Fue inspirado en lo jugosito de 🍓</p>
-          {% if current_user.is_authenticated %}
-            <button class="btn-carrito">🛒 ¡AGREGALO!</button>
-          {% else %}
-            <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
-          {% endif %}
-        </div>
-      </div>
-
-      <div class="producto-card">
-        <div class="producto-img">
-          <img src="{{ url_for('static', filename='img/tortahellokitty.jpg') }}" alt="Producto 3">
-        </div>
-        <div class="producto-info">
-          <h3>TORTI KITTY 🐱</h3>
-          <p>Creado para los amantes de la gata blanca</p>
-          {% if current_user.is_authenticated %}
-            <button class="btn-carrito">🛒 ¡AGREGALO!</button>
-          {% else %}
-            <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-</section>
-
+ 
 <style>
     :root {
       --bg: #fff7fb;
@@ -207,6 +156,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+<section class="productos">
+  <h2>🌸 PRODUCTOS MÁS DESTACADOS</h2>
+  <p class="productos-subtitle">Postres únicos con el estilo <span>delicado</span> 💕</p>
+
+  <div class="carrusel-wrapper">
+    <button class="carrusel-btn izquierda" onclick="moverCarrusel(-1)">❮</button>
+
+    <div class="productos-container" id="productosCarrusel">
+      {% for producto in productos_destacados %}
+        <div class="producto-card">
+          <div class="producto-Img">
+            <img src="{{ url_for('static', filename='img/' ~ producto.Imagen) }}" alt="{{ producto.Nombre_producto }}">
+          </div>
+          <div class="producto-info">
+            <h3>{{ producto.Nombre_producto }}</h3>
+            <p>{{ producto.Descripcion_producto }}</p>
+            <p class="precio">${{ producto.Precio_Unitario }}</p>
+            <button class="btn-carrito"
+              onclick="abrirModal(
+                {{ producto.ID_Producto }},
+                '{{ producto.Nombre_producto }}',
+                {{ producto.Precio_Unitario }},
+                '{{ producto.Imagen }}'
+              )">🛒 ¡AGREGALO!</button>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <button class="carrusel-btn derecha" onclick="moverCarrusel(1)">❯</button>
+  </div>
+</section>
+
+
 
   <section class="info-section">
     <div class="info-logo">DeliCAKE</div>
@@ -231,6 +214,11 @@
 
     <div class="separator">🌸</div>
   </section>
+
+<a href="{{ url_for('admin.lanzamientos')}}" class="boton-flotante">
+  <span class="texto">LANZAMIENTOS</span>
+  <div class="icono">+</div>
+</a>
 
    
      <footer class="footer">
@@ -257,5 +245,47 @@
   </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function() {
+  const TIEMPO_INACTIVIDAD = 5 * 60 * 1000;; 
+  const URL_REDIRECT = "{{ url_for('home') }}"; 
+  const overlay = document.getElementById('inactividadOverlay');
+  const contadorEl = document.getElementById('contador');
+  const btnCancelar = document.getElementById('cancelarRedireccion');
+  let inactividadTimer, redireccionTimer;
+
+  function mostrarVentana() {
+    overlay.style.display = 'flex';
+    let tiempo = 10;
+    contadorEl.textContent = tiempo;
+    redireccionTimer = setInterval(() => {
+      tiempo--;
+      contadorEl.textContent = tiempo;
+      if (tiempo <= 0) {
+        clearInterval(redireccionTimer);
+        window.location.href = URL_REDIRECT;
+      }
+    }, 1000);
+  }
+
+  function reiniciarInactividad() {
+    clearTimeout(inactividadTimer);
+    clearInterval(redireccionTimer);
+    overlay.style.display = 'none';
+    inactividadTimer = setTimeout(mostrarVentana, TIEMPO_INACTIVIDAD);
+  }
+
+  btnCancelar.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    reiniciarInactividad();
+  });
+
+  ["mousemove", "keydown", "click", "scroll", "touchstart"].forEach(e =>
+    document.addEventListener(e, reiniciarInactividad)
+  );
+
+  reiniciarInactividad();
+})();
+</script>
 </body>
 </html>

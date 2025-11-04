@@ -121,62 +121,121 @@
     {% endif %}
 </section>
 
- <section class="productos">
-    <h2> PRODUCTOS MAS DESTACADOS</h2>
-    <p class="productos-subtitle">postres únicos con el estilo <span>Dlicado</span> 💕</p>
+<section class="productos">
+  <h2>🌸 PRODUCTOS MÁS DESTACADOS</h2>
+  <p class="productos-subtitle">Postres únicos con el estilo <span>delicado</span> 💕</p>
 
-    <div class="productos-container">
-<div class="producto-card">
-  <div class="producto-img">
-    <img src="{{ url_for('static', filename='img/cerezita.jpg') }}" alt="Producto 1">
-  </div>
-  <div class="producto-info">
-    <h3>PASTEL CEREZITA</h3>
-    <p>Cerezita es un pastel creado por nosotros con el mejor relleno de frutos rojos 🍒</p>
+  <div class="carrusel-wrapper">
+    <button class="carrusel-btn izquierda" onclick="moverCarrusel(-1)">❮</button>
 
-    {% if current_user.is_authenticated %}
-      <button class="btn-carrito">🛒 ¡AGREGALO!</button>
-    {% else %}
-      <a href="{{ url_for('register') }}" class="btn-carrito link-carrito">🛒 ¡AGREGALO!</a>
-    {% endif %}
-  </div>
-
-
-</div>
-
-     <div class="producto-card">
-  <div class="producto-img">
-    <img src="{{ url_for('static', filename='img/tiramisu') }}" alt="Producto 2">
-  </div>
-  <div class="producto-info">
-    <h3>TIRAMISU DE FRESITA</h3>
-    <p>Fue inspirado en lo jugosito de 🍓</p>
-
-    {% if current_user.is_authenticated %}
-      <button class="btn-carrito">🛒 ¡AGREGALO!</button>
-    {% else %}
-      <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
-    {% endif %}
-  </div>
-</div>
-
-
-      <div class="producto-card">
-        <div class="producto-img">
-          <img src="{{ url_for('static', filename='img/tortahellokitty.jpg') }}" alt="Producto 3">
+    <div class="productos-container" id="productosCarrusel">
+      {% for producto in productos_destacados %}
+        <div class="producto-card">
+          <div class="producto-Img">
+            <img src="{{ url_for('static', filename='img/' ~ producto.Imagen) }}" alt="{{ producto.Nombre_producto }}">
+          </div>
+          <div class="producto-info">
+            <h3>{{ producto.Nombre_producto }}</h3>
+            <p>{{ producto.Descripcion_producto }}</p>
+            <p class="precio">${{ producto.Precio_Unitario }}</p>
+            <button class="btn-carrito"
+              onclick="abrirModal(
+                {{ producto.ID_Producto }},
+                '{{ producto.Nombre_producto }}',
+                {{ producto.Precio_Unitario }},
+                '{{ producto.Imagen }}'
+              )">🛒 ¡AGREGALO!</button>
+          </div>
         </div>
-        <div class="producto-info">
-          <h3>TORTI KITTY 🐱</h3>
-          <p>Creado para los amantes de la gata blanca</p>
-          {% if current_user.is_authenticated %}
-            <button class="btn-carrito">🛒 ¡AGREGALO!</button>
-          {% else %}
-            <a href="{{ url_for('register') }}" class="btn-carrito">🛒 ¡AGREGALO!</a>
-          {% endif %}
-        </div>
+      {% endfor %}
+    </div>
+
+    <button class="carrusel-btn derecha" onclick="moverCarrusel(1)">❯</button>
+  </div>
+</section>
+
+
+<div id="modalCarrito" class="modal-carrito" style="display: none;">
+  <div class="modal-contenido">
+    <div class="modal-header">
+      <span>🛒 Agregar al carrito</span>
+      <button class="cerrar" onclick="cerrarModal()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <img id="modalImagen" src="" alt="Producto" class="modal-img">
+      <h3 id="modalNombre"></h3>
+      <p><strong>Precio:</strong> $<span id="modalPrecio"></span></p>
+
+      <div class="cantidad-controles">
+        <button onclick="cambiarCantidad(-1)">−</button>
+        <input type="text" id="modalCantidad" value="1" readonly>
+        <button onclick="cambiarCantidad(1)">+</button>
       </div>
     </div>
-</section>
+
+    <div class="modal-footer">
+      <button class="cancelar" onclick="cerrarModal()">Cancelar</button>
+      <button class="confirmar" onclick="confirmarAgregar()">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+let productoSeleccionado = {};
+
+function abrirModal(id, nombre, precio, imagen) {
+  let rutaImagen = imagen.includes("static/") || imagen.includes("img/")
+    ? imagen
+    : `/static/img/${imagen}`;
+
+  productoSeleccionado = { id, nombre, precio, imagen: rutaImagen, cantidad: 1 };
+
+  document.getElementById("modalNombre").textContent = nombre;
+  document.getElementById("modalPrecio").textContent = precio.toFixed(2);
+  document.getElementById("modalImagen").src = rutaImagen;
+  document.getElementById("modalCantidad").value = 1;
+  document.getElementById("modalCarrito").style.display = "flex";
+}
+
+function cerrarModal() {
+  document.getElementById("modalCarrito").style.display = "none";
+}
+
+function cambiarCantidad(valor) {
+  const input = document.getElementById("modalCantidad");
+  let cantidad = parseInt(input.value) + valor;
+  if (cantidad < 1) cantidad = 1;
+  input.value = cantidad;
+  productoSeleccionado.cantidad = cantidad;
+}
+
+// ✅ Solo redirige a registro
+function confirmarAgregar() {
+  window.location.href = "{{ url_for('register') }}";
+}
+
+const carrusel = document.getElementById("productosCarrusel");
+const btnIzquierda = document.querySelector(".carrusel-btn.izquierda");
+const btnDerecha = document.querySelector(".carrusel-btn.derecha");
+
+function moverCarrusel(direccion) {
+  const desplazamiento = 300;
+  carrusel.scrollBy({ left: direccion * desplazamiento, behavior: "smooth" });
+  setTimeout(actualizarFlechas, 400);
+}
+
+function actualizarFlechas() {
+  const maxScroll = carrusel.scrollWidth - carrusel.clientWidth;
+  btnIzquierda.classList.toggle("hidden", carrusel.scrollLeft <= 0);
+  btnDerecha.classList.toggle("hidden", carrusel.scrollLeft >= maxScroll - 5);
+}
+
+carrusel.addEventListener("scroll", actualizarFlechas);
+window.addEventListener("resize", actualizarFlechas);
+document.addEventListener("DOMContentLoaded", actualizarFlechas);
+</script>
 
  <section class="suscripcion">
     <div class="container">
@@ -238,6 +297,13 @@
         elegante y lleno de amor. 🎀</p>
     </div>
   </section>
+
+<a href="{{ url_for('clientes.lanzamientos') }}" class="boton-flotante">
+  <span class="texto">Ver más</span>
+  <div class="icono">+</div>
+</a>
+
+
 
   <footer class="footer">
     <div class="footer-contenido">

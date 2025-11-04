@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lanzamientos | DeliCake</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lanzamientos.css') }}">
+</head>
+<body>
+    <header class="banner">
+    <video autoplay muted loop playsinline class="banner-video">
+        <source src="{{ url_for('static', filename='videos/halloween1.mp4') }}" type="video/mp4">
+        Tu navegador no soporta videos.
+    </video>
+        <div class="flotantes">
+            <img src="https://cdn-icons-png.flaticon.com/512/9382/9382466.png" class="icono flotante1">
+            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" class="icono flotante2">
+            
+        </div>
+    </header>
+     <a href="javascript:history.back()" class="volver-btn">
+  ← Volver
+</a>
+
+    <section class="contenedor">
+        <h1 class="titulo">🎀 Administración de Lanzamientos 🎀</h1>
+
+        <form action="{{ url_for('admin.agregar_lanzamiento') }}" method="POST" enctype="multipart/form-data" class="formulario">
+            <input type="text" name="descripcion" placeholder="Descripción del producto" required>
+            <input type="date" name="fecha_catalogo" required>
+            <input type="file" name="imagen" accept="image/*" required>
+            <button type="submit" class="btn-agregar">Agregar Lanzamiento</button>
+        </form>
+
+      <h2 class="subtitulo">💗 Lanzamientos Actuales 💗</h2>
+
+<div class="carrusel-container">
+    <button class="carrusel-btn prev">&#10094;</button>
+    
+    <div class="carrusel-track">
+        {% for item in lanzamientos %}
+        <div class="tarjeta">
+            <div class="decoracion decoracion-izq"></div>
+            <div class="decoracion decoracion-der"></div>
+            <img src="{{ url_for('static', filename='uploads/lanzamientos/' ~ item.imagen) }}" alt="Lanzamiento" class="img-lanzamiento">
+            <div class="info">
+                <h3>{{ item.descripcion }}</h3>
+                <p>📅 estará listo: {{ item.fecha_catalogo }}</p>
+                <a href="{{ url_for('admin.eliminar_lanzamiento', id=item.id) }}" class="btn-eliminar">Eliminar</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button class="carrusel-btn next">&#10095;</button>
+</div>
+<script>
+const track = document.querySelector('.carrusel-track');
+const prevBtn = document.querySelector('.carrusel-btn.prev');
+const nextBtn = document.querySelector('.carrusel-btn.next');
+
+let index = 0;
+const tarjetas = document.querySelectorAll('.tarjeta');
+const total = tarjetas.length;
+
+const moveCarrusel = () => {
+    const tarjetaWidth = tarjetas[0].offsetWidth + 20; // ancho + gap
+    track.style.transform = `translateX(-${index * tarjetaWidth}px)`;
+};
+
+prevBtn.addEventListener('click', () => {
+    if(index > 0) index--;
+    moveCarrusel();
+});
+
+nextBtn.addEventListener('click', () => {
+    if(index < total - 3) index++; // muestra 3 tarjetas a la vez
+    moveCarrusel();
+});
+</script>
+
+    </section>
+</body>
+
+     <footer class="footer">
+    <div class="footer-contenido">
+      <div class="footer-item">
+        <h4>⏰ Horarios de atención</h4>
+        <p>Lunes - Viernes: 8am</p>
+        <p>Sábados y festivos: 9am - 4:30pm</p>
+      </div>
+      <div class="footer-item">
+        <h4>👩‍💻 Contáctanos</h4>
+        <p>Comunícate con nosotros</p>
+      </div>
+
+      <div class="footer-item">
+        <h4>❓ Preguntas</h4>
+        <p>¿Tienes dudas?</p>
+      </div>
+      <div class="footer-item">
+        <h4>📍 Ubicación</h4>
+        <p>Carrera #56 #19c -</p>
+      </div>
+    </div>
+  </footer>
+<script>
+(function() {
+  const TIEMPO_INACTIVIDAD = 5 * 60 * 1000;; 
+  const URL_REDIRECT = "{{ url_for('home') }}"; 
+  const overlay = document.getElementById('inactividadOverlay');
+  const contadorEl = document.getElementById('contador');
+  const btnCancelar = document.getElementById('cancelarRedireccion');
+  let inactividadTimer, redireccionTimer;
+
+  function mostrarVentana() {
+    overlay.style.display = 'flex';
+    let tiempo = 10;
+    contadorEl.textContent = tiempo;
+    redireccionTimer = setInterval(() => {
+      tiempo--;
+      contadorEl.textContent = tiempo;
+      if (tiempo <= 0) {
+        clearInterval(redireccionTimer);
+        window.location.href = URL_REDIRECT;
+      }
+    }, 1000);
+  }
+
+  function reiniciarInactividad() {
+    clearTimeout(inactividadTimer);
+    clearInterval(redireccionTimer);
+    overlay.style.display = 'none';
+    inactividadTimer = setTimeout(mostrarVentana, TIEMPO_INACTIVIDAD);
+  }
+
+  btnCancelar.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    reiniciarInactividad();
+  });
+
+  ["mousemove", "keydown", "click", "scroll", "touchstart"].forEach(e =>
+    document.addEventListener(e, reiniciarInactividad)
+  );
+
+  reiniciarInactividad();
+})();
+</script>
+
+</html>

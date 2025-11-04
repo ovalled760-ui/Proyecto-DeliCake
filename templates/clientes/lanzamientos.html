@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lanzamientos | DeliCake</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/clientes_lanzamientos.css') }}">
+</head>
+<body>
+    <header class="banner">
+    <video autoplay muted loop playsinline class="banner-video">
+        <source src="{{ url_for('static', filename='videos/halloween1.mp4') }}" type="video/mp4">
+        Tu navegador no soporta videos.
+    </video>
+        <div class="flotantes">
+            <img src="https://cdn-icons-png.flaticon.com/512/9382/9382466.png" class="icono flotante1">
+            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" class="icono flotante2">
+            
+        </div>
+       
+    </header>
+      <a href="javascript:history.back()" class="volver-btn">
+  ← Volver
+</a>
+    
+
+    <section class="contenedor">
+    <h2 class="titulo">💗 PROXIMOS-LANZAMIENTOS 💗</h2>
+
+    <div class="carrusel-container">
+        <button class="carrusel-btn prev">&#10094;</button>
+
+        <div class="carrusel-track">
+            {% for item in lanzamientos %}
+            <div class="tarjeta">
+                <img src="{{ url_for('static', filename='uploads/lanzamientos/' ~ item.imagen) }}" alt="Lanzamiento" class="img-lanzamiento">
+                <div class="info">
+                    <h3>{{ item.descripcion }}</h3>
+                    <p>📅 Disponible: {{ item.fecha_catalogo }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <button class="carrusel-btn next">&#10095;</button>
+    </div>
+    <script>
+const track = document.querySelector('.carrusel-track');
+const prevBtn = document.querySelector('.carrusel-btn.prev');
+const nextBtn = document.querySelector('.carrusel-btn.next');
+
+let index = 0;
+const tarjetas = document.querySelectorAll('.tarjeta');
+const total = tarjetas.length;
+
+const moveCarrusel = () => {
+    const tarjetaWidth = tarjetas[0].offsetWidth + 20; // ancho + gap
+    track.style.transform = `translateX(-${index * tarjetaWidth}px)`;
+};
+
+prevBtn.addEventListener('click', () => {
+    if(index > 0) index--;
+    moveCarrusel();
+});
+
+nextBtn.addEventListener('click', () => {
+    if(index < total - 3) index++; // ajusta según cuántas quieras visibles
+    moveCarrusel();
+});
+</script>
+
+</section>
+
+
+</body>
+     <footer class="footer">
+    <div class="footer-contenido">
+      <div class="footer-item">
+        <h4>⏰ Horarios de atención</h4>
+        <p>Lunes - Viernes: 8am</p>
+        <p>Sábados y festivos: 9am - 4:30pm</p>
+      </div>
+      <div class="footer-item">
+        <h4>👩‍💻 Contáctanos</h4>
+        <p>Comunícate con nosotros</p>
+      </div>
+
+      <div class="footer-item">
+        <h4>❓ Preguntas</h4>
+        <p>¿Tienes dudas?</p>
+      </div>
+      <div class="footer-item">
+        <h4>📍 Ubicación</h4>
+        <p>Carrera #56 #19c -</p>
+      </div>
+    </div>
+  </footer>
+</html>

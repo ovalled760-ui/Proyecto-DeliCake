@@ -1,0 +1,74 @@
+/* Fondo difuminado */
+.modal-inactividad__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 192, 203, 0.3);
+  backdrop-filter: blur(6px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Caja principal */
+.modal-inactividad__box {
+  background: #fff0f6;
+  border: 2px solid #f8a8c1;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  max-width: 360px;
+  animation: popIn 0.4s ease;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Título */
+.modal-inactividad__box h3 {
+  color: #d45b85;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 1rem;
+}
+
+/* Controles */
+.modal-inactividad__controls {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1.5rem;
+}
+
+/* Botón principal */
+.btn-coquette {
+  background-color: #f6a6c1;
+  border: none;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+
+.btn-coquette:hover {
+  background-color: #f58db3;
+}
+
+/* Botón enlace */
+.btn-link {
+  background: transparent;
+  border: none;
+  color: #a44dc4;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 1rem;
+}

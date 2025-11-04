@@ -1,0 +1,129 @@
+/* Fuente base */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #fffaf8 0%, #ffeaf3 100%);
+  color: #6b4b4b;
+  overflow-x: hidden;
+}
+
+/* Encabezado */
+.barra-superior {
+  background: #fff6f9b8;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  box-shadow: 0 3px 10px rgba(240, 184, 195, 0.2);
+  border-bottom: 2px solid #fbd1dc;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #e77ca3;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: #f6b6cc;
+  font-style: italic;
+}
+
+nav a {
+  text-decoration: none;
+  color: #8a5a6a;
+  margin: 0 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  color: #e77ca3;
+  text-shadow: 0 0 5px #ffd9e3;
+}
+
+/* Contenido */
+.contenido {
+  text-align: center;
+  padding: 70px 20px;
+}
+
+.titulo {
+  font-family: 'Parisienne', cursive;
+  font-size: 3rem;
+  color: #d96e9a;
+  margin-bottom: 60px;
+  text-shadow: 0 2px 5px rgba(255, 215, 225, 0.8);
+}
+
+/* Tarjetas */
+.grid-reportes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 35px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.card {
+  border-radius: 25px;
+  padding: 45px 25px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #fff4f7;
+  background: white;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(240, 170, 185, 0.3);
+}
+
+/* Colores de las tarjetas */
+.pastel1 { background: linear-gradient(145deg, #fff0f7, #ffe6ed); }
+.pastel2 { background: linear-gradient(145deg, #fff3e9, #fff9f5); }
+.pastel3 { background: linear-gradient(145deg, #f5f2ff, #fff9ff); }
+.pastel4 { background: linear-gradient(145deg, #eafaff, #f9fdff); }
+
+/* Íconos */
+.icono i {
+  width: 50px;
+  height: 50px;
+  color: #e77ca3;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .icono i {
+  transform: scale(1.2) rotate(-5deg);
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #6d4a54;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 30px;
+  font-size: 0.95rem;
+  color: #b1798e;
+  background: #fff4f7;
+  border-top: 2px solid #f8d7e3;
+}
+
+/* Animación suave */
+@keyframes brillar {
+  0% { bo

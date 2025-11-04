@@ -1,49 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Detalle del Pedido</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/detalle_pedido.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle del Pedido</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/detalle_pedido.css') }}">
 </head>
 <body>
-    
-    <div class="container">
-        <h1>Detalle de tu Pedido</h1>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Masa</th>
-                    <th>Relleno</th>
-                    <th>Cobertura</th>
-                    <th>Porciones</th>
-                    <th>Adicionales</th>
-                    <th>Cantidad</th>
-                    <th>Precio Unitario</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in carrito %}
-                <tr>
-                    <td>{{ item.Nombre_producto }}</td>
-                    <td>{{ item.masa }}</td>
-                    <td>{{ item.relleno }}</td>
-                    <td>{{ item.cobertura }}</td>
-                    <td>{{ item.porciones }}</td>
-                    <td>{{ item.adicionales }}</td>
-                    <td>{{ item.cantidad }}</td>
-                    <td>${{ item.precio }}</td>
-                    <td>${{ item.precio * item.cantidad }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+  <div class="factura-container">
+    <h2>🧁 Detalle de tu Pedido</h2>
 
-        <form method="POST">
-            <button type="submit" class="btn-listo">✅ Listo</button>
-        </form>
+    <div class="factura-info">
+      <p><strong>Cliente:</strong> {{ cliente.usuario.Nombre }} {{ cliente.usuario.Apellido }}</p>
+      <p><strong>Fecha del Pedido:</strong> {{ pedido.Fecha_Solicitud.strftime("%d/%m/%Y") }}</p>
+      <p><strong>Total:</strong> ${{ "%.2f"|format(pedido.Total) }}</p>
     </div>
+
+    <table class="tabla-detalle">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Descuento</th>
+          <th>Precio Unitario</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in carrito %}
+        <tr>
+          <td>{{ item.nombre }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td>{{ item.descuento }}%</td>
+          <td>${{ "%.2f"|format(item.precio) }}</td>
+          <td>${{ "%.2f"|format(item.precio * item.cantidad) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    
+  <div class="personalizaciones">
+  <h3>🎨 Personalización del Pedido</h3>
+
+  {% if personalizaciones %}
+    {% for p in personalizaciones %}
+    <div class="personalizacion-card">
+      <p><strong>Producto:</strong> {{ p.producto.Nombre_producto }}</p>
+      <p><strong>Masa:</strong> {{ p.Masa }}</p>
+      <p><strong>Relleno:</strong> {{ p.Relleno }}</p>
+      <p><strong>Cobertura:</strong> {{ p.Cobertura }}</p>
+      <p><strong>Porciones:</strong> {{ p.Porciones }}</p>
+      <p><strong>Adicionales:</strong> {{ p.Adicionales }}</p>
+    </div>
+    {% endfor %}
+  {% else %}
+    <p style="text-align:center; color:#888;">No hay personalizaciones para este pedido 🍰</p>
+  {% endif %}
+</div>
+    <div class="factura-total">
+      <p><strong>Envío:</strong> $5,000</p>
+      <p><strong>Total Final:</strong> ${{ "%.2f"|format(pedido.Total) }}</p>
+    </div>
+
+    <form method="POST">
+      <button type="submit" class="btn-listo">🎀 Listo</button>
+    </form>
+  </div>
+
 </body>
 </html>

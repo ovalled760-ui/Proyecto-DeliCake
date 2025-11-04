@@ -610,6 +610,269 @@ h3 {
   font-size: 1rem;
 }
 
+.boton-flotante {
+  position: fixed;
+  bottom: 17%; 
+  left: 40px;
+  width: 160px;   
+  height: 110px; 
+  background: url("/static/img/nube.png") no-repeat center;
+  background-size: 116%; 
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  animation: flotar 3s ease-in-out infinite;
+  z-index: 1000;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+.boton-flotante .texto {
+  background: #ffd9ec;
+  color: #a34b7f;
+  padding: 9px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.boton-flotante .icono {
+  font-size: 28px;       
+  font-weight: bold;
+  color: white;
+  margin-top: -21px;      
+}
+
+.boton-flotante:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 20px rgba(255, 105, 180, 0.5);
+}
+
+/* ---- Carrusel de productos ---- */
+.carrusel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+  width: 90%;
+}
+
+.productos-container {
+  display: flex;
+  gap: 7%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+}
+
+.producto-card {
+  flex: 0 0 auto;
+  width: 360px;
+  height:445px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+}
+
+.producto-Img img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+}
+
+.producto-info {
+  padding: 1rem;
+}
+
+.producto-info h3 {
+  color: #5b3758;
+  margin-bottom: 0.4rem;
+}
+
+.producto-info p {
+  font-size: 0.9rem;
+  color: #7b5473;
+  margin-bottom: 1rem;
+}
+
+.btn-carrito {
+  background-color: #f5b7c3;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-carrito:hover {
+  background-color: #f28da8;
+}
+
+/* ---- Botones del carrusel ---- */
+.carrusel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #f8d8e0;
+  color: #5b3758;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 5;
+  opacity: 0.8;
+}
+
+.carrusel-btn:hover {
+  background-color: #f5b7c3;
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carrusel-btn.izquierda {
+  left: -2%;
+}
+
+.carrusel-btn.derecha {
+  right: -2%;
+}
+
+/* Ocultar botones si no son necesarios */
+.carrusel-btn.hidden {
+  display: none;
+}
+.modal-carrito {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-contenido {
+  background: #fde9ef;
+  border-radius: 15px;
+  padding: 20px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-header {
+  background: #d8b4e2;
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border-radius: 10px 10px 0 0;
+}
+
+.modal-img {
+  width: 200px;
+  height: 130px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin: 10px 0;
+}
+
+.cantidad-controles {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.cantidad-controles button {
+  background-color: #f9a8d4;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.cancelar {
+  background: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 12px;
+}
+
+.confirmar {
+  background: #ec4899;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+}
+
+.cerrar {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.95);}
+  to {opacity: 1; transform: scale(1);}
+}
+
+@media (max-width: 768px) {
+  .producto-card {
+    min-width: 80%;
+  }
+  .carrusel-btn.izquierda { left: 10px; }
+  .carrusel-btn.derecha { right: 10px; }
+}
+
+
+@keyframes flotar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
 
 @media (min-width: 768px) {
   .nosotros-contenido {

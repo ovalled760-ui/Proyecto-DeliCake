@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}DeliCake🎀{% endblock %}</title>
+
+  <!-- Estilos globales -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <!-- Estilos del modal de inactividad -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/inactividad.css') }}">
+
+  {% block styles %}{% endblock %}
+</head>
+<body>
+  {% block header %}{% endblock %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include 'footer.html' %}
+
+  <!-- Configuración del modal de inactividad -->
+  <script>
+    // URL de redirección por inactividad
+    window.INACTIVITY_REDIRECT = "{{ url_for('home') }}";
+    // Si quieres desactivarlo en una plantilla, agrega:
+    // <script>window.NO_INACTIVITY_MODAL = true;</script> dentro del bloque de content
+  </script>
+
+  <!-- Script de inactividad -->
+  <script src="{{ url_for('static', filename='js/inactividad.js') }}"></script>
+
+  {% block scripts %}{% endblock %}
+  <!-- 🔒 Control de inactividad global -->
+<script>
+  (function() {
+    const REDIRECT_URL = "{{ url_for('home') }}"; // Cambia 'home' por el nombre de tu ruta index
+    const MAX_INACTIVITY = 60 * 1000; // 1 minuto (en milisegundos)
+    const WARNING_TIME = 10 * 1000;   // 10 segundos de aviso antes de redirigir
+    let timer, warningShown = false;
+
+    function resetTimer() {
+      clearTimeout(timer);
+      warningShown = false;
+      startTimer();
+    }
+
+    function startTimer() {
+      timer = setTimeout(() => {
+        warningShown = true;
+        const stay = confirm("Has estado inactivo. Serás redirigido al inicio en 10 segundos.\n¿Deseas seguir aquí?");
+        if (stay) {
+          resetTimer();
+        } else {
+          setTimeout(() => {
+            window.location.href = REDIRECT_URL;
+          }, WARNING_TIME);
+        }
+      }, MAX_INACTIVITY);
+    }
+
+    // Escuchar acciones del usuario
+    ["mousemove", "keydown", "click", "scroll", "touchstart"].forEach(evt => {
+      document.addEventListener(evt, resetTimer);
+    });
+
+    startTimer();
+  })();
+</script>
+<!-- 💖 Sistema de inactividad global DeliCake -->
+<style>
+  .inactividad-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 240, 250, 0.7);
+    backdrop-filter: blur(6px);
+    z-index: 1050;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inactividad-modal {
+    background: #ffe6f2;
+    color: #5b3758;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    padding: 35px 45px;
+    text-align: center;
+    width: 380px;
+    animation: aparecer 0.4s ease-out;
+  }
+
+  .inactividad-modal h3 {
+    font-family: "Poppins", cursive;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .inactividad-modal p {
+    font-size: 1rem;
+    color: #7c4b72;
+    margin-bottom: 15px;
+  }
+
+  .btn-continuar {
+    background: #f7b6d2;
+    color: #5b3758;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+  }
+
+  .btn-continuar:hover {
+    background: #f29ec7;
+    transform: scale(1.05);
+  }
+
+  @keyframes aparecer {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+</style>
+
+<div class="inactividad-overlay" id="inactividadOverlay">
+  <div class="inactividad-modal">
+    <h3>💤 Has estado inactiva un momento</h3>
+    <p>Serás redirigida al inicio en <span id="contador">10</span> segundos 💫</p>
+    <button class="btn-continuar" id="cancelarRedireccion">Seguir aquí 💖</button>
+  </div>
+</div>
+
+<script>
+  let inactividadTimer;
+  let redireccionTimer;
+  const overlay = document.getElementById('inactividadOverlay');
+  const contadorEl = document.getElementById('contador');
+  const btnCancelar = document.getElementById('cancelarRedireccion');
+
+  function mostrarVentana() {
+    overlay.style.display = 'flex';
+    let tiempo = 10;
+    contadorEl.textContent = tiempo;
+    redireccionTimer = setInterval(() => {
+      tiempo--;
+      contadorEl.textContent = tiempo;
+      if (tiempo <= 0) {
+        clearInterval(redireccionTimer);
+        window.location.href = "{{ url_for('publica') }}";
+      }
+    }, 1000);
+  }
+
+  function reiniciarInactividad() {
+    clearTimeout(inactividadTimer);
+    clearInterval(redireccionTimer);
+    overlay.style.display = 'none';
+    inactividadTimer = setTimeout(mostrarVentana, 60000); // 1 minuto
+  }
+
+  btnCancelar.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    reiniciarInactividad();
+  });
+
+  ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(evento => {
+    document.addEventListener(evento, reiniciarInactividad);
+  });
+
+  reiniciarInactividad();
+</script>
+<!-- 💖 Fin del sistema de inactividad -->
+
+</body>
+</html>
