@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar_Producto</title>
+    <title>Reporte</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/agregar_producto.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reportes.css') }}">
 </head>
 
 <body>
@@ -69,85 +69,49 @@
       </div>
     </div>
   </nav>
-  {% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-  <div class="mt-4">
-    {% for category, message in messages %}
-    <div
-      class="alert alert-{{ 'success' if category == 'success' else 'danger' }} alert-dismissible fade show shadow-sm rounded-3 d-flex align-items-center gap-2"
-      role="alert">
-      {% if category == 'success' %}
-      <i class="bi bi-check-circle-fill text-success fs-5"></i>
-      {% else %}
-      <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
-      {% endif %}
-      <div class="flex-grow-1">
-        {{ message }}
-      </div>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-    </div>
-    {% endfor %}
-  </div>
-  {% endif %}
-  {% endwith %}
 
+  <section class="container my-5">
+        <h2 class="text-center mb-4">📊 Reporte de Ventas</h2>
 
-  <div class="agregar-producto-container">
-    <h2>AGREGAR PRODUCTOS! 🥯</h2>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card info-card">
+                    <div class="icon">📈</div>
+                    <a href="#" >
+                        Producto Vendidos
+                    </a>
+                </div>
+            </div>
 
-  
-
-    <form action="{{ url_for('admin.agregar_producto') }}" method="POST" enctype="multipart/form-data">
-      <div class="form-grid">
-        <div class="form-group">
-          <label for="nombre">Nombre*</label>
-          <input type="text" id="nombre" name="nombre" required>
+            <div class="col-md-3">
+                <div class="card info-card">
+                    <div class="icon">💰</div>
+                    <a href="{{ url_for('admin.ingresos') }}">
+                    Ingresos Totales
+                </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card info-card">
+                    <div class="icon">📅</div>
+                    <a href="{{ url_for('admin.fechas_ventas') }}">
+                        Fechas de ventas
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card info-card">
+                    <div class="icon">💳</div>
+                    <a href="#" >
+                        Metodod pagos
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-          <label for="descripcion">Descripción*</label>
-          <textarea id="descripcion" name="descripcion" required></textarea>
-        </div>
 
-        <div class="form-group">
-          <label for="precio">Precio*</label>
-          <input type="number" id="precio" name="precio" required>
-        </div>
 
-        <div class="form-group">
-          <label for="descuento">Descuento (%)</label>
-          <input type="number" id="descuento" name="descuento" step="0.00" value="0" min="0" max="100">
-        </div>
-
-        <div class="form-group">
-          <label for="categoria">Categoría*</label>
-          <select id="categoria" name="categoria" required>
-            <option value="">Seleccione</option>
-            {% for categoria in categorias %}
-              <option value="{{ categoria.ID_Categoria }}">{{ categoria.Nombre_categoria }}</option>
-            {% endfor %}
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="imagen">Imagen*</label>
-          <input type="file" id="imagen" name="imagen" accept="image/*" required>
-
-            <label>Ingredientes</label>
-            <textarea name="ingredientes" required></textarea>
-
-            <label>Tiempo de preparación </label>
-            <input type="text" name="tiempo" required>
-
-            
-        </div>
-      </div>
-
-      <button type="submit" class="btn-guardar">Agregar</button>
-      
-    </form>
-  </div>
-  <footer class="footer">
+    <footer class="footer">
     <div class="footer-contenido">
       <div class="footer-item">
         <h4>⏰ Horarios de atención</h4>

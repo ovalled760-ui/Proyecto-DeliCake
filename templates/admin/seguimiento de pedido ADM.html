@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <title>Seguimiento de Pedidos - Admin</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/seguimiento_de_pedido_ADM.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>seguimiento_pedido</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/seguimiento_de_pedido_ADM.css') }}">
 </head>
+
 <body>
   <div class="falling-products">
     <span>🧁</span>
@@ -17,11 +21,12 @@
     <span>🍪</span>
     <span>🎂</span>
   </div>
-    <a href="javascript:history.back()" class="volver-btn">
+
+
+  <a href="javascript:history.back()" class="volver-btn">
   ← Volver
 </a>
- 
-  <nav class="navbar navbar-expand-lg sticky-top">
+ <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
       <a class="navbar-brand text-warning fw-bold" style="margin-right: 100px;">
         <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="Logo"
@@ -33,7 +38,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
+       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="catalogoDropdown" role="button" data-bs-toggle="dropdown"
@@ -54,18 +59,17 @@
           </li>
         </ul>
 
-      <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex" style="margin-left: 20px;">
-        <input class="form-control me-2" style="height: 45px;" type="search" name="q" placeholder="Buscar productos..."
-          value="{{ request.args.get('q','') }}">
-        <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
-      </form>
+        <form action="{{ url_for('admin.buscar') }}" method="get" class="d-flex me-3" style="text-align: cover;">
+          <input class="form-control me-2" style="height: 45px;"  type="search" name="q" placeholder="Buscar productos..."
+            value="{{ request.args.get('q','') }}">
+          <button class="btn btn-outline-warning" type="submit"><i class="bi bi-search"></i></button>
+        </form>
 
-      </form>
-
-      </a>
-    </div>
+        <a href="#" class="nav-link text-warning ms-lg-3">👤</a>
+      </div>
     </div>
   </nav>
+
 
 
     <div class="container py-5">

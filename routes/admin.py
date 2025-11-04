@@ -2,7 +2,8 @@ import os
 import shutil   
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user 
-from controladores.models import db, Producto, Categoria, Pedido,Favorito, Disponibilidad,DetalleProducto, Calificacion, Reseña, Suscriptor , Notificacion
+from sqlalchemy import extract, func
+from controladores.models import db, Producto,DetallePedido, Categoria, Pedido,Favorito, Disponibilidad,DetalleProducto, Calificacion, Reseña, Suscriptor , Notificacion
 from werkzeug.utils import secure_filename
 from decimal import Decimal
 
@@ -81,7 +82,7 @@ def agregar_producto():
         db.session.commit()
         
         
-        flash("Producto agregado con éxito ")
+        flash("Producto agregado con éxito ", "success")
         return redirect(url_for("admin.agregar_producto"))
     categorias = Categoria.query.filter_by().all() 
     return render_template("admin/agregar_producto.html",categorias=categorias)
@@ -142,7 +143,7 @@ def eliminar(id):
         db.session.delete(producto)
         db.session.commit()
 
-        flash("Producto eliminado correctamente")
+        flash("Producto eliminado correctamente", "success")
     except Exception as e:
         db.session.rollback()
         flash(f"Error al eliminar producto: {str(e)}", "danger")
@@ -296,4 +297,64 @@ def anuncios():
         banners=banners,
         banner_actual=banner_actual
     )
+@admin_bp.route('/Reportes')
+def Reportes():
+    categorias=Categoria.query.all()
+    return render_template("admin/reportes_ventas.html", categorias=categorias )
 
+@admin_bp.route('/reportes/ingresos', methods=['GET'])
+def ingresos():
+    
+    mes_seleccionado = request.args.get('mes', type=int)
+
+    
+    query = db.session.query(
+        Categoria.Nombre_categoria.label('categoria'),
+        func.sum(DetallePedido.Total).label('ingreso_total')
+    ).join(Producto, DetallePedido.ID_producto == Producto.ID_Producto
+    ).join(Categoria, Producto.ID_Categoria == Categoria.ID_Categoria)
+
+
+    if mes_seleccionado:
+        query = query.filter(extract('month', DetallePedido.Fecha_Solicitud) == mes_seleccionado)
+
+    query = query.group_by(Categoria.Nombre_categoria)
+    ingresos_por_categoria = query.all()
+
+    total_general = sum([float(i.ingreso_total or 0) for i in ingresos_por_categoria])
+    categorias=Categoria.query.all()
+
+    return render_template(
+        'admin/ingresos.html',
+        ingresos_por_categoria=ingresos_por_categoria,
+        total_general=total_general,
+        mes_seleccionado=mes_seleccionado,
+        categorias= categorias
+    )
+    
+@admin_bp.route('/reportes/fechas', methods=['GET'])
+def fechas_ventas():
+    
+    mes_seleccionado = request.args.get('mes', type=int)
+
+    
+    query = db.session.query(
+        Pedido.Fecha_Solicitud.label('fecha'),
+        func.count(Pedido.ID_Pedido).label('cantidad_pedidos'),
+        func.sum(Pedido.Total).label('total_vendido')
+    )
+    if mes_seleccionado:
+        query = query.filter(extract('month', Pedido.Fecha_Solicitud) == mes_seleccionado)
+
+    query = query.group_by(Pedido.Fecha_Solicitud).order_by(func.sum(Pedido.Total).desc())
+
+    resultados = query.all()
+
+    total_general = sum([float(r.total_vendido or 0) for r in resultados])
+
+    return render_template(
+        'admin/Fechas_ventas.html',
+        resultados=resultados,
+        total_general=total_general,
+        mes_seleccionado=mes_seleccionado
+    )

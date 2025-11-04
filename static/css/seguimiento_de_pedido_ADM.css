@@ -1,17 +1,21 @@
-/* =======================
-   BODY Y FONDO
-======================= */
+:root {
+    --primary-color:  #f1cfdfff; 
+    --secondary-color: #ecb4cdff; 
+    --dark-color: #b9769dff; 
+    --warning-color: rgba(114, 114, 114, 1);
+    color: var(--warning-color);
+}
+
 body {
-  background: linear-gradient(to bottom, #f3f3e9ff, #f1d6e5ff); /* amarillo pastel a rosa delicado */
-  font-family: 'Segoe UI', sans-serif;
-  padding: 0px;
-   padding-bottom: 400px;
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--dark-color);
+    padding-bottom: 200px;
 }
 
 
-/* =======================
-   FALLING PRODUCTS
-======================= */
+
 .falling-products {
   position: fixed;
   top: 0;
@@ -56,20 +60,16 @@ body {
   }
 }
 
-/* =======================
-   NAVBAR
-======================= */
 .navbar {
   padding: 0.5rem 1rem;
   background: rgba(255, 239, 254, 0.9); 
-  
 }
 
 .navbar-brand {
   font-size: 2.1rem;
   font-weight: 800;
   letter-spacing: 1px;
-  color: #ffffff !important; 
+  color: #ca1b1bff !important; 
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -97,92 +97,82 @@ body {
   font-size: 20px;
 }
 
-/* =======================
-   BOTONES
-======================= */
-.btn-pink {
-  background-color: #f8c8dc;
-  color: #5c2a4a;
-  border: none;
-  transition: background-color 0.3s ease;
+.dropdown-menu{
+    background-color:var(--secondary-color) ;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow:0 10px 10px #ffe75f;
+}
+.dropdown-item{
+    color: #000000 !important;
+    padding: 10px 15px;
 }
 
-.btn-pink:hover,
-.btn-pink:focus {
-  background-color: #f4b0cc;
-  color: #fff;
+.dropdown-item:hover{
+    background-color: var(--primary-color);
 }
 
 .navbar a button {
-  background-color: var(--primary-color);
-  border: 2px solid var(--warning-color);
-  color: var(--warning-color);
-  padding: 6px 14px;
-  margin-right: 20px;
-  border-radius: 7px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+    background-color: var(--primary-color);
+    border: none;
+    color: rgb(44, 41, 41);
+    padding: 6px 14px;
+    margin-right: 20px;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
 .navbar a button:hover {
-  background-color: var(--warning-color);
-  color: var(--primary-color);
-  transform: scale(1.05);
+    background-color: #ff7b7b;
+    transform: scale(1.05);
 }
 
-.btn-outline-light {
-  color: #d63384;
-  border-color: #f8c8dc;
+.navbar .form-control {
+    border-radius: 20px;
+    border: none;
+    padding: 10px 19px;
+    transition: box-shadow 0.3s ease;
 }
-
-.btn-outline-light:hover {
-  background-color: #f8c8dc;
-  color: #5c2a4a;
+.navbar .form-control:focus {
+    outline: none;
+    box-shadow: 0 0 6px rgba(255,193,7,0.7);
 }
 
 .navbar .btn-outline-warning {
-  border-radius: 50%;
-  padding: 6px 14px;
-  margin-left: 6px;
-  border: palevioletred;
-  color: palevioletred;
-  background-color: transparent;
-  transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+    border-radius: 50%;
+    padding: 6px 14px;
+    margin-left: 6px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
 .navbar .btn-outline-warning:hover {
-  background-color: var(--warning-color);
-  color: palevioletred;
-  transform: scale(1.1);
+    background-color: var(--warning-color);
+    color: var(--dark-color);
+    transform: scale(1.1);
 }
 
-/* =======================
-   FORM CONTROLS
-======================= */
-.navbar .form-control {
-  border-radius: 20px;
-  border: 2px solid var(--warning-color);
-  padding: 10px 19px;
-  width: 250px;
-  font-size: 1rem;
-  outline: none;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
-  color: var(--dark-color);
+.navbar-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10'  d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+h1 {
+    font-weight: bold;
+    color: #e67e22;
+    margin-bottom: 20px;
 }
 
-.navbar .form-control::placeholder {
-  color: palevioletred;
-  opacity: 1;
+/* Buscador */
+#buscar {
+    border: 2px solid #ebb7d7ff;
+    border-radius: 8px;
+    padding: 10px;
+    transition: 0.3s ease;
 }
-
-.navbar .form-control:focus {
-  outline: none;
-  box-shadow: 0 0 10px var(--warning-color);
-  border-color: var(--highlight-color);
+#buscar:focus {
+    outline: none;
+    border-color: #fab5dbff;
+    box-shadow: 0 0 8px rgba(230, 126, 34, 0.4);
 }
-
 /* =======================
    SECTIONS Y ADMIN
 ======================= */

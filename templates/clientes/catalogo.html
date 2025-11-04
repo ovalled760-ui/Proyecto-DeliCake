@@ -84,7 +84,7 @@
       <a href="#" class="btn btn-danger btn-lg">Comprar Ahora</a>
     </div>
   </div>
-
+    <div id="favorito-alert" class="favorito-alert"></div>
   <div class="container py-5">
     <h2 class="text-center mb-5">🍰 Catálogo de {{ categoria.Nombre_categoria if categoria else 'Productos' }} 🍩</h2>
     <div class="row g-4">
@@ -129,14 +129,15 @@
             </a>
             {% endif %}
           </div>
-          <div id="favorito-alert" class="favorito-alert"></div>
-
+        
           </div>
         </div>
       </div>
       {% else %}
       <p class="text-center">No hay productos en esta categoría.</p>
       {% endfor %}
+    
+
     </div>
   </div>
 
@@ -261,7 +262,7 @@
     const id = this.dataset.id;
     if (!id) return; 
 
-    const res = await fetch(`/toggle_favorito/${id}`, { method: 'POST' });
+    const res = await fetch(`/clientes/toggle_favorito/${id}`, { method: 'POST' });
     const data = await res.json();
 
     const icon = this.querySelector('i');

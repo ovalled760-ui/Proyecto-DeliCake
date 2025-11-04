@@ -173,7 +173,7 @@ def esta_en_horario():
     hora_actual = ahora.hour + ahora.minute / 60
 
     if 0 <= dia <= 4:  
-        return 7 <= hora_actual < 20
+        return 7 <= hora_actual < 24
     else:  
         return 9 <= hora_actual < 17.5
 
@@ -541,5 +541,21 @@ def mis_favoritos():
     categorias = Categoria.query.all()
     favoritos = Favorito.query.filter_by(ID_usuario=current_user.ID_usuario).all()
     productos = [f.producto for f in favoritos]
-    return render_template('clientes/Favoritos.html', productos=productos, categorias=categorias)
+    return render_template('clientes/Favoritos.html', productos=productos, categorias=categorias,favoritos=favoritos)
 
+@clientes_bp.route('/eliminar_favorito/<int:id_favorito>', methods=['POST'])
+@login_required
+def eliminar_favorito(id_favorito):
+    favorito = Favorito.query.filter_by(
+        ID_Favorito=id_favorito,
+        ID_usuario=current_user.ID_usuario
+    ).first()
+
+    if favorito:
+        db.session.delete(favorito)
+        db.session.commit()
+        flash('Producto eliminado de favoritos 💔', 'success')
+    else:
+        flash('No se encontró el producto en tus favoritos.', 'danger')
+
+    return redirect(url_for('clientes.mis_favoritos'))
