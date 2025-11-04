@@ -167,6 +167,7 @@ def seguimiento_pedido():
         notificaciones=notificaciones,
         categorias=categorias
     )
+
 def esta_en_horario():
     ahora = datetime.now()
     dia = ahora.weekday()

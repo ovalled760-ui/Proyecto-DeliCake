@@ -82,6 +82,7 @@ def esta_en_horario():
         return 7 <= hora_actual < 20
     else:  
         return 9 <= hora_actual < 17.5
+    
 @app.route('/publica')
 def publica():
     categorias = Categoria.query.all()
@@ -91,7 +92,6 @@ def publica():
     banner_actual = obtener_banner_actual()
     en_horario = esta_en_horario()
 
-    # 🔹 Si el usuario tiene pedidos, crear notificaciones de estado:
     if current_user.is_authenticated and current_user.cliente:
         pedidos = current_user.cliente.pedidos
         notificaciones = [f"Pedido #{p.ID_Pedido} está en {p.Estado_Pedido}" for p in pedidos]
@@ -216,7 +216,7 @@ def login():
             return redirect(url_for('login'))
 
         login_user(usuario)
-        flash('Inicio de sesión exitos')
+        flash('Inicio de sesión exitoso',"success")
         return redirect(url_for('publica'))
 
     return render_template('clientes/inicio de sesion.html')
@@ -256,7 +256,7 @@ def login_admin():
             return redirect(url_for("login_admin"))
 
         login_user(usuario)
-        flash("Inicio de sesión exitoso como Administrador.")
+        flash("Inicio de sesión exitoso como Administrador.","success")
         return redirect(url_for("index_ADMIN"))
 
     return render_template('admin/inicio_sesion_ADMIN.html')

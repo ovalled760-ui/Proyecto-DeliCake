@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,23 +21,24 @@
     <span>🎂</span>
   </div>
   <a href="javascript:history.back()" class="volver-btn">
-  ← Volver
-</a>
+    ← Volver
+  </a>
 
   <div class="form-box">
-   
-    <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="login" style="width: 160px; height: 160px; border-radius: 50%;"> 
+
+    <img src="{{ url_for('static', filename='img/logo_DeliCake.jpg') }}" alt="login"
+      style="width: 160px; height: 160px; border-radius: 50%;">
     <br><br>
     <p style="font-size: 18px; font-family: cursive;">Bienvenido(a), ingresa a tu cuenta</p>
     <br>
-    
+
     <form action="/login" method="POST">
       {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          {% for message in messages %}
-            <div class="alert alert-info">{{ message }}</div>
-          {% endfor %}
-        {% endif %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-info">{{ message }}</div>
+      {% endfor %}
+      {% endif %}
       {% endwith %}
 
       <div class="mb-3">
@@ -49,19 +51,20 @@
         <input type="password" class="form-control" name="contraseña" required>
       </div>
       <a href="{{ url_for('publica') }}">
-          <button type="submit" class="btn btn-dark login-btn">Ingresar</button>
+        <button type="submit" class="btn btn-dark login-btn">Ingresar</button>
       </a>
 
-    
+
     </form>
 
     <div class="text-center mt-2 small-link">
       <a href="{{ url_for('recuperar') }}">¿Olvidaste tu contraseña?</a>
     </div>
 
-   <div class="small-link">
-  <a href="{{ url_for('clientes.politica_privacidad') }}">Política de privacidad</a>
-</div>
+    <div class="small-link">
+      <a href="{{ url_for('clientes.politica_privacidad') }}">Política de privacidad</a>
+    </div>
   </div>
 </body>
+
 </html>

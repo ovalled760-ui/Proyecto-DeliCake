@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,20 +22,49 @@
 
 <body>
 
-<div class="container-box">
+  <div class="container-box">
 
+<<<<<<< HEAD
   <div id="calendario" class="section active">
     <h4>Selecciona la fecha de tu pedido</h4>
     <div class="calendar mt-3">
       <label for="fechaEntrega">Fecha:</label>
       <input type="date" id="fechaEntrega" class="form-control" />
+=======
+    <!-- SECCIÓN: Selección de fecha -->
+    <div id="calendario" class="section active">
+      <h4>Selecciona la fecha de tu pedido</h4>
+      <div class="calendar mt-3">
+        <label for="fechaEntrega">Fecha:</label>
+        <input type="date" id="fechaEntrega" class="form-control" />
+      </div>
+      <div class="text-center mt-4">
+        <button class="btn-main" onclick="verificarFecha()">Confirmar Día</button>
+        <button class="btn btn-secondary" onclick="cancelar()">Cancelar</button>
+      </div>
+>>>>>>> 2e817613624ccf9b461e5ba7063109ce56c40b56
     </div>
-    <div class="text-center mt-4">
-      <button class="btn-main" onclick="verificarFecha()">Confirmar Día</button>
-      <button class="btn btn-secondary" onclick="cancelar()">Cancelar</button>
+
+    <!-- SECCIÓN: Éxito -->
+    <div id="exito" class="section text-center">
+      <div class="msg-box">
+        ✅ <br>
+        <strong>¡Fue exitosa tu reserva!</strong>
+      </div>
     </div>
+
+    <!-- SECCIÓN: Error -->
+    <div id="error" class="section text-center">
+      <div class="msg-box">
+        ❌ <br>
+        <strong>La fecha ya se encuentra reservada.</strong><br>
+        <button class="btn-main mt-3" onclick="volver()">OK</button>
+      </div>
+    </div>
+
   </div>
 
+<<<<<<< HEAD
   <div id="exito" class="section text-center">
     <div class="msg-box">
       ✅ <br>
@@ -49,40 +79,46 @@
       <button class="btn-main mt-3" onclick="volver()">OK</button>
     </div>
   </div>
+=======
+  <script>
+    const fechasReservadas = ["2025-06-13", "2025-06-25"];
 
-</div>
+    function verificarFecha() {
+      const fecha = document.getElementById("fechaEntrega").value;
+>>>>>>> 2e817613624ccf9b461e5ba7063109ce56c40b56
 
-<script>
-  const fechasReservadas = ["2025-06-13", "2025-06-25"];
+      if (!fecha) {
+        alert("Selecciona una fecha válida");
+        return;
+      }
 
-  function verificarFecha() {
-    const fecha = document.getElementById("fechaEntrega").value;
-
-    if (!fecha) {
-      alert("Selecciona una fecha válida");
-      return;
+      if (fechasReservadas.includes(fecha)) {
+        mostrarSeccion("error");
+      } else {
+        mostrarSeccion("exito");
+      }
     }
 
-    if (fechasReservadas.includes(fecha)) {
-      mostrarSeccion("error");
-    } else {
-      mostrarSeccion("exito");
+    function cancelar() {
+      window.location.href = "index.html"; // Página de inicio
     }
-  }
 
+<<<<<<< HEAD
   function cancelar() {
     window.location.href = "index.html"; 
   }
+=======
+    function volver() {
+      mostrarSeccion("calendario");
+    }
+>>>>>>> 2e817613624ccf9b461e5ba7063109ce56c40b56
 
-  function volver() {
-    mostrarSeccion("calendario");
-  }
-
-  function mostrarSeccion(id) {
-    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
-</script>
+    function mostrarSeccion(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
 
 </body>
+
 </html>

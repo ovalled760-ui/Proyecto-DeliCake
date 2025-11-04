@@ -1,79 +1,80 @@
 body {
-        background: linear-gradient(135deg, #c8a2f5, #7b2cbf);
-        color: #4b0082;
-        font-family: 'Arial', sans-serif;
-        padding-bottom: 80px;
-    }
+  background: linear-gradient(135deg, #c8a2f5, #7b2cbf);
+  color: #4b0082;
+  font-family: 'Arial', sans-serif;
+  padding-bottom: 80px;
+}
 
-    .navbar {
-        background-color: #7b2cbf;
-    }
+.navbar {
+  background-color: #7b2cbf;
+}
 
-    .navbar-brand, .nav-link {
-        color: white !important;
-        font-weight: bold;
-    }
+.navbar-brand,
+.nav-link {
+  color: white !important;
+  font-weight: bold;
+}
 
-    .nav-link:hover {
-        color: #FFD54F !important;
-    }
+.nav-link:hover {
+  color: #FFD54F !important;
+}
 
-    .promo-banner {
-        background-color: #FFD54F;
-        color: #000;
-        font-weight: bold;
-        border-radius: 10px;
-        box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-        padding: 15px;
-    }
+.promo-banner {
+  background-color: #FFD54F;
+  color: #000;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+}
 
-    .product-card {
-        background: white;
-        border-radius: 12px;
-        padding: 15px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        transition: transform 0.2s ease-in-out;
-    }
+.product-card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease-in-out;
+}
 
-    .product-card:hover {
-        transform: translateY(-5px);
-    }
+.product-card:hover {
+  transform: translateY(-5px);
+}
 
-    .product-card img {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
+.product-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
 
-    .old-price {
-        text-decoration: line-through;
-        color: gray;
-    }
+.old-price {
+  text-decoration: line-through;
+  color: gray;
+}
 
-    .new-price {
-        color: #7b2cbf;
-        font-size: 18px;
-        font-weight: bold;
-    }
+.new-price {
+  color: #7b2cbf;
+  font-size: 18px;
+  font-weight: bold;
+}
 
-    .discount {
-        color: #4b0082;
-        font-weight: bold;
-    }
+.discount {
+  color: #4b0082;
+  font-weight: bold;
+}
 
-    footer {
-        background-color: #4b0082;
-        color: white;
-        text-align: center;
-        padding: 10px;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-    }
+footer {
+  background-color: #4b0082;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
 
-    .falling-products {
+.falling-products {
   position: fixed;
   top: 0;
   left: 0;
@@ -94,23 +95,64 @@ body {
   opacity: 0.8;
 }
 
-.falling-products span:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
-.falling-products span:nth-child(2) { left: 25%; animation-duration: 9s; animation-delay: 2s; }
-.falling-products span:nth-child(3) { left: 40%; animation-duration: 7s; animation-delay: 4s; }
-.falling-products span:nth-child(4) { left: 60%; animation-duration: 6s; animation-delay: 1s; }
-.falling-products span:nth-child(5) { left: 80%; animation-duration: 10s; animation-delay: 3s; }
-.falling-products span:nth-child(6) { left: 15%; animation-duration: 9s; animation-delay: 5s; }
-.falling-products span:nth-child(7) { left: 50%; animation-duration: 7s; animation-delay: 0s; }
-.falling-products span:nth-child(8) { left: 75%; animation-duration: 8s; animation-delay: 6s; }
+.falling-products span:nth-child(1) {
+  left: 10%;
+  animation-duration: 8s;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(2) {
+  left: 25%;
+  animation-duration: 9s;
+  animation-delay: 2s;
+}
+
+.falling-products span:nth-child(3) {
+  left: 40%;
+  animation-duration: 7s;
+  animation-delay: 4s;
+}
+
+.falling-products span:nth-child(4) {
+  left: 60%;
+  animation-duration: 6s;
+  animation-delay: 1s;
+}
+
+.falling-products span:nth-child(5) {
+  left: 80%;
+  animation-duration: 10s;
+  animation-delay: 3s;
+}
+
+.falling-products span:nth-child(6) {
+  left: 15%;
+  animation-duration: 9s;
+  animation-delay: 5s;
+}
+
+.falling-products span:nth-child(7) {
+  left: 50%;
+  animation-duration: 7s;
+  animation-delay: 0s;
+}
+
+.falling-products span:nth-child(8) {
+  left: 75%;
+  animation-duration: 8s;
+  animation-delay: 6s;
+}
 
 @keyframes fall {
   0% {
     transform: translateY(-50px) rotate(0deg);
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(110vh) rotate(360deg);
     opacity: 0;

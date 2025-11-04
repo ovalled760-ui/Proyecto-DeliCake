@@ -14,8 +14,6 @@ body {
     padding-bottom: 200px;
 }
 
-
-
 .falling-products {
   position: fixed;
   top: 0;
@@ -59,6 +57,7 @@ body {
     opacity: 0;
   }
 }
+
 
 .navbar {
   padding: 0.5rem 1rem;
